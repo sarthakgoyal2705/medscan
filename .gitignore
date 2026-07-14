@@ -1,0 +1,15 @@
+# python
+__pycache__/
+*.pyc
+.venv/
+
+# local user data (accounts, sessions, history) — never commit
+data/users.db
+
+# large raw source datasets — regenerable, see data/*.py headers for URLs
+data/indian_medicine_data.csv
+data/pincode.csv
+data/kendras.pdf
+
+# local test artifacts
+*.png
