@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MedScan — Prescription Reader &amp; Generic Finder</title>
+<style>
+  :root {
+    --b50: #E9F7FE; --b100: #B3E5FC; --b200: #81D4FA; --b300: #4FC3F7;
+    --b400: #29B6F6; --b600: #0288D1; --b700: #026CA6;
+    --ink: #0E3A57; --muted: #557C95; --card: #FFFFFF;
+    --danger: #C62828; --danger-bg: #FDECEA; --danger-line: #F1B7B0;
+    --warn: #9A6200; --warn-bg: #FFF4DD; --warn-line: #F0D49A;
+    --radius: 14px;
+    font-size: 16px;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  body {
+    background: var(--b50); color: var(--ink);
+    font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+    min-height: 100vh; padding-bottom: 4rem;
+  }
+
+  .topbar {
+    background: var(--card); border-bottom: 2px solid var(--b100);
+    padding: 0.7rem 1.2rem; display: flex; align-items: center; gap: 0.7rem;
+    position: sticky; top: 0; z-index: 50; flex-wrap: wrap;
+  }
+  .topbar .brand { display: flex; align-items: center; gap: 0.55rem; font-weight: 700; font-size: 1.15rem; }
+  .topbar .spacer { flex: 1; }
+  .navbtn {
+    background: none; border: none; color: var(--b600); cursor: pointer;
+    font-size: 0.92rem; font-weight: 600; padding: 0.35rem 0.6rem; border-radius: 8px;
+  }
+  .navbtn:hover { background: var(--b50); }
+  .langbtn {
+    border: 1.5px solid var(--b200); background: #fff; color: var(--b600);
+    border-radius: 999px; padding: 0.25rem 0.7rem; cursor: pointer; font-weight: 700; font-size: 0.85rem;
+  }
+  .userchip { display: flex; align-items: center; gap: 0.5rem; font-size: 0.92rem; }
+  .userchip .avatar {
+    width: 32px; height: 32px; border-radius: 50%; background: var(--b600); color: #fff;
+    display: flex; align-items: center; justify-content: center; font-weight: 700;
+  }
+  .linklike { background: none; border: none; color: var(--b600); cursor: pointer; font-size: 0.88rem; padding: 0; }
+  .linklike:hover { text-decoration: underline; }
+
+  .wrap { max-width: 780px; margin: 0 auto; padding: 1.2rem; }
+
+  .hero { position: relative; text-align: center; padding: 2rem 1rem 1.2rem; overflow: hidden; }
+  .hero h1 { font-size: 1.9rem; letter-spacing: -0.02em; }
+  .hero h1 span { color: var(--b600); }
+  .hero p { color: var(--muted); margin-top: 0.45rem; font-size: 0.98rem; }
+  .hero .deco { position: absolute; z-index: -1; }
+  .stats { display: flex; gap: 0.6rem; justify-content: center; flex-wrap: wrap; margin-top: 1.1rem; }
+  .stat {
+    background: var(--card); border: 1.5px solid var(--b100); border-radius: 999px;
+    padding: 0.4rem 0.95rem; font-size: 0.85rem; display: flex; align-items: center; gap: 0.45rem;
+  }
+  .stat b { color: var(--b600); }
+
+  .tabs { display: flex; gap: 0.5rem; margin: 1.2rem 0 1rem; flex-wrap: wrap; }
+  .tab {
+    flex: 1; min-width: 140px; padding: 0.7rem; border-radius: 10px; border: 1.5px solid var(--b100);
+    background: var(--card); color: var(--muted); cursor: pointer; font-size: 0.95rem;
+    display: flex; align-items: center; justify-content: center; gap: 0.5rem; font-weight: 600;
+  }
+  .tab.active { background: var(--b600); border-color: var(--b600); color: #fff; }
+
+  .panel { background: var(--card); border: 1.5px solid var(--b100); border-radius: var(--radius); padding: 1.2rem; }
+
+  .drop {
+    border: 2px dashed var(--b200); border-radius: var(--radius); padding: 2rem 1rem;
+    text-align: center; cursor: pointer; transition: border-color 0.15s, background 0.15s;
+    background: var(--b50);
+  }
+  .drop:hover, .drop.over { border-color: var(--b600); background: #DFF3FE; }
+  .drop p { color: var(--muted); margin-top: 0.5rem; font-size: 0.92rem; }
+  #preview { max-width: 100%; max-height: 320px; border-radius: 10px; margin-top: 1rem; display: none; }
+
+  textarea, .field input, .inline-input {
+    width: 100%; background: var(--b50); color: var(--ink);
+    border: 1.5px solid var(--b100); border-radius: 10px; padding: 0.8rem; font-size: 1rem;
+    font-family: inherit;
+  }
+  textarea { min-height: 110px; resize: vertical; }
+  textarea:focus, .field input:focus, .inline-input:focus { outline: none; border-color: var(--b400); background: #fff; }
+
+  .btnrow { display: flex; gap: 0.6rem; margin-top: 1rem; flex-wrap: wrap; }
+  button.primary, button.ghost {
+    padding: 0.7rem 1.4rem; border-radius: 10px; font-size: 1rem; cursor: pointer; border: none; font-weight: 600;
+  }
+  button.primary { background: var(--b600); color: #fff; }
+  button.primary:hover { background: var(--b700); }
+  button.primary:disabled { opacity: 0.45; cursor: not-allowed; }
+  button.ghost { background: #fff; color: var(--b600); border: 1.5px solid var(--b200); }
+  button.ghost:hover { border-color: var(--b600); }
+  button.mini {
+    padding: 0.25rem 0.7rem; border-radius: 8px; font-size: 0.8rem; cursor: pointer;
+    background: #fff; color: var(--b600); border: 1.5px solid var(--b200); font-weight: 600;
+  }
+  button.mini:hover { border-color: var(--b600); }
+
+  .status { margin-top: 1rem; color: var(--muted); font-size: 0.95rem; min-height: 1.3rem; }
+  .status.error { color: var(--danger); }
+  .spinner {
+    display: inline-block; width: 14px; height: 14px; border: 2px solid var(--b300);
+    border-top-color: transparent; border-radius: 50%; animation: spin 0.8s linear infinite;
+    vertical-align: -2px; margin-right: 6px;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .autowrap { position: relative; }
+  .suggest {
+    position: absolute; left: 0; right: 0; top: 100%; z-index: 20;
+    background: #fff; border: 1.5px solid var(--b300); border-radius: 10px;
+    margin-top: 4px; max-height: 260px; overflow-y: auto; box-shadow: 0 10px 24px rgba(2, 108, 166, 0.18);
+  }
+  .suggest .opt { padding: 0.55rem 0.8rem; cursor: pointer; display: flex; justify-content: space-between; gap: 0.8rem; align-items: baseline; }
+  .suggest .opt:hover, .suggest .opt.sel { background: var(--b50); }
+  .suggest .opt .nm { font-weight: 600; }
+  .suggest .opt .st { color: var(--muted); font-size: 0.78rem; flex: 1; text-align: right;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .suggest .opt .pr { color: var(--b600); font-size: 0.85rem; white-space: nowrap; font-weight: 600; }
+
+  #results { margin-top: 1.4rem; display: none; }
+  .summary {
+    background: var(--b600); color: #fff;
+    border-radius: var(--radius); padding: 1.1rem 1.2rem; margin-bottom: 1rem;
+    display: flex; align-items: center; gap: 0.9rem;
+  }
+  .summary .headline { font-size: 1.25rem; font-weight: 700; }
+  .summary .headline span { color: #FFE082; }
+  .summary .sub { color: var(--b100); font-size: 0.9rem; margin-top: 0.2rem; }
+
+  .alert { border-radius: 12px; padding: 0.9rem 1rem; margin-bottom: 0.7rem; font-size: 0.93rem; border: 1.5px solid; }
+  .alert.major { background: var(--danger-bg); border-color: var(--danger-line); color: #5D1A15; }
+  .alert.moderate { background: var(--warn-bg); border-color: var(--warn-line); color: #5C3D00; }
+  .alert .tag { font-weight: 700; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.05em; }
+  .alert.major .tag { color: var(--danger); }
+  .alert.moderate .tag { color: var(--warn); }
+  .alert .advice { color: inherit; opacity: 0.85; margin-top: 0.3rem; }
+  .alert .savedtag {
+    display: inline-block; background: var(--b600); color: #fff; border-radius: 999px;
+    font-size: 0.7rem; padding: 0.1rem 0.55rem; margin-left: 0.4rem; vertical-align: 1px;
+  }
+
+  .med {
+    background: var(--card); border: 1.5px solid var(--b100); border-radius: var(--radius);
+    padding: 1rem 1.1rem; margin-bottom: 0.8rem;
+  }
+  .med .top { display: flex; justify-content: space-between; align-items: baseline; gap: 0.6rem; flex-wrap: wrap; }
+  .med h3 { font-size: 1.1rem; display: flex; align-items: center; gap: 0.45rem; }
+  .med h3 .medlink { cursor: pointer; }
+  .med h3 .medlink:hover { color: var(--b600); text-decoration: underline; }
+  .med .salt { color: var(--b600); font-size: 0.9rem; margin-top: 0.15rem; font-weight: 600; }
+  .med .meta { color: var(--muted); font-size: 0.85rem; margin-top: 0.3rem; }
+  .badge {
+    font-size: 0.72rem; padding: 0.15rem 0.55rem; border-radius: 999px;
+    border: 1.5px solid var(--b100); color: var(--muted); white-space: nowrap; background: var(--b50);
+  }
+  .badge.low { border-color: var(--warn-line); color: var(--warn); background: var(--warn-bg); }
+  .price-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; margin-top: 0.8rem; }
+  .price { background: var(--b50); border-radius: 10px; padding: 0.6rem 0.8rem; border: 1.5px solid var(--b100); }
+  .price .label { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; }
+  .price .value { font-size: 1.15rem; font-weight: 700; margin-top: 0.15rem; }
+  .price.generic { border-color: var(--b400); background: #E3F5FE; }
+  .price.generic .value { color: var(--b700); }
+  .save-line { margin-top: 0.55rem; font-size: 0.9rem; color: var(--b700); font-weight: 600; }
+  .med.unmatched { border-style: dashed; }
+  .med.unmatched .nomatch { color: var(--warn); font-size: 0.9rem; margin-top: 0.4rem; }
+
+  .alts { margin-top: 0.7rem; border-top: 1.5px dashed var(--b100); padding-top: 0.6rem; }
+  .alts .alts-title { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); margin-bottom: 0.35rem; }
+  .alts .alt { display: flex; justify-content: space-between; gap: 0.6rem; font-size: 0.88rem; padding: 0.15rem 0; }
+  .alts .alt .ap { color: var(--b600); white-space: nowrap; font-weight: 600; }
+  .alts .alt .an span { color: var(--muted); font-size: 0.78rem; }
+
+  .storecard {
+    background: var(--card); border: 1.5px solid var(--b100); border-radius: 12px;
+    padding: 0.8rem 1rem; margin-bottom: 0.6rem; display: flex; gap: 0.8rem; align-items: flex-start;
+  }
+  .storecard .dist {
+    background: var(--b600); color: #fff; border-radius: 10px; padding: 0.35rem 0.55rem;
+    font-weight: 700; font-size: 0.85rem; white-space: nowrap;
+  }
+  .storecard .addr { color: var(--muted); font-size: 0.85rem; margin-top: 0.15rem; }
+  .storecard a { color: var(--b600); font-size: 0.85rem; font-weight: 600; }
+
+  .disclaimer { color: var(--muted); font-size: 0.78rem; margin-top: 1.2rem; line-height: 1.5; }
+  .section-title { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin: 1.2rem 0 0.6rem; }
+
+  .overlay {
+    position: fixed; inset: 0; background: rgba(6, 48, 74, 0.5); z-index: 100;
+    display: none; align-items: center; justify-content: center; padding: 1rem;
+  }
+  .overlay.show { display: flex; }
+  .modal {
+    background: #fff; border-radius: 16px; width: 100%; max-width: 430px;
+    padding: 1.5rem; border-top: 6px solid var(--b600);
+    max-height: 88vh; overflow-y: auto;
+  }
+  .modal.wide { max-width: 560px; }
+  .modal h2 { font-size: 1.25rem; display: flex; align-items: center; gap: 0.5rem; }
+  .modal .sub { color: var(--muted); font-size: 0.88rem; margin-top: 0.3rem; }
+  .modal .close { float: right; font-size: 1rem; }
+  .authtabs { display: flex; gap: 0.4rem; margin: 1rem 0 0.4rem; }
+  .authtabs button {
+    flex: 1; padding: 0.5rem; border-radius: 8px; border: 1.5px solid var(--b100);
+    background: #fff; color: var(--muted); cursor: pointer; font-weight: 600;
+  }
+  .authtabs button.on { background: var(--b50); border-color: var(--b400); color: var(--b700); }
+  .field { margin-top: 0.7rem; }
+  .field label { display: block; font-size: 0.82rem; font-weight: 600; margin-bottom: 0.25rem; }
+  .modal .actions { display: flex; gap: 0.6rem; margin-top: 0.9rem; }
+  .modal .actions .primary { flex: 1; }
+
+  .histrow {
+    border: 1.5px solid var(--b100); border-radius: 10px; padding: 0.7rem 0.9rem;
+    margin-top: 0.6rem; display: flex; gap: 0.7rem; align-items: center; flex-wrap: wrap;
+  }
+  .histrow .hmeds { flex: 1; min-width: 150px; }
+  .histrow .hdate { color: var(--muted); font-size: 0.78rem; }
+  .histrow .hsave { color: var(--b700); font-weight: 700; font-size: 0.9rem; white-space: nowrap; }
+  .histrow .hwarn { color: var(--danger); font-size: 0.8rem; }
+
+  .medrow {
+    border: 1.5px solid var(--b100); border-radius: 10px; padding: 0.6rem 0.9rem;
+    margin-top: 0.55rem; display: flex; gap: 0.7rem; align-items: center;
+  }
+  .medrow .m-name { font-weight: 600; flex: 1; }
+  .medrow .m-salt { color: var(--muted); font-size: 0.8rem; }
+
+  .info-block { background: var(--b50); border: 1.5px solid var(--b100); border-radius: 10px; padding: 0.7rem 0.9rem; margin-top: 0.6rem; font-size: 0.88rem; }
+  .info-block .ib-salt { font-weight: 700; color: var(--b700); }
+  .info-block div { margin-top: 0.25rem; }
+  .info-block b { color: var(--ink); }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="brand">
+    <svg width="30" height="30" viewBox="0 0 32 32">
+      <g transform="rotate(-45 16 16)">
+        <rect x="6" y="10" width="20" height="12" rx="6" fill="#0288D1"/>
+        <path d="M16 10 h4 a6 6 0 0 1 0 12 h-4 z" fill="#4FC3F7"/>
+        <rect x="9" y="13" width="5" height="2.2" rx="1.1" fill="#B3E5FC"/>
+      </g>
+    </svg>
+    MedScan
+  </div>
+  <div class="spacer"></div>
+  <button class="langbtn" id="langBtn">हिं</button>
+  <span id="navHistory" style="display:none"><button class="navbtn" data-i18n="nav_history" onclick="openHistory()">History</button></span>
+  <span id="navMyMeds" style="display:none"><button class="navbtn" data-i18n="nav_mymeds" onclick="openMyMeds()">My medicines</button></span>
+  <div id="authArea"></div>
+</div>
+
+<div class="wrap">
+  <div class="hero">
+    <svg class="deco" style="left:2%; top:12%;" width="46" height="46" viewBox="0 0 32 32">
+      <g transform="rotate(30 16 16)">
+        <rect x="6" y="10" width="20" height="12" rx="6" fill="#B3E5FC"/>
+        <path d="M16 10 h4 a6 6 0 0 1 0 12 h-4 z" fill="#81D4FA"/>
+      </g>
+    </svg>
+    <svg class="deco" style="right:4%; top:8%;" width="40" height="40" viewBox="0 0 32 32">
+      <circle cx="16" cy="16" r="12" fill="#B3E5FC"/>
+      <rect x="7" y="14.8" width="18" height="2.4" rx="1.2" fill="#4FC3F7"/>
+    </svg>
+    <svg class="deco" style="right:12%; bottom:6%;" width="34" height="34" viewBox="0 0 32 32">
+      <rect x="9" y="4" width="14" height="6" rx="2" fill="#81D4FA"/>
+      <rect x="7" y="10" width="18" height="18" rx="3" fill="#B3E5FC"/>
+      <rect x="13.6" y="15" width="4.8" height="8" rx="1" fill="#0288D1" transform="rotate(90 16 19)"/>
+      <rect x="13.6" y="15" width="4.8" height="8" rx="1" fill="#0288D1"/>
+    </svg>
+    <svg class="deco" style="left:10%; bottom:2%;" width="30" height="30" viewBox="0 0 32 32">
+      <circle cx="16" cy="16" r="11" fill="#81D4FA"/>
+      <circle cx="16" cy="16" r="5.5" fill="#E9F7FE"/>
+    </svg>
+
+    <h1><span data-i18n="hero_a">Read the scrawl.</span> <span data-i18n="hero_b" style="color:var(--b600)">Pay the generic price.</span></h1>
+    <p data-i18n="hero_sub">Photograph a prescription → decode the handwriting → find generic alternatives &amp; catch dangerous drug interactions</p>
+    <div class="stats">
+      <div class="stat">💊 <b>2,46,064</b> <span data-i18n="stat_meds">medicines</span></div>
+      <div class="stat">🧪 <b>10,932</b> <span data-i18n="stat_salts">salt groups</span></div>
+      <div class="stat">🏪 <b>18,673</b> <span data-i18n="stat_stores">Jan Aushadhi stores</span></div>
+    </div>
+  </div>
+
+  <div class="tabs">
+    <button class="tab active" data-mode="photo">📷 <span data-i18n="tab_scan">Scan photo</span></button>
+    <button class="tab" data-mode="type">⌨️ <span data-i18n="tab_type">Type names</span></button>
+    <button class="tab" data-mode="stores">🏪 <span data-i18n="tab_stores">Find stores</span></button>
+  </div>
+
+  <div class="panel" id="panel-photo">
+    <div class="drop" id="drop">
+      <svg width="52" height="52" viewBox="0 0 32 32">
+        <rect x="8" y="3" width="16" height="5" rx="2" fill="#4FC3F7"/>
+        <rect x="6" y="8" width="20" height="21" rx="3" fill="#B3E5FC"/>
+        <rect x="13.8" y="13" width="4.4" height="11" rx="1" fill="#0288D1"/>
+        <rect x="10.5" y="16.3" width="11" height="4.4" rx="1" fill="#0288D1"/>
+      </svg>
+      <div><strong data-i18n="drop_title">Tap to photograph or upload a prescription</strong></div>
+      <p data-i18n="drop_sub">JPEG / PNG / WebP · drag &amp; drop works too</p>
+      <img id="preview" alt="Prescription preview">
+    </div>
+    <input type="file" id="file" accept="image/*" capture="environment" hidden>
+    <div class="btnrow">
+      <button class="primary" id="scanBtn" disabled data-i18n="btn_scan">Scan prescription</button>
+      <button class="ghost" id="demoBtn" data-i18n="btn_demo">Try demo (no photo needed)</button>
+    </div>
+    <div class="status" id="status-photo"></div>
+  </div>
+
+  <div class="panel" id="panel-type" style="display:none">
+    <div class="autowrap">
+      <textarea id="names" autocomplete="off" data-i18n-ph="type_ph" placeholder="One medicine per line — suggestions appear as you type, e.g.&#10;Dolo 650&#10;Augmentin 625&#10;Pan 40"></textarea>
+      <div id="suggest" class="suggest" hidden></div>
+    </div>
+    <div class="btnrow">
+      <button class="primary" id="lookupBtn" data-i18n="btn_lookup">Find generics</button>
+    </div>
+    <div class="status" id="status-type"></div>
+  </div>
+
+  <div class="panel" id="panel-stores" style="display:none">
+    <strong data-i18n="stores_title">Find your nearest Jan Aushadhi Kendra</strong>
+    <p class="disclaimer" style="margin-top:0.3rem" data-i18n="stores_sub">Government stores selling quality generic medicines at 50–90% lower prices. 18,673 stores mapped.</p>
+    <div class="btnrow">
+      <button class="primary" id="geoBtn">📍 <span data-i18n="btn_geo">Use my location</span></button>
+      <input class="inline-input" id="pincode" data-i18n-ph="pin_ph" placeholder="…or enter your pincode, e.g. 411001" style="max-width:280px" inputmode="numeric" maxlength="6">
+      <button class="ghost" id="pinBtn" data-i18n="btn_pin">Search</button>
+    </div>
+    <div class="status" id="status-stores"></div>
+    <div id="storeList" style="margin-top:0.6rem"></div>
+  </div>
+
+  <div id="results">
+    <div class="summary" id="summary"></div>
+    <div id="savedWarnings"></div>
+    <div id="warnings"></div>
+    <div class="section-title">💊 <span data-i18n="sec_medicines">Medicines</span></div>
+    <div id="meds"></div>
+    <div id="notes" class="disclaimer"></div>
+    <div id="disclaimer" class="disclaimer"></div>
+  </div>
+</div>
+
+<!-- auth modal -->
+<div class="overlay" id="authOverlay">
+  <div class="modal">
+    <button class="linklike close" onclick="hide('authOverlay')">✕</button>
+    <h2>💊 <span data-i18n="auth_title">Welcome to MedScan</span></h2>
+    <div class="sub" data-i18n="auth_sub">Create a free account to save your scans and medicines.</div>
+    <div class="authtabs">
+      <button id="tabSignup" class="on" data-i18n="auth_create">Create account</button>
+      <button id="tabLogin" data-i18n="auth_signin">Sign in</button>
+    </div>
+    <form id="authForm">
+      <div class="field" id="nameField">
+        <label for="fName" data-i18n="f_name">Name</label>
+        <input id="fName" type="text" autocomplete="name">
+      </div>
+      <div class="field">
+        <label for="fEmail" data-i18n="f_email">Email</label>
+        <input id="fEmail" type="email" autocomplete="email" required>
+      </div>
+      <div class="field">
+        <label for="fPassword" data-i18n="f_password">Password</label>
+        <input id="fPassword" type="password" autocomplete="new-password" required>
+      </div>
+      <div class="status" id="status-auth"></div>
+      <div class="actions">
+        <button type="submit" class="primary" id="authSubmit" data-i18n="auth_create">Create account</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- history modal -->
+<div class="overlay" id="histOverlay">
+  <div class="modal wide">
+    <button class="linklike close" onclick="hide('histOverlay')">✕</button>
+    <h2>🕘 <span data-i18n="hist_title">Your scan history</span></h2>
+    <div class="sub" id="histTotal"></div>
+    <div id="histList"></div>
+  </div>
+</div>
+
+<!-- my medicines modal -->
+<div class="overlay" id="mymedsOverlay">
+  <div class="modal wide">
+    <button class="linklike close" onclick="hide('mymedsOverlay')">✕</button>
+    <h2>💊 <span data-i18n="mymeds_title">My medicines</span></h2>
+    <div class="sub" data-i18n="mymeds_sub">Medicines you take regularly. New scans are checked against this list for dangerous combinations.</div>
+    <div class="btnrow">
+      <input class="inline-input" id="mymedInput" data-i18n-ph="mymed_ph" placeholder="Add a medicine, e.g. Ecosprin 75" style="flex:1">
+      <button class="primary" id="mymedAdd" data-i18n="btn_add">Add</button>
+    </div>
+    <div class="status" id="status-mymeds"></div>
+    <div id="mymedList"></div>
+    <div id="mymedWarnings" style="margin-top:0.8rem"></div>
+  </div>
+</div>
+
+<!-- medicine detail modal -->
+<div class="overlay" id="detailOverlay">
+  <div class="modal wide">
+    <button class="linklike close" onclick="hide('detailOverlay')">✕</button>
+    <div id="detailBody"><div class="status"><span class="spinner"></span></div></div>
+  </div>
+</div>
+
+<script>
+const $ = id => document.getElementById(id);
+const rupee = n => "₹" + Number(n).toLocaleString("en-IN", { maximumFractionDigits: 2 });
+const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+let selectedFile = null, currentUser = null;
+function hide(id) { $(id).classList.remove("show"); }
+function show(id) { $(id).classList.add("show"); }
+
+/* ---------------- i18n ---------------- */
+const I18N = {
+  en: {
+    nav_history: "History", nav_mymeds: "My medicines",
+    hero_a: "Read the scrawl.", hero_b: "Pay the generic price.",
+    hero_sub: "Photograph a prescription → decode the handwriting → find generic alternatives & catch dangerous drug interactions",
+    stat_meds: "medicines", stat_salts: "salt groups", stat_stores: "Jan Aushadhi stores",
+    tab_scan: "Scan photo", tab_type: "Type names", tab_stores: "Find stores",
+    drop_title: "Tap to photograph or upload a prescription", drop_sub: "JPEG / PNG / WebP · drag & drop works too",
+    btn_scan: "Scan prescription", btn_demo: "Try demo (no photo needed)", btn_lookup: "Find generics",
+    type_ph: "One medicine per line — suggestions appear as you type, e.g.\nDolo 650\nAugmentin 625\nPan 40",
+    stores_title: "Find your nearest Jan Aushadhi Kendra",
+    stores_sub: "Government stores selling quality generic medicines at 50–90% lower prices. 18,673 stores mapped.",
+    btn_geo: "Use my location", pin_ph: "…or enter your pincode, e.g. 411001", btn_pin: "Search",
+    sec_medicines: "Medicines",
+    auth_title: "Welcome to MedScan", auth_sub: "Create a free account to save your scans and medicines.",
+    auth_create: "Create account", auth_signin: "Sign in", f_name: "Name", f_email: "Email", f_password: "Password",
+    hist_title: "Your scan history", mymeds_title: "My medicines",
+    mymeds_sub: "Medicines you take regularly. New scans are checked against this list for dangerous combinations.",
+    mymed_ph: "Add a medicine, e.g. Ecosprin 75", btn_add: "Add",
+    s_scanning: "Reading handwriting with the local AI model… on CPU this can take a few minutes. Leave this tab open.",
+    s_demo: "Loading demo result…", s_lookup: "Looking up…", s_locating: "Getting your location…",
+    s_stores: "Finding nearby stores…", s_enter_med: "Enter at least one medicine name.",
+    s_choose_img: "Please choose an image file.", s_signin_first: "Sign in to use this.",
+    save_headline: (s, p) => `You could save <span>${s}</span> (${p}%)`,
+    save_sub: (b, g) => `Branded total ${b} → generic total ${g} per pack, across matched medicines`,
+    results: "Results", no_prices: "No price comparison available for these entries.",
+    serious: "⚠ Serious interaction", caution: "⚠ Caution", your_med: "with your saved medicine",
+    read_as: "read as", not_found: "Not in our database — ask your pharmacist for the salt composition and a generic equivalent.",
+    save_line: (s, p) => `💰 Save ${s} (${p}%) per pack with the generic`,
+    same_salt: n => `Same salt, other brands${n > 1 ? ` (${n} products share this composition)` : ""}`,
+    add_mymeds: "+ My medicines", added: "Added ✓",
+    conf: c => ({high: "high confidence", medium: "medium confidence", low: "low read confidence"}[c] || c),
+    total_saved: t => `Total saved with generics so far: ${t}`,
+    hist_empty: "No scans yet — scan a prescription or look up medicines and they'll appear here.",
+    view: "View", del: "Delete", warns: n => `${n} warning${n === 1 ? "" : "s"}`,
+    km: "km", directions: "Directions →", uses: "Uses", side_effects: "Common side effects", careful: "Be careful",
+    all_brands: n => `All brands with this salt (${n} products, cheapest first)`,
+    disclaimer_extra: "Always confirm substitutions with your doctor or pharmacist.",
+    mymeds_empty: "Nothing saved yet. Add the medicines you take regularly.",
+    mymeds_conflict: "⚠ Two of your saved medicines interact — discuss with your doctor.",
+  },
+  hi: {
+    nav_history: "इतिहास", nav_mymeds: "मेरी दवाइयाँ",
+    hero_a: "पर्ची पढ़ें।", hero_b: "जेनेरिक दाम चुकाएँ।",
+    hero_sub: "पर्ची की फोटो लें → लिखावट समझें → सस्ते जेनेरिक विकल्प पाएँ और खतरनाक दवा संयोजन पकड़ें",
+    stat_meds: "दवाइयाँ", stat_salts: "सॉल्ट समूह", stat_stores: "जन औषधि केंद्र",
+    tab_scan: "फोटो स्कैन करें", tab_type: "नाम लिखें", tab_stores: "केंद्र खोजें",
+    drop_title: "पर्ची की फोटो लें या अपलोड करें", drop_sub: "JPEG / PNG / WebP · खींच कर छोड़ना भी चलेगा",
+    btn_scan: "पर्ची स्कैन करें", btn_demo: "डेमो देखें (बिना फोटो)", btn_lookup: "जेनेरिक खोजें",
+    type_ph: "हर पंक्ति में एक दवा — लिखते ही सुझाव आएँगे, जैसे\nDolo 650\nAugmentin 625\nPan 40",
+    stores_title: "नज़दीकी जन औषधि केंद्र खोजें",
+    stores_sub: "सरकारी दुकानें जहाँ अच्छी जेनेरिक दवाइयाँ 50–90% सस्ती मिलती हैं। 18,673 केंद्र उपलब्ध।",
+    btn_geo: "मेरी लोकेशन से", pin_ph: "…या पिनकोड लिखें, जैसे 411001", btn_pin: "खोजें",
+    sec_medicines: "दवाइयाँ",
+    auth_title: "MedScan में स्वागत है", auth_sub: "मुफ़्त खाता बनाएँ — स्कैन और दवाइयाँ सेव होंगी।",
+    auth_create: "खाता बनाएँ", auth_signin: "साइन इन", f_name: "नाम", f_email: "ईमेल", f_password: "पासवर्ड",
+    hist_title: "आपका स्कैन इतिहास", mymeds_title: "मेरी दवाइयाँ",
+    mymeds_sub: "जो दवाइयाँ आप नियमित लेते हैं। हर नई पर्ची इनके साथ खतरनाक संयोजन के लिए जाँची जाएगी।",
+    mymed_ph: "दवा जोड़ें, जैसे Ecosprin 75", btn_add: "जोड़ें",
+    s_scanning: "AI लिखावट पढ़ रहा है… CPU पर कुछ मिनट लग सकते हैं। टैब खुला रखें।",
+    s_demo: "डेमो लोड हो रहा है…", s_lookup: "खोज रहे हैं…", s_locating: "आपकी लोकेशन ली जा रही है…",
+    s_stores: "नज़दीकी केंद्र खोजे जा रहे हैं…", s_enter_med: "कम से कम एक दवा का नाम लिखें।",
+    s_choose_img: "कृपया कोई इमेज फ़ाइल चुनें।", s_signin_first: "इसके लिए साइन इन करें।",
+    save_headline: (s, p) => `आप <span>${s}</span> (${p}%) बचा सकते हैं`,
+    save_sub: (b, g) => `ब्रांडेड कुल ${b} → जेनेरिक कुल ${g} प्रति पैक`,
+    results: "परिणाम", no_prices: "इन दवाओं के लिए मूल्य तुलना उपलब्ध नहीं।",
+    serious: "⚠ गंभीर इंटरैक्शन", caution: "⚠ सावधानी", your_med: "आपकी सेव की गई दवा के साथ",
+    read_as: "पढ़ा गया", not_found: "हमारे डेटाबेस में नहीं मिली — सॉल्ट संरचना के लिए फार्मासिस्ट से पूछें।",
+    save_line: (s, p) => `💰 जेनेरिक से प्रति पैक ${s} (${p}%) बचाएँ`,
+    same_salt: n => `समान सॉल्ट, अन्य ब्रांड${n > 1 ? ` (${n} उत्पाद)` : ""}`,
+    add_mymeds: "+ मेरी दवाइयाँ", added: "जुड़ गई ✓",
+    conf: c => ({high: "उच्च विश्वास", medium: "मध्यम विश्वास", low: "कम विश्वास — जाँच लें"}[c] || c),
+    total_saved: t => `जेनेरिक से अब तक कुल बचत: ${t}`,
+    hist_empty: "अभी कोई स्कैन नहीं — पर्ची स्कैन करें, वह यहाँ दिखेगी।",
+    view: "देखें", del: "हटाएँ", warns: n => `${n} चेतावनी`,
+    km: "किमी", directions: "रास्ता →", uses: "उपयोग", side_effects: "आम दुष्प्रभाव", careful: "सावधानी",
+    all_brands: n => `इस सॉल्ट के सभी ब्रांड (${n} उत्पाद, सबसे सस्ता पहले)`,
+    disclaimer_extra: "दवा बदलने से पहले हमेशा डॉक्टर या फार्मासिस्ट से पुष्टि करें।",
+    mymeds_empty: "अभी कुछ सेव नहीं। अपनी नियमित दवाइयाँ जोड़ें।",
+    mymeds_conflict: "⚠ आपकी दो सेव की गई दवाइयाँ आपस में इंटरैक्ट करती हैं — डॉक्टर से बात करें।",
+  },
+};
+let lang = localStorage.getItem("medscan_lang") || "en";
+const t = key => I18N[lang][key] ?? I18N.en[key] ?? key;
+
+function applyI18n() {
+  document.querySelectorAll("[data-i18n]").forEach(el => { el.textContent = t(el.dataset.i18n); });
+  document.querySelectorAll("[data-i18n-ph]").forEach(el => { el.placeholder = t(el.dataset.i18nPh); });
+  $("langBtn").textContent = lang === "en" ? "हिं" : "EN";
+  document.documentElement.lang = lang;
+}
+$("langBtn").addEventListener("click", () => {
+  lang = lang === "en" ? "hi" : "en";
+  localStorage.setItem("medscan_lang", lang);
+  applyI18n();
+});
+
+/* ---------------- tabs ---------------- */
+document.querySelectorAll(".tab").forEach(tab => tab.addEventListener("click", () => {
+  document.querySelectorAll(".tab").forEach(x => x.classList.remove("active"));
+  tab.classList.add("active");
+  const mode = tab.dataset.mode;
+  ["photo", "type", "stores"].forEach(m => { $("panel-" + m).style.display = m === mode ? "" : "none"; });
+}));
+
+/* ---------------- file picking ---------------- */
+const drop = $("drop"), fileInput = $("file");
+drop.addEventListener("click", () => fileInput.click());
+drop.addEventListener("dragover", e => { e.preventDefault(); drop.classList.add("over"); });
+drop.addEventListener("dragleave", () => drop.classList.remove("over"));
+drop.addEventListener("drop", e => {
+  e.preventDefault(); drop.classList.remove("over");
+  if (e.dataTransfer.files[0]) setFile(e.dataTransfer.files[0]);
+});
+fileInput.addEventListener("change", () => { if (fileInput.files[0]) setFile(fileInput.files[0]); });
+
+function setFile(f) {
+  if (!f.type.startsWith("image/")) { setStatus("photo", t("s_choose_img"), true); return; }
+  selectedFile = f;
+  const img = $("preview");
+  img.src = URL.createObjectURL(f);
+  img.style.display = "block";
+  $("scanBtn").disabled = false;
+  setStatus("photo", "");
+}
+
+function setStatus(which, msg, isError = false, busy = false) {
+  const el = $("status-" + which);
+  el.className = "status" + (isError ? " error" : "");
+  el.innerHTML = busy ? '<span class="spinner"></span>' + esc(msg) : esc(msg);
+}
+
+async function callApi(url, options, which) {
+  try {
+    const res = await fetch(url, options);
+    const body = await res.json();
+    if (!res.ok) throw new Error(body.detail || "Request failed (" + res.status + ")");
+    setStatus(which, "");
+    render(body);
+  } catch (err) {
+    setStatus(which, err.message, true);
+    $("results").style.display = "none";
+  }
+}
+
+$("scanBtn").addEventListener("click", () => {
+  if (!selectedFile) return;
+  setStatus("photo", t("s_scanning"), false, true);
+  const fd = new FormData();
+  fd.append("image", selectedFile);
+  callApi("/api/scan", { method: "POST", body: fd }, "photo");
+});
+$("demoBtn").addEventListener("click", () => {
+  setStatus("photo", t("s_demo"), false, true);
+  callApi("/api/demo", {}, "photo");
+});
+
+/* ---------------- autocomplete ---------------- */
+const ta = $("names"), sug = $("suggest");
+let sugTimer = null, sugItems = [], sugSel = -1;
+
+function currentLineRange() {
+  const pos = ta.selectionStart;
+  const start = ta.value.lastIndexOf("\n", pos - 1) + 1;
+  let end = ta.value.indexOf("\n", pos);
+  if (end === -1) end = ta.value.length;
+  return { start, end, text: ta.value.slice(start, pos) };
+}
+function hideSuggest() { sug.hidden = true; sugItems = []; sugSel = -1; }
+function acceptSuggestion(i) {
+  if (!sugItems[i]) return;
+  const { start, end } = currentLineRange();
+  ta.value = ta.value.slice(0, start) + sugItems[i].name + ta.value.slice(end);
+  const newPos = start + sugItems[i].name.length;
+  ta.setSelectionRange(newPos, newPos);
+  ta.focus();
+  hideSuggest();
+}
+function renderSuggest() {
+  if (!sugItems.length) { hideSuggest(); return; }
+  sug.innerHTML = sugItems.map((s, i) => `
+    <div class="opt${i === sugSel ? " sel" : ""}" data-i="${i}">
+      <span class="nm">${esc(s.name)}</span>
+      <span class="st">${esc(s.salt)}</span>
+      <span class="pr">${rupee(s.price)}</span>
+    </div>`).join("");
+  sug.hidden = false;
+}
+ta.addEventListener("input", () => {
+  clearTimeout(sugTimer);
+  const q = currentLineRange().text.trim();
+  if (!q) { hideSuggest(); return; }
+  sugTimer = setTimeout(async () => {
+    try {
+      const res = await fetch("/api/suggest?q=" + encodeURIComponent(q));
+      const body = await res.json();
+      sugItems = body.suggestions || []; sugSel = -1;
+      renderSuggest();
+    } catch { hideSuggest(); }
+  }, 120);
+});
+ta.addEventListener("keydown", e => {
+  if (sug.hidden) return;
+  if (e.key === "ArrowDown") { e.preventDefault(); sugSel = Math.min(sugSel + 1, sugItems.length - 1); renderSuggest(); }
+  else if (e.key === "ArrowUp") { e.preventDefault(); sugSel = Math.max(sugSel - 1, 0); renderSuggest(); }
+  else if ((e.key === "Enter" || e.key === "Tab") && sugSel >= 0) { e.preventDefault(); acceptSuggestion(sugSel); }
+  else if (e.key === "Escape") hideSuggest();
+});
+sug.addEventListener("mousedown", e => {
+  const opt = e.target.closest(".opt");
+  if (opt) { e.preventDefault(); acceptSuggestion(Number(opt.dataset.i)); }
+});
+ta.addEventListener("blur", () => setTimeout(hideSuggest, 150));
+
+$("lookupBtn").addEventListener("click", () => {
+  const names = ta.value.split("\n").map(s => s.trim()).filter(Boolean);
+  if (!names.length) { setStatus("type", t("s_enter_med"), true); return; }
+  setStatus("type", t("s_lookup"), false, true);
+  callApi("/api/lookup", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ names }),
+  }, "type");
+});
+
+/* ---------------- store finder ---------------- */
+async function fetchStores(params) {
+  setStatus("stores", t("s_stores"), false, true);
+  try {
+    const res = await fetch("/api/stores?" + params);
+    const body = await res.json();
+    if (!res.ok) throw new Error(body.detail || "Failed");
+    setStatus("stores", "");
+    $("storeList").innerHTML = body.stores.map(s => `
+      <div class="storecard">
+        <div class="dist">${s.distance_km} ${t("km")}</div>
+        <div style="flex:1">
+          <strong>${esc(s.name)}</strong> <span class="badge">${esc(s.code)}</span>
+          <div class="addr">${esc(s.address)}, ${esc(s.district)}, ${esc(s.state)} — ${esc(s.pincode)}</div>
+          <a href="${s.maps_url}" target="_blank" rel="noopener">${t("directions")}</a>
+        </div>
+      </div>`).join("");
+  } catch (err) {
+    setStatus("stores", err.message, true);
+    $("storeList").innerHTML = "";
+  }
+}
+$("geoBtn").addEventListener("click", () => {
+  if (!navigator.geolocation) { setStatus("stores", "Geolocation not supported — use pincode.", true); return; }
+  setStatus("stores", t("s_locating"), false, true);
+  navigator.geolocation.getCurrentPosition(
+    pos => fetchStores(`lat=${pos.coords.latitude}&lng=${pos.coords.longitude}`),
+    () => setStatus("stores", "Location unavailable — enter your pincode instead.", true),
+    { timeout: 10000 });
+});
+$("pinBtn").addEventListener("click", () => {
+  const pc = $("pincode").value.trim();
+  if (!/^\d{6}$/.test(pc)) { setStatus("stores", "Enter a valid 6-digit pincode.", true); return; }
+  fetchStores("pincode=" + pc);
+});
+$("pincode").addEventListener("keydown", e => { if (e.key === "Enter") $("pinBtn").click(); });
+
+/* ---------------- results ---------------- */
+function warnHtml(w, savedTag) {
+  return `
+    <div class="alert ${w.severity}">
+      <span class="tag">${w.severity === "major" ? t("serious") : t("caution")}</span>
+      — <strong>${esc(w.between.join(" + "))}</strong>${savedTag && w.saved_med ? `<span class="savedtag">${t("your_med")}: ${esc(w.saved_med)}</span>` : ""}<br>
+      ${esc(w.effect)}
+      <div class="advice">👉 ${esc(w.advice)}</div>
+    </div>`;
+}
+
+function render(data) {
+  const tt = data.totals;
+  $("summary").innerHTML = (tt && tt.saving > 0
+    ? `<svg width="40" height="40" viewBox="0 0 32 32"><circle cx="16" cy="16" r="14" fill="#4FC3F7"/><text x="16" y="21.5" text-anchor="middle" font-size="15" font-weight="bold" fill="#fff">₹</text></svg>
+       <div><div class="headline">${t("save_headline")(rupee(tt.saving), tt.saving_pct)}</div>
+       <div class="sub">${t("save_sub")(rupee(tt.brand), rupee(tt.generic))}</div></div>`
+    : `<div><div class="headline">${t("results")}</div><div class="sub">${t("no_prices")}</div></div>`);
+
+  $("savedWarnings").innerHTML = (data.saved_interactions || []).map(w => warnHtml(w, true)).join("");
+  $("warnings").innerHTML = (data.interactions || []).map(w => warnHtml(w, false)).join("");
+
+  $("meds").innerHTML = data.medicines.map(m => {
+    const conf = `<span class="badge${m.ocr_confidence === "low" ? " low" : ""}">${t("conf")(m.ocr_confidence)}</span>`;
+    const meta = [m.dosage, m.frequency].filter(Boolean).join(" · ");
+    const pill = `<svg width="17" height="17" viewBox="0 0 32 32"><g transform="rotate(-45 16 16)"><rect x="6" y="10" width="20" height="12" rx="6" fill="#0288D1"/><path d="M16 10 h4 a6 6 0 0 1 0 12 h-4 z" fill="#4FC3F7"/></g></svg>`;
+    if (!m.matched) {
+      return `<div class="med unmatched">
+        <div class="top"><h3>${pill} ${esc(m.query)}</h3>${conf}</div>
+        ${meta ? `<div class="meta">${esc(meta)}</div>` : ""}
+        <div class="nomatch">${t("not_found")}</div>
+      </div>`;
+    }
+    const addBtn = currentUser
+      ? `<button class="mini" onclick="addMyMed('${esc(m.brand).replace(/'/g, "\\'")}', this)">${t("add_mymeds")}</button>` : "";
+    return `<div class="med">
+      <div class="top"><h3>${pill} <span class="medlink" onclick="openDetail('${esc(m.brand).replace(/'/g, "\\'")}')">${esc(m.brand)}</span></h3>
+        <span style="display:flex;gap:0.4rem;align-items:center">${addBtn}${conf}</span></div>
+      <div class="salt">${esc(m.salt)}</div>
+      <div class="meta">${esc(m.category)} · ${esc(m.pack)}${meta ? " · Rx: " + esc(meta) : ""}${m.raw_text && m.raw_text !== m.brand ? ` · ${t("read_as")} “${esc(m.raw_text)}”` : ""}</div>
+      <div class="price-grid">
+        <div class="price"><div class="label">${esc(m.brand)}</div><div class="value">${rupee(m.brand_price)}</div></div>
+        <div class="price generic"><div class="label">${esc(m.generic_name)}</div><div class="value">${rupee(m.generic_price)}</div></div>
+      </div>
+      ${m.saving > 0 ? `<div class="save-line">${t("save_line")(rupee(m.saving), m.saving_pct)}</div>` : ""}
+      ${m.alternatives && m.alternatives.length ? `
+      <div class="alts">
+        <div class="alts-title">${t("same_salt")(m.same_salt_brands)}</div>
+        ${m.alternatives.map(a => `
+          <div class="alt">
+            <span class="an">${esc(a.brand)} <span>· ${esc(a.pack)}</span></span>
+            <span class="ap">${rupee(a.price)}</span>
+          </div>`).join("")}
+      </div>` : ""}
+    </div>`;
+  }).join("");
+
+  $("notes").textContent = data.notes ? "Note: " + data.notes : "";
+  $("disclaimer").textContent = "⚕️ " + (data.disclaimer || "") + " " + t("disclaimer_extra");
+  $("results").style.display = "block";
+  $("results").scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+/* ---------------- medicine detail ---------------- */
+async function openDetail(name) {
+  show("detailOverlay");
+  $("detailBody").innerHTML = '<div class="status"><span class="spinner"></span></div>';
+  try {
+    const res = await fetch("/api/medicine?name=" + encodeURIComponent(name));
+    const d = await res.json();
+    if (!res.ok) throw new Error(d.detail || "Not found");
+    $("detailBody").innerHTML = `
+      <h2>💊 ${esc(d.brand)}</h2>
+      <div class="sub">${esc(d.salt)} · ${esc(d.category)} · ${esc(d.pack)}</div>
+      <div class="price-grid" style="margin-top:0.8rem">
+        <div class="price"><div class="label">${esc(d.brand)}</div><div class="value">${rupee(d.brand_price)}</div></div>
+        <div class="price generic"><div class="label">${esc(d.generic_name)}</div><div class="value">${rupee(d.generic_price)}</div></div>
+      </div>
+      ${d.salt_info.map(si => `
+        <div class="info-block">
+          <div class="ib-salt">${esc(si.salt)}</div>
+          <div><b>${t("uses")}:</b> ${esc(si.uses)}</div>
+          <div><b>${t("side_effects")}:</b> ${esc(si.side_effects)}</div>
+          <div><b>${t("careful")}:</b> ${esc(si.caution)}</div>
+        </div>`).join("")}
+      ${d.alternatives.length ? `
+      <div class="alts" style="margin-top:1rem">
+        <div class="alts-title">${t("all_brands")(d.same_salt_brands)}</div>
+        ${d.alternatives.map(a => `
+          <div class="alt">
+            <span class="an">${esc(a.brand)} <span>· ${esc(a.pack)}</span></span>
+            <span class="ap">${rupee(a.price)}</span>
+          </div>`).join("")}
+      </div>` : ""}
+      <div class="disclaimer">⚕️ ${t("disclaimer_extra")}</div>`;
+  } catch (err) {
+    $("detailBody").innerHTML = `<div class="status error">${esc(err.message)}</div>`;
+  }
+}
+
+/* ---------------- history ---------------- */
+async function openHistory() {
+  show("histOverlay");
+  $("histList").innerHTML = '<div class="status"><span class="spinner"></span></div>';
+  try {
+    const res = await fetch("/api/history");
+    const d = await res.json();
+    if (!res.ok) throw new Error(d.detail || t("s_signin_first"));
+    $("histTotal").textContent = t("total_saved")(rupee(d.total_saving));
+    $("histList").innerHTML = d.scans.length ? d.scans.map(s => `
+      <div class="histrow">
+        <div class="hmeds"><strong>${s.medicines.map(esc).join(", ") || "—"}</strong>
+          <div class="hdate">${new Date(s.created_at * 1000).toLocaleString(lang === "hi" ? "hi-IN" : "en-IN")} · ${esc(s.source)}${s.warnings ? ` · <span class="hwarn">${t("warns")(s.warnings)}</span>` : ""}</div>
+        </div>
+        <div class="hsave">${rupee(s.saving)}</div>
+        <button class="mini" onclick="viewScan(${s.id})">${t("view")}</button>
+        <button class="mini" onclick="delScan(${s.id}, this)">🗑</button>
+      </div>`).join("") : `<div class="status">${t("hist_empty")}</div>`;
+  } catch (err) {
+    $("histList").innerHTML = `<div class="status error">${esc(err.message)}</div>`;
+  }
+}
+async function viewScan(id) {
+  const res = await fetch("/api/history/" + id);
+  if (res.ok) { hide("histOverlay"); render(await res.json()); }
+}
+async function delScan(id, btn) {
+  await fetch("/api/history/" + id, { method: "DELETE" });
+  btn.closest(".histrow").remove();
+}
+
+/* ---------------- my medicines ---------------- */
+async function openMyMeds() {
+  show("mymedsOverlay");
+  refreshMyMeds();
+}
+async function refreshMyMeds() {
+  try {
+    const res = await fetch("/api/mymeds");
+    const d = await res.json();
+    if (!res.ok) throw new Error(d.detail || t("s_signin_first"));
+    $("mymedList").innerHTML = d.meds.length ? d.meds.map(m => `
+      <div class="medrow">
+        <div style="flex:1"><span class="m-name">${esc(m.brand)}</span>
+          <div class="m-salt">${esc(m.salt)}</div></div>
+        <button class="mini" onclick="delMyMed(${m.id})">🗑</button>
+      </div>`).join("") : `<div class="status">${t("mymeds_empty")}</div>`;
+    $("mymedWarnings").innerHTML = (d.interactions || []).length
+      ? `<div class="alert moderate" style="margin-bottom:0.5rem">${t("mymeds_conflict")}</div>` +
+        d.interactions.map(w => warnHtml(w, false)).join("") : "";
+  } catch (err) {
+    $("mymedList").innerHTML = `<div class="status error">${esc(err.message)}</div>`;
+  }
+}
+$("mymedAdd").addEventListener("click", async () => {
+  const name = $("mymedInput").value.trim();
+  if (!name) return;
+  setStatus("mymeds", "…", false, true);
+  try {
+    const res = await fetch("/api/mymeds", {
+      method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name }),
+    });
+    const d = await res.json();
+    if (!res.ok) throw new Error(d.detail || "Failed");
+    $("mymedInput").value = "";
+    setStatus("mymeds", "");
+    refreshMyMeds();
+  } catch (err) { setStatus("mymeds", err.message, true); }
+});
+$("mymedInput").addEventListener("keydown", e => { if (e.key === "Enter") $("mymedAdd").click(); });
+async function delMyMed(id) {
+  await fetch("/api/mymeds/" + id, { method: "DELETE" });
+  refreshMyMeds();
+}
+async function addMyMed(brand, btn) {
+  try {
+    const res = await fetch("/api/mymeds", {
+      method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name: brand }),
+    });
+    if (res.ok) { btn.textContent = t("added"); btn.disabled = true; }
+  } catch {}
+}
+
+/* ---------------- auth ---------------- */
+let authMode = "signup";
+function renderUser(user) {
+  currentUser = user;
+  $("navHistory").style.display = user ? "" : "none";
+  $("navMyMeds").style.display = user ? "" : "none";
+  $("authArea").innerHTML = user
+    ? `<div class="userchip">
+         <div class="avatar">${esc(user.name.trim()[0].toUpperCase())}</div>
+         <span>${esc(user.name)}</span>
+         <button class="linklike" id="logoutBtn">✕</button>
+       </div>`
+    : `<button class="primary" id="openAuth" style="padding:0.45rem 1rem; font-size:0.9rem;">${t("auth_signin")}</button>`;
+  const open = $("openAuth"), out = $("logoutBtn");
+  if (open) open.addEventListener("click", () => show("authOverlay"));
+  if (out) out.addEventListener("click", async () => {
+    await fetch("/api/auth/logout", { method: "POST" });
+    renderUser(null);
+  });
+}
+function setAuthMode(mode) {
+  authMode = mode;
+  $("tabSignup").classList.toggle("on", mode === "signup");
+  $("tabLogin").classList.toggle("on", mode === "login");
+  $("nameField").style.display = mode === "signup" ? "" : "none";
+  $("authSubmit").textContent = mode === "signup" ? t("auth_create") : t("auth_signin");
+  $("fPassword").autocomplete = mode === "signup" ? "new-password" : "current-password";
+  setStatus("auth", "");
+}
+$("tabSignup").addEventListener("click", () => setAuthMode("signup"));
+$("tabLogin").addEventListener("click", () => setAuthMode("login"));
+$("authOverlay").addEventListener("click", e => { if (e.target === $("authOverlay")) hide("authOverlay"); });
+["histOverlay", "mymedsOverlay", "detailOverlay"].forEach(id =>
+  $(id).addEventListener("click", e => { if (e.target === $(id)) hide(id); }));
+
+$("authForm").addEventListener("submit", async e => {
+  e.preventDefault();
+  const body = authMode === "signup"
+    ? { name: $("fName").value, email: $("fEmail").value, password: $("fPassword").value }
+    : { email: $("fEmail").value, password: $("fPassword").value };
+  setStatus("auth", "…", false, true);
+  try {
+    const res = await fetch("/api/auth/" + authMode, {
+      method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body),
+    });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.detail || "Something went wrong.");
+    renderUser(data.user);
+    hide("authOverlay");
+    $("authForm").reset();
+    setStatus("auth", "");
+  } catch (err) { setStatus("auth", err.message, true); }
+});
+
+applyI18n();
+renderUser(null);
+fetch("/api/auth/me").then(r => r.json()).then(d => { if (d.user) renderUser(d.user); }).catch(() => {});
+</script>
+</body>
+</html>
