@@ -1,0 +1,689 @@
+{
+  "note": "Interaction table keyed by salt (generic) names in lowercase. Severity: major = avoid combination / needs doctor review, moderate = use with caution / monitor.",
+  "interactions": [
+    {
+      "salts": [
+        "warfarin",
+        "aspirin"
+      ],
+      "severity": "major",
+      "effect": "Greatly increased bleeding risk when an anticoagulant is combined with an antiplatelet.",
+      "advice": "Do not combine without explicit cardiologist guidance. Watch for unusual bruising or black stools."
+    },
+    {
+      "salts": [
+        "warfarin",
+        "azithromycin"
+      ],
+      "severity": "major",
+      "effect": "Azithromycin can raise warfarin levels (INR), increasing bleeding risk.",
+      "advice": "INR should be monitored closely if both are prescribed."
+    },
+    {
+      "salts": [
+        "warfarin",
+        "metronidazole"
+      ],
+      "severity": "major",
+      "effect": "Metronidazole strongly potentiates warfarin, causing dangerous INR elevation.",
+      "advice": "Combination usually avoided; requires dose adjustment and INR monitoring."
+    },
+    {
+      "salts": [
+        "warfarin",
+        "diclofenac"
+      ],
+      "severity": "major",
+      "effect": "NSAIDs with warfarin sharply increase gastrointestinal bleeding risk.",
+      "advice": "Avoid NSAIDs; paracetamol is the safer pain option with warfarin."
+    },
+    {
+      "salts": [
+        "warfarin",
+        "ibuprofen"
+      ],
+      "severity": "major",
+      "effect": "NSAIDs with warfarin sharply increase gastrointestinal bleeding risk.",
+      "advice": "Avoid NSAIDs; paracetamol is the safer pain option with warfarin."
+    },
+    {
+      "salts": [
+        "warfarin",
+        "mefenamic acid"
+      ],
+      "severity": "major",
+      "effect": "NSAIDs with warfarin sharply increase gastrointestinal bleeding risk.",
+      "advice": "Avoid NSAIDs; paracetamol is the safer pain option with warfarin."
+    },
+    {
+      "salts": [
+        "warfarin",
+        "aceclofenac"
+      ],
+      "severity": "major",
+      "effect": "NSAIDs with warfarin sharply increase gastrointestinal bleeding risk.",
+      "advice": "Avoid NSAIDs; paracetamol is the safer pain option with warfarin."
+    },
+    {
+      "salts": [
+        "aspirin",
+        "clopidogrel"
+      ],
+      "severity": "moderate",
+      "effect": "Dual antiplatelet therapy increases bleeding risk. Often intentional after stents, but must be doctor-directed.",
+      "advice": "Confirm the combination is intentional (e.g. post-angioplasty). Report unusual bleeding."
+    },
+    {
+      "salts": [
+        "clopidogrel",
+        "omeprazole"
+      ],
+      "severity": "moderate",
+      "effect": "Omeprazole reduces activation of clopidogrel, weakening its anti-clotting effect.",
+      "advice": "Pantoprazole is the preferred acid reducer with clopidogrel."
+    },
+    {
+      "salts": [
+        "aspirin",
+        "ibuprofen"
+      ],
+      "severity": "moderate",
+      "effect": "Ibuprofen can block low-dose aspirin's heart-protective effect and adds GI bleeding risk.",
+      "advice": "Separate dosing times or use paracetamol instead; consult a doctor."
+    },
+    {
+      "salts": [
+        "aspirin",
+        "diclofenac"
+      ],
+      "severity": "moderate",
+      "effect": "Two NSAID-type drugs together increase gastric bleeding and ulcer risk.",
+      "advice": "Avoid combining; add a gastro-protective agent if unavoidable."
+    },
+    {
+      "salts": [
+        "diclofenac",
+        "ibuprofen"
+      ],
+      "severity": "moderate",
+      "effect": "Duplicate NSAID therapy — no added benefit, higher ulcer and kidney risk.",
+      "advice": "Use only one NSAID at a time."
+    },
+    {
+      "salts": [
+        "aceclofenac",
+        "ibuprofen"
+      ],
+      "severity": "moderate",
+      "effect": "Duplicate NSAID therapy — no added benefit, higher ulcer and kidney risk.",
+      "advice": "Use only one NSAID at a time."
+    },
+    {
+      "salts": [
+        "aceclofenac",
+        "diclofenac"
+      ],
+      "severity": "moderate",
+      "effect": "Duplicate NSAID therapy — no added benefit, higher ulcer and kidney risk.",
+      "advice": "Use only one NSAID at a time."
+    },
+    {
+      "salts": [
+        "tramadol",
+        "sertraline"
+      ],
+      "severity": "major",
+      "effect": "Risk of serotonin syndrome (agitation, high temperature, rapid heart rate) and lowered seizure threshold.",
+      "advice": "Combination needs medical supervision; seek help for tremor, confusion or fever."
+    },
+    {
+      "salts": [
+        "tramadol",
+        "escitalopram"
+      ],
+      "severity": "major",
+      "effect": "Risk of serotonin syndrome and lowered seizure threshold.",
+      "advice": "Combination needs medical supervision; seek help for tremor, confusion or fever."
+    },
+    {
+      "salts": [
+        "alprazolam",
+        "zolpidem"
+      ],
+      "severity": "major",
+      "effect": "Combined CNS depression — excessive sedation, impaired breathing, falls.",
+      "advice": "Avoid taking together; never combine with alcohol."
+    },
+    {
+      "salts": [
+        "alprazolam",
+        "tramadol"
+      ],
+      "severity": "major",
+      "effect": "Opioid + benzodiazepine combination can dangerously suppress breathing.",
+      "advice": "Avoid unless specifically directed and monitored by a doctor."
+    },
+    {
+      "salts": [
+        "azithromycin",
+        "ondansetron"
+      ],
+      "severity": "moderate",
+      "effect": "Both can prolong the QT interval; together they raise the risk of serious heart rhythm disturbance.",
+      "advice": "Caution in heart patients or with other QT-prolonging drugs."
+    },
+    {
+      "salts": [
+        "ciprofloxacin",
+        "ibuprofen"
+      ],
+      "severity": "moderate",
+      "effect": "Fluoroquinolones with NSAIDs can increase risk of seizures and tendon problems.",
+      "advice": "Prefer paracetamol for pain while on ciprofloxacin."
+    },
+    {
+      "salts": [
+        "ramipril",
+        "losartan"
+      ],
+      "severity": "major",
+      "effect": "ACE inhibitor + ARB dual blockade raises risk of kidney injury and high potassium.",
+      "advice": "These two classes are generally not combined; confirm with the prescriber."
+    },
+    {
+      "salts": [
+        "ramipril",
+        "telmisartan"
+      ],
+      "severity": "major",
+      "effect": "ACE inhibitor + ARB dual blockade raises risk of kidney injury and high potassium.",
+      "advice": "These two classes are generally not combined; confirm with the prescriber."
+    },
+    {
+      "salts": [
+        "ramipril",
+        "ibuprofen"
+      ],
+      "severity": "moderate",
+      "effect": "NSAIDs blunt blood-pressure control and, with ACE inhibitors, stress the kidneys.",
+      "advice": "Limit NSAID use; monitor blood pressure and kidney function."
+    },
+    {
+      "salts": [
+        "telmisartan",
+        "ibuprofen"
+      ],
+      "severity": "moderate",
+      "effect": "NSAIDs blunt blood-pressure control and can stress the kidneys with ARBs.",
+      "advice": "Limit NSAID use; prefer paracetamol."
+    },
+    {
+      "salts": [
+        "metformin",
+        "ciprofloxacin"
+      ],
+      "severity": "moderate",
+      "effect": "Fluoroquinolones can disturb blood sugar (both high and low episodes) in diabetics.",
+      "advice": "Monitor blood glucose more frequently during the antibiotic course."
+    },
+    {
+      "salts": [
+        "atorvastatin",
+        "azithromycin"
+      ],
+      "severity": "moderate",
+      "effect": "Macrolide antibiotics can raise statin levels, increasing risk of muscle injury.",
+      "advice": "Report unexplained muscle pain or dark urine; short courses are usually tolerated."
+    },
+    {
+      "salts": [
+        "levothyroxine",
+        "calcium carbonate"
+      ],
+      "severity": "moderate",
+      "effect": "Calcium binds thyroxine in the gut and reduces its absorption.",
+      "advice": "Separate doses by at least 4 hours (thyroxine on empty stomach in the morning)."
+    },
+    {
+      "salts": [
+        "levothyroxine",
+        "iron"
+      ],
+      "severity": "moderate",
+      "effect": "Iron salts reduce thyroxine absorption.",
+      "advice": "Separate doses by at least 4 hours."
+    },
+    {
+      "salts": [
+        "ondansetron",
+        "tramadol"
+      ],
+      "severity": "moderate",
+      "effect": "Ondansetron may reduce tramadol's pain relief; both affect serotonin.",
+      "advice": "Watch for inadequate pain control; discuss alternatives with the doctor."
+    },
+    {
+      "salts": [
+        "sildenafil",
+        "isosorbide dinitrate"
+      ],
+      "severity": "major",
+      "effect": "PDE5 inhibitors with nitrates cause severe, potentially fatal blood-pressure drop.",
+      "advice": "Never combine. Seek emergency care if chest pain occurs after taking both."
+    },
+    {
+      "salts": [
+        "sildenafil",
+        "isosorbide mononitrate"
+      ],
+      "severity": "major",
+      "effect": "PDE5 inhibitors with nitrates cause severe, potentially fatal blood-pressure drop.",
+      "advice": "Never combine. Seek emergency care if chest pain occurs after taking both."
+    },
+    {
+      "salts": [
+        "tadalafil",
+        "isosorbide dinitrate"
+      ],
+      "severity": "major",
+      "effect": "PDE5 inhibitors with nitrates cause severe, potentially fatal blood-pressure drop.",
+      "advice": "Never combine. Seek emergency care if chest pain occurs after taking both."
+    },
+    {
+      "salts": [
+        "tadalafil",
+        "isosorbide mononitrate"
+      ],
+      "severity": "major",
+      "effect": "PDE5 inhibitors with nitrates cause severe, potentially fatal blood-pressure drop.",
+      "advice": "Never combine. Seek emergency care if chest pain occurs after taking both."
+    },
+    {
+      "salts": [
+        "methotrexate",
+        "ibuprofen"
+      ],
+      "severity": "major",
+      "effect": "NSAIDs reduce methotrexate clearance, risking serious toxicity (mouth ulcers, low blood counts).",
+      "advice": "Avoid regular NSAID use on methotrexate; consult the rheumatologist."
+    },
+    {
+      "salts": [
+        "methotrexate",
+        "diclofenac"
+      ],
+      "severity": "major",
+      "effect": "NSAIDs reduce methotrexate clearance, risking serious toxicity.",
+      "advice": "Avoid regular NSAID use on methotrexate; consult the rheumatologist."
+    },
+    {
+      "salts": [
+        "methotrexate",
+        "aceclofenac"
+      ],
+      "severity": "major",
+      "effect": "NSAIDs reduce methotrexate clearance, risking serious toxicity.",
+      "advice": "Avoid regular NSAID use on methotrexate; consult the rheumatologist."
+    },
+    {
+      "salts": [
+        "methotrexate",
+        "aspirin"
+      ],
+      "severity": "major",
+      "effect": "Aspirin reduces methotrexate clearance, risking serious toxicity.",
+      "advice": "Avoid combining without specialist guidance."
+    },
+    {
+      "salts": [
+        "colchicine",
+        "clarithromycin"
+      ],
+      "severity": "major",
+      "effect": "Clarithromycin blocks colchicine breakdown — reported fatal colchicine toxicity.",
+      "advice": "Combination should be avoided; ask the doctor for an alternative antibiotic."
+    },
+    {
+      "salts": [
+        "atorvastatin",
+        "clarithromycin"
+      ],
+      "severity": "major",
+      "effect": "Clarithromycin sharply raises statin levels — risk of muscle breakdown (rhabdomyolysis).",
+      "advice": "Statin is usually paused during the clarithromycin course."
+    },
+    {
+      "salts": [
+        "rosuvastatin",
+        "clarithromycin"
+      ],
+      "severity": "moderate",
+      "effect": "Clarithromycin can raise statin exposure — muscle injury risk.",
+      "advice": "Report muscle pain or dark urine promptly."
+    },
+    {
+      "salts": [
+        "atorvastatin",
+        "fenofibrate"
+      ],
+      "severity": "moderate",
+      "effect": "Statin + fibrate increases risk of muscle injury.",
+      "advice": "Often co-prescribed deliberately — report unexplained muscle pain."
+    },
+    {
+      "salts": [
+        "rosuvastatin",
+        "fenofibrate"
+      ],
+      "severity": "moderate",
+      "effect": "Statin + fibrate increases risk of muscle injury.",
+      "advice": "Often co-prescribed deliberately — report unexplained muscle pain."
+    },
+    {
+      "salts": [
+        "fluconazole",
+        "atorvastatin"
+      ],
+      "severity": "moderate",
+      "effect": "Fluconazole raises statin levels — muscle injury risk.",
+      "advice": "Usually fine for single-dose fluconazole; caution with longer courses."
+    },
+    {
+      "salts": [
+        "fluconazole",
+        "warfarin"
+      ],
+      "severity": "major",
+      "effect": "Fluconazole strongly potentiates warfarin — bleeding risk.",
+      "advice": "INR must be monitored; dose adjustment often needed."
+    },
+    {
+      "salts": [
+        "fluconazole",
+        "domperidone"
+      ],
+      "severity": "moderate",
+      "effect": "Both prolong the QT interval — heart rhythm risk.",
+      "advice": "Avoid combining in heart patients; watch for palpitations or fainting."
+    },
+    {
+      "salts": [
+        "ciprofloxacin",
+        "tizanidine"
+      ],
+      "severity": "major",
+      "effect": "Ciprofloxacin massively raises tizanidine levels — severe drowsiness and BP drop.",
+      "advice": "Contraindicated combination; ask for a different antibiotic or muscle relaxant."
+    },
+    {
+      "salts": [
+        "ciprofloxacin",
+        "theophylline"
+      ],
+      "severity": "major",
+      "effect": "Ciprofloxacin raises theophylline levels — nausea, tremor, seizures possible.",
+      "advice": "Needs dose reduction and monitoring; tell the doctor you take Deriphyllin."
+    },
+    {
+      "salts": [
+        "spironolactone",
+        "ramipril"
+      ],
+      "severity": "moderate",
+      "effect": "ACE inhibitor + potassium-sparing diuretic can cause dangerous potassium rise.",
+      "advice": "Common combo in heart failure but needs periodic potassium blood tests."
+    },
+    {
+      "salts": [
+        "spironolactone",
+        "telmisartan"
+      ],
+      "severity": "moderate",
+      "effect": "ARB + potassium-sparing diuretic can cause dangerous potassium rise.",
+      "advice": "Needs periodic potassium blood tests."
+    },
+    {
+      "salts": [
+        "spironolactone",
+        "losartan"
+      ],
+      "severity": "moderate",
+      "effect": "ARB + potassium-sparing diuretic can cause dangerous potassium rise.",
+      "advice": "Needs periodic potassium blood tests."
+    },
+    {
+      "salts": [
+        "digoxin",
+        "amiodarone"
+      ],
+      "severity": "major",
+      "effect": "Amiodarone raises digoxin levels — toxicity (nausea, vision changes, arrhythmia).",
+      "advice": "Digoxin dose is usually halved; levels must be monitored."
+    },
+    {
+      "salts": [
+        "digoxin",
+        "clarithromycin"
+      ],
+      "severity": "major",
+      "effect": "Clarithromycin raises digoxin levels — toxicity risk.",
+      "advice": "Monitor for nausea, confusion, palpitations; inform the doctor."
+    },
+    {
+      "salts": [
+        "sumatriptan",
+        "escitalopram"
+      ],
+      "severity": "moderate",
+      "effect": "Triptan + SSRI: small risk of serotonin syndrome.",
+      "advice": "Watch for agitation, sweating, tremor after dosing together."
+    },
+    {
+      "salts": [
+        "sumatriptan",
+        "sertraline"
+      ],
+      "severity": "moderate",
+      "effect": "Triptan + SSRI: small risk of serotonin syndrome.",
+      "advice": "Watch for agitation, sweating, tremor after dosing together."
+    },
+    {
+      "salts": [
+        "escitalopram",
+        "ibuprofen"
+      ],
+      "severity": "moderate",
+      "effect": "SSRIs + NSAIDs increase stomach bleeding risk.",
+      "advice": "Prefer paracetamol; add a PPI if NSAID is unavoidable."
+    },
+    {
+      "salts": [
+        "sertraline",
+        "ibuprofen"
+      ],
+      "severity": "moderate",
+      "effect": "SSRIs + NSAIDs increase stomach bleeding risk.",
+      "advice": "Prefer paracetamol; add a PPI if NSAID is unavoidable."
+    },
+    {
+      "salts": [
+        "escitalopram",
+        "aspirin"
+      ],
+      "severity": "moderate",
+      "effect": "SSRIs + aspirin increase stomach bleeding risk.",
+      "advice": "Often co-prescribed; watch for black stools, add gastro-protection."
+    },
+    {
+      "salts": [
+        "doxycycline",
+        "calcium carbonate"
+      ],
+      "severity": "moderate",
+      "effect": "Calcium binds doxycycline and blocks its absorption.",
+      "advice": "Separate doses by at least 2–3 hours."
+    },
+    {
+      "salts": [
+        "doxycycline",
+        "iron"
+      ],
+      "severity": "moderate",
+      "effect": "Iron binds doxycycline and blocks its absorption.",
+      "advice": "Separate doses by at least 2–3 hours."
+    },
+    {
+      "salts": [
+        "ciprofloxacin",
+        "calcium carbonate"
+      ],
+      "severity": "moderate",
+      "effect": "Calcium binds ciprofloxacin and reduces its effect.",
+      "advice": "Take the antibiotic 2 hours before or 6 hours after calcium."
+    },
+    {
+      "salts": [
+        "ciprofloxacin",
+        "iron"
+      ],
+      "severity": "moderate",
+      "effect": "Iron binds ciprofloxacin and reduces its effect.",
+      "advice": "Take the antibiotic 2 hours before or 6 hours after iron."
+    },
+    {
+      "salts": [
+        "levofloxacin",
+        "calcium carbonate"
+      ],
+      "severity": "moderate",
+      "effect": "Calcium binds levofloxacin and reduces its effect.",
+      "advice": "Separate doses by several hours."
+    },
+    {
+      "salts": [
+        "hydroxychloroquine",
+        "azithromycin"
+      ],
+      "severity": "moderate",
+      "effect": "Both prolong the QT interval — heart rhythm risk.",
+      "advice": "Caution in cardiac patients; ECG monitoring if combined long-term."
+    },
+    {
+      "salts": [
+        "tramadol",
+        "fluoxetine"
+      ],
+      "severity": "major",
+      "effect": "Risk of serotonin syndrome and lowered seizure threshold.",
+      "advice": "Combination needs medical supervision."
+    },
+    {
+      "salts": [
+        "tramadol",
+        "venlafaxine"
+      ],
+      "severity": "major",
+      "effect": "Risk of serotonin syndrome and lowered seizure threshold.",
+      "advice": "Combination needs medical supervision."
+    },
+    {
+      "salts": [
+        "zolpidem",
+        "lorazepam"
+      ],
+      "severity": "major",
+      "effect": "Combined CNS depression — excessive sedation, impaired breathing, falls.",
+      "advice": "Avoid taking together; never combine with alcohol."
+    },
+    {
+      "salts": [
+        "clonazepam",
+        "zolpidem"
+      ],
+      "severity": "major",
+      "effect": "Combined CNS depression — excessive sedation, impaired breathing, falls.",
+      "advice": "Avoid taking together; never combine with alcohol."
+    },
+    {
+      "salts": [
+        "carbamazepine",
+        "clarithromycin"
+      ],
+      "severity": "major",
+      "effect": "Clarithromycin raises carbamazepine to toxic levels (dizziness, double vision).",
+      "advice": "Needs level monitoring or an alternative antibiotic."
+    },
+    {
+      "salts": [
+        "phenytoin",
+        "fluconazole"
+      ],
+      "severity": "major",
+      "effect": "Fluconazole raises phenytoin levels — toxicity risk.",
+      "advice": "Levels should be monitored if combined."
+    },
+    {
+      "salts": [
+        "valproate",
+        "carbapenem"
+      ],
+      "severity": "major",
+      "effect": "Carbapenem antibiotics drastically drop valproate levels — seizure risk.",
+      "advice": "Combination generally avoided."
+    },
+    {
+      "salts": [
+        "levothyroxine",
+        "omeprazole"
+      ],
+      "severity": "moderate",
+      "effect": "Long-term acid suppression can reduce thyroxine absorption.",
+      "advice": "Take thyroxine on an empty stomach; recheck TSH if PPI is chronic."
+    },
+    {
+      "salts": [
+        "prednisolone",
+        "ibuprofen"
+      ],
+      "severity": "moderate",
+      "effect": "Steroids + NSAIDs multiply stomach ulcer and bleeding risk.",
+      "advice": "Avoid casual NSAID use on steroids; add a PPI if needed."
+    },
+    {
+      "salts": [
+        "prednisolone",
+        "diclofenac"
+      ],
+      "severity": "moderate",
+      "effect": "Steroids + NSAIDs multiply stomach ulcer and bleeding risk.",
+      "advice": "Avoid casual NSAID use on steroids; add a PPI if needed."
+    },
+    {
+      "salts": [
+        "metformin",
+        "furosemide"
+      ],
+      "severity": "moderate",
+      "effect": "Loop diuretics can affect kidney function and metformin clearance.",
+      "advice": "Kidney function should be checked periodically."
+    },
+    {
+      "salts": [
+        "allopurinol",
+        "amoxicillin"
+      ],
+      "severity": "moderate",
+      "effect": "Higher chance of skin rash when combined.",
+      "advice": "Report any rash promptly."
+    },
+    {
+      "salts": [
+        "nimesulide",
+        "paracetamol"
+      ],
+      "severity": "moderate",
+      "effect": "Both stress the liver; several combos double-dose paracetamol unknowingly.",
+      "advice": "Avoid alcohol; do not exceed 3g paracetamol/day in total."
+    }
+  ]
+}

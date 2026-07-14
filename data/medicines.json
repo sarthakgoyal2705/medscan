@@ -1,0 +1,4694 @@
+{
+  "disclaimer": "Prices are indicative MRPs (INR) for comparison only, based on typical retail and Jan Aushadhi price lists. Verify locally before purchase. This tool does not replace a pharmacist or doctor.",
+  "brands": [
+    {
+      "brand": "Buscopan",
+      "salt": "Hyoscine Butylbromide 10mg",
+      "salt_keys": [
+        "hyoscine"
+      ],
+      "category": "Abdominal cramps",
+      "pack": "10 tablets",
+      "brand_price": 45.0,
+      "generic": {
+        "name": "Hyoscine Butylbromide 10mg",
+        "price": 18.0
+      },
+      "aliases": []
+    },
+    {
+      "brand": "Drotin 40",
+      "salt": "Drotaverine 40mg",
+      "salt_keys": [
+        "drotaverine"
+      ],
+      "category": "Abdominal cramps",
+      "pack": "10 tablets",
+      "brand_price": 65.0,
+      "generic": {
+        "name": "Drotaverine 40mg",
+        "price": 22.0
+      },
+      "aliases": [
+        "drotin"
+      ]
+    },
+    {
+      "brand": "Aciloc 150",
+      "salt": "Ranitidine 150mg",
+      "salt_keys": [
+        "ranitidine"
+      ],
+      "category": "Acidity",
+      "pack": "30 tablets",
+      "brand_price": 38.0,
+      "generic": {
+        "name": "Ranitidine 150mg",
+        "price": 15.0
+      },
+      "aliases": [
+        "aciloc"
+      ]
+    },
+    {
+      "brand": "Famocid 20",
+      "salt": "Famotidine 20mg",
+      "salt_keys": [
+        "famotidine"
+      ],
+      "category": "Acidity",
+      "pack": "14 tablets",
+      "brand_price": 32.0,
+      "generic": {
+        "name": "Famotidine 20mg",
+        "price": 12.0
+      },
+      "aliases": [
+        "famocid"
+      ]
+    },
+    {
+      "brand": "Rantac 150",
+      "salt": "Ranitidine 150mg",
+      "salt_keys": [
+        "ranitidine"
+      ],
+      "category": "Acidity",
+      "pack": "30 tablets",
+      "brand_price": 40.0,
+      "generic": {
+        "name": "Ranitidine 150mg",
+        "price": 15.0
+      },
+      "aliases": [
+        "rantac",
+        "aciloc"
+      ]
+    },
+    {
+      "brand": "Digene",
+      "salt": "Antacid gel (Mg/Al hydroxide + Simethicone)",
+      "salt_keys": [
+        "antacid"
+      ],
+      "category": "Acidity (instant relief)",
+      "pack": "170 ml gel",
+      "brand_price": 125.0,
+      "generic": {
+        "name": "Antacid gel",
+        "price": 50.0
+      },
+      "aliases": []
+    },
+    {
+      "brand": "Gelusil MPS",
+      "salt": "Antacid (Mg/Al hydroxide + Simethicone)",
+      "salt_keys": [
+        "antacid"
+      ],
+      "category": "Acidity (instant relief)",
+      "pack": "200 ml syrup",
+      "brand_price": 140.0,
+      "generic": {
+        "name": "Antacid gel",
+        "price": 50.0
+      },
+      "aliases": [
+        "gelusil"
+      ]
+    },
+    {
+      "brand": "Omez 20",
+      "salt": "Omeprazole 20mg",
+      "salt_keys": [
+        "omeprazole"
+      ],
+      "category": "Acidity / GERD",
+      "pack": "20 capsules",
+      "brand_price": 62.0,
+      "generic": {
+        "name": "Omeprazole 20mg",
+        "price": 16.0
+      },
+      "aliases": [
+        "omez"
+      ]
+    },
+    {
+      "brand": "Pan 40",
+      "salt": "Pantoprazole 40mg",
+      "salt_keys": [
+        "pantoprazole"
+      ],
+      "category": "Acidity / GERD",
+      "pack": "15 tablets",
+      "brand_price": 155.0,
+      "generic": {
+        "name": "Pantoprazole 40mg",
+        "price": 25.0
+      },
+      "aliases": [
+        "pan",
+        "pan-40",
+        "pantop"
+      ]
+    },
+    {
+      "brand": "Pantocid 40",
+      "salt": "Pantoprazole 40mg",
+      "salt_keys": [
+        "pantoprazole"
+      ],
+      "category": "Acidity / GERD",
+      "pack": "15 tablets",
+      "brand_price": 168.0,
+      "generic": {
+        "name": "Pantoprazole 40mg",
+        "price": 25.0
+      },
+      "aliases": [
+        "pantocid"
+      ]
+    },
+    {
+      "brand": "Nexpro 40",
+      "salt": "Esomeprazole 40mg",
+      "salt_keys": [
+        "esomeprazole"
+      ],
+      "category": "Acidity / Ulcer",
+      "pack": "15 tablets",
+      "brand_price": 165.0,
+      "generic": {
+        "name": "Esomeprazole 40mg",
+        "price": 48.0
+      },
+      "aliases": [
+        "nexpro"
+      ]
+    },
+    {
+      "brand": "Ocid 20",
+      "salt": "Omeprazole 20mg",
+      "salt_keys": [
+        "omeprazole"
+      ],
+      "category": "Acidity / Ulcer",
+      "pack": "20 capsules",
+      "brand_price": 58.0,
+      "generic": {
+        "name": "Omeprazole 20mg",
+        "price": 18.0
+      },
+      "aliases": [
+        "ocid"
+      ]
+    },
+    {
+      "brand": "Rablet 20",
+      "salt": "Rabeprazole 20mg",
+      "salt_keys": [
+        "rabeprazole"
+      ],
+      "category": "Acidity / Ulcer",
+      "pack": "15 tablets",
+      "brand_price": 115.0,
+      "generic": {
+        "name": "Rabeprazole 20mg",
+        "price": 32.0
+      },
+      "aliases": [
+        "rablet"
+      ]
+    },
+    {
+      "brand": "Razo 20",
+      "salt": "Rabeprazole 20mg",
+      "salt_keys": [
+        "rabeprazole"
+      ],
+      "category": "Acidity / Ulcer",
+      "pack": "15 tablets",
+      "brand_price": 130.0,
+      "generic": {
+        "name": "Rabeprazole 20mg",
+        "price": 32.0
+      },
+      "aliases": [
+        "razo"
+      ]
+    },
+    {
+      "brand": "Retino-A 0.025",
+      "salt": "Tretinoin 0.025% cream",
+      "salt_keys": [
+        "tretinoin"
+      ],
+      "category": "Acne",
+      "pack": "20 g cream",
+      "brand_price": 165.0,
+      "generic": {
+        "name": "Tretinoin 0.025% cream",
+        "price": 65.0
+      },
+      "aliases": [
+        "retino a",
+        "retino-a"
+      ]
+    },
+    {
+      "brand": "Alerid 10",
+      "salt": "Cetirizine 10mg",
+      "salt_keys": [
+        "cetirizine"
+      ],
+      "category": "Allergy",
+      "pack": "10 tablets",
+      "brand_price": 25.0,
+      "generic": {
+        "name": "Cetirizine 10mg",
+        "price": 8.0
+      },
+      "aliases": [
+        "alerid"
+      ]
+    },
+    {
+      "brand": "Allegra 120",
+      "salt": "Fexofenadine 120mg",
+      "salt_keys": [
+        "fexofenadine"
+      ],
+      "category": "Allergy",
+      "pack": "10 tablets",
+      "brand_price": 218.0,
+      "generic": {
+        "name": "Fexofenadine 120mg",
+        "price": 45.0
+      },
+      "aliases": [
+        "allegra"
+      ]
+    },
+    {
+      "brand": "Avil 25",
+      "salt": "Pheniramine 25mg",
+      "salt_keys": [
+        "pheniramine"
+      ],
+      "category": "Allergy",
+      "pack": "15 tablets",
+      "brand_price": 15.0,
+      "generic": {
+        "name": "Pheniramine 25mg",
+        "price": 8.0
+      },
+      "aliases": [
+        "avil"
+      ]
+    },
+    {
+      "brand": "Cetzine 10",
+      "salt": "Cetirizine 10mg",
+      "salt_keys": [
+        "cetirizine"
+      ],
+      "category": "Allergy",
+      "pack": "10 tablets",
+      "brand_price": 26.0,
+      "generic": {
+        "name": "Cetirizine 10mg",
+        "price": 6.0
+      },
+      "aliases": [
+        "cetzine",
+        "cetirizine",
+        "okacet",
+        "alerid"
+      ]
+    },
+    {
+      "brand": "Levocet 5",
+      "salt": "Levocetirizine 5mg",
+      "salt_keys": [
+        "levocetirizine"
+      ],
+      "category": "Allergy",
+      "pack": "10 tablets",
+      "brand_price": 55.0,
+      "generic": {
+        "name": "Levocetirizine 5mg",
+        "price": 18.0
+      },
+      "aliases": [
+        "lcz",
+        "levocet"
+      ]
+    },
+    {
+      "brand": "Okacet 10",
+      "salt": "Cetirizine 10mg",
+      "salt_keys": [
+        "cetirizine"
+      ],
+      "category": "Allergy",
+      "pack": "10 tablets",
+      "brand_price": 22.0,
+      "generic": {
+        "name": "Cetirizine 10mg",
+        "price": 8.0
+      },
+      "aliases": [
+        "okacet"
+      ]
+    },
+    {
+      "brand": "Teczine 5",
+      "salt": "Levocetirizine 5mg",
+      "salt_keys": [
+        "levocetirizine"
+      ],
+      "category": "Allergy",
+      "pack": "10 tablets",
+      "brand_price": 75.0,
+      "generic": {
+        "name": "Levocetirizine 5mg",
+        "price": 18.0
+      },
+      "aliases": [
+        "teczine"
+      ]
+    },
+    {
+      "brand": "Montair-LC",
+      "salt": "Montelukast 10mg + Levocetirizine 5mg",
+      "salt_keys": [
+        "montelukast",
+        "levocetirizine"
+      ],
+      "category": "Allergy / Asthma",
+      "pack": "15 tablets",
+      "brand_price": 258.0,
+      "generic": {
+        "name": "Montelukast + Levocetirizine 10/5mg",
+        "price": 55.0
+      },
+      "aliases": [
+        "montair",
+        "montair lc"
+      ]
+    },
+    {
+      "brand": "Montek-LC",
+      "salt": "Montelukast 10mg + Levocetirizine 5mg",
+      "salt_keys": [
+        "montelukast",
+        "levocetirizine"
+      ],
+      "category": "Allergy / Asthma",
+      "pack": "15 tablets",
+      "brand_price": 260.0,
+      "generic": {
+        "name": "Montelukast + Levocetirizine",
+        "price": 70.0
+      },
+      "aliases": [
+        "montek",
+        "montek lc"
+      ]
+    },
+    {
+      "brand": "Atarax 25",
+      "salt": "Hydroxyzine 25mg",
+      "salt_keys": [
+        "hydroxyzine"
+      ],
+      "category": "Allergy / Itching",
+      "pack": "15 tablets",
+      "brand_price": 85.0,
+      "generic": {
+        "name": "Hydroxyzine 25mg",
+        "price": 30.0
+      },
+      "aliases": [
+        "atarax"
+      ]
+    },
+    {
+      "brand": "Orofer XT",
+      "salt": "Ferrous Ascorbate 100mg + Folic Acid 1.5mg",
+      "salt_keys": [
+        "iron",
+        "folic acid"
+      ],
+      "category": "Anaemia",
+      "pack": "10 tablets",
+      "brand_price": 135.0,
+      "generic": {
+        "name": "Iron + Folic Acid",
+        "price": 30.0
+      },
+      "aliases": [
+        "orofer",
+        "livogen",
+        "fefol"
+      ]
+    },
+    {
+      "brand": "Monotrate 20",
+      "salt": "Isosorbide Mononitrate 20mg",
+      "salt_keys": [
+        "isosorbide mononitrate"
+      ],
+      "category": "Angina",
+      "pack": "30 tablets",
+      "brand_price": 90.0,
+      "generic": {
+        "name": "Isosorbide Mononitrate 20mg",
+        "price": 32.0
+      },
+      "aliases": [
+        "monotrate"
+      ]
+    },
+    {
+      "brand": "Sorbitrate 5",
+      "salt": "Isosorbide Dinitrate 5mg",
+      "salt_keys": [
+        "isosorbide dinitrate"
+      ],
+      "category": "Angina",
+      "pack": "50 tablets",
+      "brand_price": 40.0,
+      "generic": {
+        "name": "Isosorbide Dinitrate 5mg",
+        "price": 18.0
+      },
+      "aliases": [
+        "sorbitrate"
+      ]
+    },
+    {
+      "brand": "Augmentin 625 Duo",
+      "salt": "Amoxicillin 500mg + Clavulanic Acid 125mg",
+      "salt_keys": [
+        "amoxicillin",
+        "clavulanic acid"
+      ],
+      "category": "Antibiotic",
+      "pack": "10 tablets",
+      "brand_price": 223.0,
+      "generic": {
+        "name": "Amoxicillin + Clavulanic Acid 625mg",
+        "price": 60.0
+      },
+      "aliases": [
+        "augmentin",
+        "augmentin 625",
+        "augmentin duo"
+      ]
+    },
+    {
+      "brand": "Azee 500",
+      "salt": "Azithromycin 500mg",
+      "salt_keys": [
+        "azithromycin"
+      ],
+      "category": "Antibiotic",
+      "pack": "5 tablets",
+      "brand_price": 119.0,
+      "generic": {
+        "name": "Azithromycin 500mg",
+        "price": 40.0
+      },
+      "aliases": [
+        "azee"
+      ]
+    },
+    {
+      "brand": "Azithral 500",
+      "salt": "Azithromycin 500mg",
+      "salt_keys": [
+        "azithromycin"
+      ],
+      "category": "Antibiotic",
+      "pack": "5 tablets",
+      "brand_price": 132.0,
+      "generic": {
+        "name": "Azithromycin 500mg",
+        "price": 40.0
+      },
+      "aliases": [
+        "azithral",
+        "azithro"
+      ]
+    },
+    {
+      "brand": "Cefix 200",
+      "salt": "Cefixime 200mg",
+      "salt_keys": [
+        "cefixime"
+      ],
+      "category": "Antibiotic",
+      "pack": "10 tablets",
+      "brand_price": 130.0,
+      "generic": {
+        "name": "Cefixime 200mg",
+        "price": 55.0
+      },
+      "aliases": [
+        "cefix"
+      ]
+    },
+    {
+      "brand": "Ceftum 500",
+      "salt": "Cefuroxime 500mg",
+      "salt_keys": [
+        "cefuroxime"
+      ],
+      "category": "Antibiotic",
+      "pack": "10 tablets",
+      "brand_price": 480.0,
+      "generic": {
+        "name": "Cefuroxime 500mg",
+        "price": 160.0
+      },
+      "aliases": [
+        "ceftum"
+      ]
+    },
+    {
+      "brand": "Cephadex 500",
+      "salt": "Cephalexin 500mg",
+      "salt_keys": [
+        "cephalexin"
+      ],
+      "category": "Antibiotic",
+      "pack": "10 capsules",
+      "brand_price": 150.0,
+      "generic": {
+        "name": "Cephalexin 500mg",
+        "price": 55.0
+      },
+      "aliases": [
+        "cephadex"
+      ]
+    },
+    {
+      "brand": "Cifran 500",
+      "salt": "Ciprofloxacin 500mg",
+      "salt_keys": [
+        "ciprofloxacin"
+      ],
+      "category": "Antibiotic",
+      "pack": "10 tablets",
+      "brand_price": 105.0,
+      "generic": {
+        "name": "Ciprofloxacin 500mg",
+        "price": 35.0
+      },
+      "aliases": [
+        "cifran"
+      ]
+    },
+    {
+      "brand": "Ciplox 500",
+      "salt": "Ciprofloxacin 500mg",
+      "salt_keys": [
+        "ciprofloxacin"
+      ],
+      "category": "Antibiotic",
+      "pack": "10 tablets",
+      "brand_price": 110.0,
+      "generic": {
+        "name": "Ciprofloxacin 500mg",
+        "price": 35.0
+      },
+      "aliases": [
+        "ciplox",
+        "cipro"
+      ]
+    },
+    {
+      "brand": "Claribid 500",
+      "salt": "Clarithromycin 500mg",
+      "salt_keys": [
+        "clarithromycin"
+      ],
+      "category": "Antibiotic",
+      "pack": "10 tablets",
+      "brand_price": 420.0,
+      "generic": {
+        "name": "Clarithromycin 500mg",
+        "price": 150.0
+      },
+      "aliases": [
+        "claribid"
+      ]
+    },
+    {
+      "brand": "Clavam 625",
+      "salt": "Amoxicillin 500mg + Clavulanic Acid 125mg",
+      "salt_keys": [
+        "amoxicillin",
+        "clavulanic acid"
+      ],
+      "category": "Antibiotic",
+      "pack": "10 tablets",
+      "brand_price": 200.0,
+      "generic": {
+        "name": "Amoxicillin + Clavulanic Acid 625mg",
+        "price": 60.0
+      },
+      "aliases": [
+        "clavam"
+      ]
+    },
+    {
+      "brand": "Doxy-1",
+      "salt": "Doxycycline 100mg",
+      "salt_keys": [
+        "doxycycline"
+      ],
+      "category": "Antibiotic",
+      "pack": "10 capsules",
+      "brand_price": 70.0,
+      "generic": {
+        "name": "Doxycycline 100mg",
+        "price": 22.0
+      },
+      "aliases": [
+        "doxy",
+        "doxy 1"
+      ]
+    },
+    {
+      "brand": "Levoflox 500",
+      "salt": "Levofloxacin 500mg",
+      "salt_keys": [
+        "levofloxacin"
+      ],
+      "category": "Antibiotic",
+      "pack": "10 tablets",
+      "brand_price": 120.0,
+      "generic": {
+        "name": "Levofloxacin 500mg",
+        "price": 40.0
+      },
+      "aliases": [
+        "levoflox"
+      ]
+    },
+    {
+      "brand": "Monocef-O 200",
+      "salt": "Cefpodoxime 200mg",
+      "salt_keys": [
+        "cefpodoxime"
+      ],
+      "category": "Antibiotic",
+      "pack": "10 tablets",
+      "brand_price": 230.0,
+      "generic": {
+        "name": "Cefpodoxime 200mg",
+        "price": 85.0
+      },
+      "aliases": [
+        "monocef",
+        "monocef o",
+        "monocef-o"
+      ]
+    },
+    {
+      "brand": "Mox 500",
+      "salt": "Amoxicillin 500mg",
+      "salt_keys": [
+        "amoxicillin"
+      ],
+      "category": "Antibiotic",
+      "pack": "15 capsules",
+      "brand_price": 110.0,
+      "generic": {
+        "name": "Amoxicillin 500mg",
+        "price": 40.0
+      },
+      "aliases": [
+        "mox"
+      ]
+    },
+    {
+      "brand": "Moxikind-CV 625",
+      "salt": "Amoxicillin 500mg + Clavulanic Acid 125mg",
+      "salt_keys": [
+        "amoxicillin",
+        "clavulanic acid"
+      ],
+      "category": "Antibiotic",
+      "pack": "10 tablets",
+      "brand_price": 180.0,
+      "generic": {
+        "name": "Amoxicillin + Clavulanic Acid 625mg",
+        "price": 60.0
+      },
+      "aliases": [
+        "moxikind",
+        "moxikind cv"
+      ]
+    },
+    {
+      "brand": "Norflox 400",
+      "salt": "Norfloxacin 400mg",
+      "salt_keys": [
+        "norfloxacin"
+      ],
+      "category": "Antibiotic",
+      "pack": "10 tablets",
+      "brand_price": 85.0,
+      "generic": {
+        "name": "Norfloxacin 400mg",
+        "price": 28.0
+      },
+      "aliases": [
+        "norflox"
+      ]
+    },
+    {
+      "brand": "Novamox 500",
+      "salt": "Amoxicillin 500mg",
+      "salt_keys": [
+        "amoxicillin"
+      ],
+      "category": "Antibiotic",
+      "pack": "15 capsules",
+      "brand_price": 105.0,
+      "generic": {
+        "name": "Amoxicillin 500mg",
+        "price": 40.0
+      },
+      "aliases": [
+        "novamox"
+      ]
+    },
+    {
+      "brand": "Oflox 200",
+      "salt": "Ofloxacin 200mg",
+      "salt_keys": [
+        "ofloxacin"
+      ],
+      "category": "Antibiotic",
+      "pack": "10 tablets",
+      "brand_price": 105.0,
+      "generic": {
+        "name": "Ofloxacin 200mg",
+        "price": 30.0
+      },
+      "aliases": [
+        "oflox"
+      ]
+    },
+    {
+      "brand": "Tavanic 500",
+      "salt": "Levofloxacin 500mg",
+      "salt_keys": [
+        "levofloxacin"
+      ],
+      "category": "Antibiotic",
+      "pack": "5 tablets",
+      "brand_price": 240.0,
+      "generic": {
+        "name": "Levofloxacin 500mg",
+        "price": 40.0
+      },
+      "aliases": [
+        "tavanic"
+      ]
+    },
+    {
+      "brand": "Taxim-O 200",
+      "salt": "Cefixime 200mg",
+      "salt_keys": [
+        "cefixime"
+      ],
+      "category": "Antibiotic",
+      "pack": "10 tablets",
+      "brand_price": 135.0,
+      "generic": {
+        "name": "Cefixime 200mg",
+        "price": 45.0
+      },
+      "aliases": [
+        "taxim",
+        "taxim o"
+      ]
+    },
+    {
+      "brand": "Zanocin 200",
+      "salt": "Ofloxacin 200mg",
+      "salt_keys": [
+        "ofloxacin"
+      ],
+      "category": "Antibiotic",
+      "pack": "10 tablets",
+      "brand_price": 98.0,
+      "generic": {
+        "name": "Ofloxacin 200mg",
+        "price": 30.0
+      },
+      "aliases": [
+        "zanocin"
+      ]
+    },
+    {
+      "brand": "Zathrin 500",
+      "salt": "Azithromycin 500mg",
+      "salt_keys": [
+        "azithromycin"
+      ],
+      "category": "Antibiotic",
+      "pack": "5 tablets",
+      "brand_price": 110.0,
+      "generic": {
+        "name": "Azithromycin 500mg",
+        "price": 40.0
+      },
+      "aliases": [
+        "zathrin"
+      ]
+    },
+    {
+      "brand": "Zifi 200",
+      "salt": "Cefixime 200mg",
+      "salt_keys": [
+        "cefixime"
+      ],
+      "category": "Antibiotic",
+      "pack": "10 tablets",
+      "brand_price": 160.0,
+      "generic": {
+        "name": "Cefixime 200mg",
+        "price": 55.0
+      },
+      "aliases": [
+        "zifi"
+      ]
+    },
+    {
+      "brand": "Zocef 500",
+      "salt": "Cefuroxime 500mg",
+      "salt_keys": [
+        "cefuroxime"
+      ],
+      "category": "Antibiotic",
+      "pack": "10 tablets",
+      "brand_price": 420.0,
+      "generic": {
+        "name": "Cefuroxime 500mg",
+        "price": 160.0
+      },
+      "aliases": [
+        "zocef"
+      ]
+    },
+    {
+      "brand": "O2",
+      "salt": "Ofloxacin 200mg + Ornidazole 500mg",
+      "salt_keys": [
+        "ofloxacin",
+        "ornidazole"
+      ],
+      "category": "Antibiotic (GI)",
+      "pack": "10 tablets",
+      "brand_price": 175.0,
+      "generic": {
+        "name": "Ofloxacin + Ornidazole",
+        "price": 55.0
+      },
+      "aliases": [
+        "o",
+        "o-2",
+        "o2 tablet"
+      ]
+    },
+    {
+      "brand": "Minoz 100",
+      "salt": "Minocycline 100mg",
+      "salt_keys": [
+        "minocycline"
+      ],
+      "category": "Antibiotic (acne)",
+      "pack": "10 tablets",
+      "brand_price": 220.0,
+      "generic": {
+        "name": "Minocycline 100mg",
+        "price": 80.0
+      },
+      "aliases": [
+        "minoz"
+      ]
+    },
+    {
+      "brand": "Linid 600",
+      "salt": "Linezolid 600mg",
+      "salt_keys": [
+        "linezolid"
+      ],
+      "category": "Antibiotic (reserve)",
+      "pack": "10 tablets",
+      "brand_price": 320.0,
+      "generic": {
+        "name": "Linezolid 600mg",
+        "price": 120.0
+      },
+      "aliases": [
+        "linid"
+      ]
+    },
+    {
+      "brand": "Flagyl 400",
+      "salt": "Metronidazole 400mg",
+      "salt_keys": [
+        "metronidazole"
+      ],
+      "category": "Antibiotic / Antiprotozoal",
+      "pack": "15 tablets",
+      "brand_price": 25.0,
+      "generic": {
+        "name": "Metronidazole 400mg",
+        "price": 10.0
+      },
+      "aliases": [
+        "flagyl"
+      ]
+    },
+    {
+      "brand": "Metrogyl 400",
+      "salt": "Metronidazole 400mg",
+      "salt_keys": [
+        "metronidazole"
+      ],
+      "category": "Antibiotic / Antiprotozoal",
+      "pack": "15 tablets",
+      "brand_price": 22.0,
+      "generic": {
+        "name": "Metronidazole 400mg",
+        "price": 10.0
+      },
+      "aliases": [
+        "metrogyl",
+        "flagyl"
+      ]
+    },
+    {
+      "brand": "Tiniba 500",
+      "salt": "Tinidazole 500mg",
+      "salt_keys": [
+        "tinidazole"
+      ],
+      "category": "Antibiotic / Antiprotozoal",
+      "pack": "10 tablets",
+      "brand_price": 60.0,
+      "generic": {
+        "name": "Tinidazole 500mg",
+        "price": 22.0
+      },
+      "aliases": [
+        "tiniba"
+      ]
+    },
+    {
+      "brand": "Acitrom 2",
+      "salt": "Acenocoumarol 2mg",
+      "salt_keys": [
+        "acenocoumarol"
+      ],
+      "category": "Anticoagulant",
+      "pack": "30 tablets",
+      "brand_price": 190.0,
+      "generic": {
+        "name": "Acenocoumarol 2mg",
+        "price": 70.0
+      },
+      "aliases": [
+        "acitrom"
+      ]
+    },
+    {
+      "brand": "Eliquis 2.5",
+      "salt": "Apixaban 2.5mg",
+      "salt_keys": [
+        "apixaban"
+      ],
+      "category": "Anticoagulant",
+      "pack": "10 tablets",
+      "brand_price": 480.0,
+      "generic": {
+        "name": "Apixaban 2.5mg",
+        "price": 150.0
+      },
+      "aliases": [
+        "eliquis"
+      ]
+    },
+    {
+      "brand": "Pradaxa 110",
+      "salt": "Dabigatran 110mg",
+      "salt_keys": [
+        "dabigatran"
+      ],
+      "category": "Anticoagulant",
+      "pack": "10 capsules",
+      "brand_price": 620.0,
+      "generic": {
+        "name": "Dabigatran 110mg",
+        "price": 210.0
+      },
+      "aliases": [
+        "pradaxa"
+      ]
+    },
+    {
+      "brand": "Xarelto 10",
+      "salt": "Rivaroxaban 10mg",
+      "salt_keys": [
+        "rivaroxaban"
+      ],
+      "category": "Anticoagulant",
+      "pack": "10 tablets",
+      "brand_price": 590.0,
+      "generic": {
+        "name": "Rivaroxaban 10mg",
+        "price": 180.0
+      },
+      "aliases": [
+        "xarelto"
+      ]
+    },
+    {
+      "brand": "Nexito 10",
+      "salt": "Escitalopram 10mg",
+      "salt_keys": [
+        "escitalopram"
+      ],
+      "category": "Antidepressant (SSRI)",
+      "pack": "10 tablets",
+      "brand_price": 105.0,
+      "generic": {
+        "name": "Escitalopram 10mg",
+        "price": 30.0
+      },
+      "aliases": [
+        "nexito",
+        "cipralex",
+        "stalopam"
+      ]
+    },
+    {
+      "brand": "Zoloft 50",
+      "salt": "Sertraline 50mg",
+      "salt_keys": [
+        "sertraline"
+      ],
+      "category": "Antidepressant (SSRI)",
+      "pack": "10 tablets",
+      "brand_price": 130.0,
+      "generic": {
+        "name": "Sertraline 50mg",
+        "price": 35.0
+      },
+      "aliases": [
+        "zoloft",
+        "serta",
+        "daxid"
+      ]
+    },
+    {
+      "brand": "Candiforce 200",
+      "salt": "Itraconazole 200mg",
+      "salt_keys": [
+        "itraconazole"
+      ],
+      "category": "Antifungal",
+      "pack": "10 capsules",
+      "brand_price": 320.0,
+      "generic": {
+        "name": "Itraconazole 200mg",
+        "price": 120.0
+      },
+      "aliases": [
+        "candiforce",
+        "itraz"
+      ]
+    },
+    {
+      "brand": "Forcan 150",
+      "salt": "Fluconazole 150mg",
+      "salt_keys": [
+        "fluconazole"
+      ],
+      "category": "Antifungal",
+      "pack": "1 tablet",
+      "brand_price": 20.0,
+      "generic": {
+        "name": "Fluconazole 150mg",
+        "price": 8.0
+      },
+      "aliases": [
+        "fluka",
+        "forcan"
+      ]
+    },
+    {
+      "brand": "Grisovin FP 250",
+      "salt": "Griseofulvin 250mg",
+      "salt_keys": [
+        "griseofulvin"
+      ],
+      "category": "Antifungal",
+      "pack": "10 tablets",
+      "brand_price": 85.0,
+      "generic": {
+        "name": "Griseofulvin 250mg",
+        "price": 35.0
+      },
+      "aliases": [
+        "grisovin",
+        "grisovin fp"
+      ]
+    },
+    {
+      "brand": "Sebifin 250",
+      "salt": "Terbinafine 250mg",
+      "salt_keys": [
+        "terbinafine"
+      ],
+      "category": "Antifungal",
+      "pack": "7 tablets",
+      "brand_price": 175.0,
+      "generic": {
+        "name": "Terbinafine 250mg",
+        "price": 65.0
+      },
+      "aliases": [
+        "sebifin",
+        "terbicip"
+      ]
+    },
+    {
+      "brand": "Zocon 150",
+      "salt": "Fluconazole 150mg",
+      "salt_keys": [
+        "fluconazole"
+      ],
+      "category": "Antifungal",
+      "pack": "1 tablet",
+      "brand_price": 22.0,
+      "generic": {
+        "name": "Fluconazole 150mg",
+        "price": 8.0
+      },
+      "aliases": [
+        "zocon"
+      ]
+    },
+    {
+      "brand": "Candid-B Cream",
+      "salt": "Clotrimazole 1% + Beclomethasone 0.025%",
+      "salt_keys": [
+        "clotrimazole",
+        "beclomethasone"
+      ],
+      "category": "Antifungal (topical)",
+      "pack": "20g cream",
+      "brand_price": 130.0,
+      "generic": {
+        "name": "Clotrimazole + Beclomethasone cream",
+        "price": 40.0
+      },
+      "aliases": [
+        "candid",
+        "candid b"
+      ]
+    },
+    {
+      "brand": "Lariago 250",
+      "salt": "Chloroquine 250mg",
+      "salt_keys": [
+        "chloroquine"
+      ],
+      "category": "Antimalarial",
+      "pack": "10 tablets",
+      "brand_price": 18.0,
+      "generic": {
+        "name": "Chloroquine 250mg",
+        "price": 9.0
+      },
+      "aliases": [
+        "lariago"
+      ]
+    },
+    {
+      "brand": "Ivecop 12",
+      "salt": "Ivermectin 12mg",
+      "salt_keys": [
+        "ivermectin"
+      ],
+      "category": "Antiparasitic",
+      "pack": "1 tablet",
+      "brand_price": 32.0,
+      "generic": {
+        "name": "Ivermectin 12mg",
+        "price": 14.0
+      },
+      "aliases": [
+        "ivecop"
+      ]
+    },
+    {
+      "brand": "Ivermectol 12",
+      "salt": "Ivermectin 12mg",
+      "salt_keys": [
+        "ivermectin"
+      ],
+      "category": "Antiparasitic",
+      "pack": "2 tablets",
+      "brand_price": 55.0,
+      "generic": {
+        "name": "Ivermectin 12mg",
+        "price": 22.0
+      },
+      "aliases": [
+        "ivermectol",
+        "ivermectin"
+      ]
+    },
+    {
+      "brand": "Clavix 75",
+      "salt": "Clopidogrel 75mg",
+      "salt_keys": [
+        "clopidogrel"
+      ],
+      "category": "Antiplatelet",
+      "pack": "15 tablets",
+      "brand_price": 65.0,
+      "generic": {
+        "name": "Clopidogrel 75mg",
+        "price": 22.0
+      },
+      "aliases": [
+        "clavix"
+      ]
+    },
+    {
+      "brand": "Ecosprin-AV 75",
+      "salt": "Aspirin 75mg + Atorvastatin 10mg",
+      "salt_keys": [
+        "aspirin",
+        "atorvastatin"
+      ],
+      "category": "Antiplatelet + Cholesterol",
+      "pack": "10 capsules",
+      "brand_price": 65.0,
+      "generic": {
+        "name": "Aspirin + Atorvastatin",
+        "price": 25.0
+      },
+      "aliases": [
+        "ecosprin av",
+        "ecosprin-av"
+      ]
+    },
+    {
+      "brand": "Betadine Ointment",
+      "salt": "Povidone Iodine 10%",
+      "salt_keys": [
+        "povidone iodine"
+      ],
+      "category": "Antiseptic (topical)",
+      "pack": "20g ointment",
+      "brand_price": 105.0,
+      "generic": {
+        "name": "Povidone Iodine 10% ointment",
+        "price": 35.0
+      },
+      "aliases": [
+        "betadine"
+      ]
+    },
+    {
+      "brand": "Cyclopam",
+      "salt": "Dicyclomine 20mg + Paracetamol 500mg",
+      "salt_keys": [
+        "dicyclomine",
+        "paracetamol"
+      ],
+      "category": "Antispasmodic",
+      "pack": "10 tablets",
+      "brand_price": 58.0,
+      "generic": {
+        "name": "Dicyclomine + Paracetamol",
+        "price": 18.0
+      },
+      "aliases": [
+        "cyclopam"
+      ]
+    },
+    {
+      "brand": "Fluvir 75",
+      "salt": "Oseltamivir 75mg",
+      "salt_keys": [
+        "oseltamivir"
+      ],
+      "category": "Antiviral (flu)",
+      "pack": "10 capsules",
+      "brand_price": 460.0,
+      "generic": {
+        "name": "Oseltamivir 75mg",
+        "price": 180.0
+      },
+      "aliases": [
+        "fluvir",
+        "tamiflu"
+      ]
+    },
+    {
+      "brand": "Acivir 400",
+      "salt": "Acyclovir 400mg",
+      "salt_keys": [
+        "acyclovir"
+      ],
+      "category": "Antiviral (herpes)",
+      "pack": "10 tablets",
+      "brand_price": 140.0,
+      "generic": {
+        "name": "Acyclovir 400mg",
+        "price": 55.0
+      },
+      "aliases": [
+        "acivir",
+        "zovirax"
+      ]
+    },
+    {
+      "brand": "Valcivir 500",
+      "salt": "Valacyclovir 500mg",
+      "salt_keys": [
+        "valacyclovir"
+      ],
+      "category": "Antiviral (herpes/zoster)",
+      "pack": "10 tablets",
+      "brand_price": 380.0,
+      "generic": {
+        "name": "Valacyclovir 500mg",
+        "price": 140.0
+      },
+      "aliases": [
+        "valcivir"
+      ]
+    },
+    {
+      "brand": "Alprax 0.5",
+      "salt": "Alprazolam 0.5mg",
+      "salt_keys": [
+        "alprazolam"
+      ],
+      "category": "Anxiety (benzodiazepine)",
+      "pack": "15 tablets",
+      "brand_price": 42.0,
+      "generic": {
+        "name": "Alprazolam 0.5mg",
+        "price": 15.0
+      },
+      "aliases": [
+        "alprax",
+        "restyl",
+        "trika"
+      ]
+    },
+    {
+      "brand": "Clonotril 0.5",
+      "salt": "Clonazepam 0.5mg",
+      "salt_keys": [
+        "clonazepam"
+      ],
+      "category": "Anxiety / Seizure",
+      "pack": "15 tablets",
+      "brand_price": 42.0,
+      "generic": {
+        "name": "Clonazepam 0.5mg",
+        "price": 15.0
+      },
+      "aliases": [
+        "clonotril",
+        "rivotril"
+      ]
+    },
+    {
+      "brand": "Lopez 2",
+      "salt": "Lorazepam 2mg",
+      "salt_keys": [
+        "lorazepam"
+      ],
+      "category": "Anxiety / Sleep",
+      "pack": "10 tablets",
+      "brand_price": 40.0,
+      "generic": {
+        "name": "Lorazepam 2mg",
+        "price": 15.0
+      },
+      "aliases": [
+        "ativan",
+        "lopez"
+      ]
+    },
+    {
+      "brand": "Restyl 0.25",
+      "salt": "Alprazolam 0.25mg",
+      "salt_keys": [
+        "alprazolam"
+      ],
+      "category": "Anxiety / Sleep",
+      "pack": "15 tablets",
+      "brand_price": 35.0,
+      "generic": {
+        "name": "Alprazolam 0.25mg",
+        "price": 12.0
+      },
+      "aliases": [
+        "restyl"
+      ]
+    },
+    {
+      "brand": "Trika 0.25",
+      "salt": "Alprazolam 0.25mg",
+      "salt_keys": [
+        "alprazolam"
+      ],
+      "category": "Anxiety / Sleep",
+      "pack": "15 tablets",
+      "brand_price": 32.0,
+      "generic": {
+        "name": "Alprazolam 0.25mg",
+        "price": 12.0
+      },
+      "aliases": [
+        "trika"
+      ]
+    },
+    {
+      "brand": "Cordarone 200",
+      "salt": "Amiodarone 200mg",
+      "salt_keys": [
+        "amiodarone"
+      ],
+      "category": "Arrhythmia",
+      "pack": "10 tablets",
+      "brand_price": 180.0,
+      "generic": {
+        "name": "Amiodarone 200mg",
+        "price": 65.0
+      },
+      "aliases": [
+        "cordarone"
+      ]
+    },
+    {
+      "brand": "Asthalin 4",
+      "salt": "Salbutamol 4mg",
+      "salt_keys": [
+        "salbutamol"
+      ],
+      "category": "Asthma / COPD",
+      "pack": "30 tablets",
+      "brand_price": 22.0,
+      "generic": {
+        "name": "Salbutamol 4mg",
+        "price": 10.0
+      },
+      "aliases": [
+        "asthalin"
+      ]
+    },
+    {
+      "brand": "Asthalin Inhaler",
+      "salt": "Salbutamol 100mcg/dose",
+      "salt_keys": [
+        "salbutamol"
+      ],
+      "category": "Asthma / COPD",
+      "pack": "200 doses",
+      "brand_price": 165.0,
+      "generic": {
+        "name": "Salbutamol Inhaler",
+        "price": 90.0
+      },
+      "aliases": [
+        "asthalin hfa"
+      ]
+    },
+    {
+      "brand": "Budecort 200",
+      "salt": "Budesonide 200mcg/dose",
+      "salt_keys": [
+        "budesonide"
+      ],
+      "category": "Asthma / COPD",
+      "pack": "200 doses inhaler",
+      "brand_price": 390.0,
+      "generic": {
+        "name": "Budesonide Inhaler",
+        "price": 190.0
+      },
+      "aliases": [
+        "budecort"
+      ]
+    },
+    {
+      "brand": "Deriphyllin",
+      "salt": "Etofylline 77mg + Theophylline 23mg",
+      "salt_keys": [
+        "theophylline",
+        "etofylline"
+      ],
+      "category": "Asthma / COPD",
+      "pack": "30 tablets",
+      "brand_price": 60.0,
+      "generic": {
+        "name": "Etofylline + Theophylline",
+        "price": 25.0
+      },
+      "aliases": [
+        "deriphylline"
+      ]
+    },
+    {
+      "brand": "Foracort 200",
+      "salt": "Budesonide 200mcg + Formoterol 6mcg",
+      "salt_keys": [
+        "budesonide",
+        "formoterol"
+      ],
+      "category": "Asthma / COPD",
+      "pack": "120 doses inhaler",
+      "brand_price": 445.0,
+      "generic": {
+        "name": "Budesonide + Formoterol Inhaler",
+        "price": 220.0
+      },
+      "aliases": [
+        "foracort"
+      ]
+    },
+    {
+      "brand": "Levolin 1",
+      "salt": "Levosalbutamol 1mg",
+      "salt_keys": [
+        "levosalbutamol"
+      ],
+      "category": "Asthma / COPD",
+      "pack": "10 tablets",
+      "brand_price": 40.0,
+      "generic": {
+        "name": "Levosalbutamol 1mg",
+        "price": 15.0
+      },
+      "aliases": [
+        "levolin"
+      ]
+    },
+    {
+      "brand": "Duolin",
+      "salt": "Levosalbutamol 1.25mg + Ipratropium 500mcg",
+      "salt_keys": [
+        "levosalbutamol",
+        "ipratropium"
+      ],
+      "category": "Asthma / COPD (nebule)",
+      "pack": "5 respules",
+      "brand_price": 105.0,
+      "generic": {
+        "name": "Levosalbutamol + Ipratropium respules",
+        "price": 48.0
+      },
+      "aliases": []
+    },
+    {
+      "brand": "Amlokind 5",
+      "salt": "Amlodipine 5mg",
+      "salt_keys": [
+        "amlodipine"
+      ],
+      "category": "Blood Pressure",
+      "pack": "10 tablets",
+      "brand_price": 22.0,
+      "generic": {
+        "name": "Amlodipine 5mg",
+        "price": 10.0
+      },
+      "aliases": [
+        "amlokind"
+      ]
+    },
+    {
+      "brand": "Amlong 5",
+      "salt": "Amlodipine 5mg",
+      "salt_keys": [
+        "amlodipine"
+      ],
+      "category": "Blood Pressure",
+      "pack": "15 tablets",
+      "brand_price": 55.0,
+      "generic": {
+        "name": "Amlodipine 5mg",
+        "price": 8.0
+      },
+      "aliases": [
+        "amlong",
+        "amlokind",
+        "amlip"
+      ]
+    },
+    {
+      "brand": "Cilacar 10",
+      "salt": "Cilnidipine 10mg",
+      "salt_keys": [
+        "cilnidipine"
+      ],
+      "category": "Blood Pressure",
+      "pack": "15 tablets",
+      "brand_price": 165.0,
+      "generic": {
+        "name": "Cilnidipine 10mg",
+        "price": 55.0
+      },
+      "aliases": [
+        "cilacar"
+      ]
+    },
+    {
+      "brand": "Losar 50",
+      "salt": "Losartan 50mg",
+      "salt_keys": [
+        "losartan"
+      ],
+      "category": "Blood Pressure",
+      "pack": "15 tablets",
+      "brand_price": 90.0,
+      "generic": {
+        "name": "Losartan 50mg",
+        "price": 20.0
+      },
+      "aliases": [
+        "losar",
+        "repace"
+      ]
+    },
+    {
+      "brand": "Olmezest 20",
+      "salt": "Olmesartan 20mg",
+      "salt_keys": [
+        "olmesartan"
+      ],
+      "category": "Blood Pressure",
+      "pack": "10 tablets",
+      "brand_price": 95.0,
+      "generic": {
+        "name": "Olmesartan 20mg",
+        "price": 32.0
+      },
+      "aliases": [
+        "olmezest",
+        "olmy"
+      ]
+    },
+    {
+      "brand": "Repace 50",
+      "salt": "Losartan 50mg",
+      "salt_keys": [
+        "losartan"
+      ],
+      "category": "Blood Pressure",
+      "pack": "15 tablets",
+      "brand_price": 110.0,
+      "generic": {
+        "name": "Losartan 50mg",
+        "price": 35.0
+      },
+      "aliases": [
+        "repace"
+      ]
+    },
+    {
+      "brand": "Stamlo 5",
+      "salt": "Amlodipine 5mg",
+      "salt_keys": [
+        "amlodipine"
+      ],
+      "category": "Blood Pressure",
+      "pack": "30 tablets",
+      "brand_price": 65.0,
+      "generic": {
+        "name": "Amlodipine 5mg",
+        "price": 18.0
+      },
+      "aliases": [
+        "stamlo"
+      ]
+    },
+    {
+      "brand": "Telma 40",
+      "salt": "Telmisartan 40mg",
+      "salt_keys": [
+        "telmisartan"
+      ],
+      "category": "Blood Pressure",
+      "pack": "15 tablets",
+      "brand_price": 168.0,
+      "generic": {
+        "name": "Telmisartan 40mg",
+        "price": 28.0
+      },
+      "aliases": [
+        "telma"
+      ]
+    },
+    {
+      "brand": "Telma-AM",
+      "salt": "Telmisartan 40mg + Amlodipine 5mg",
+      "salt_keys": [
+        "telmisartan",
+        "amlodipine"
+      ],
+      "category": "Blood Pressure",
+      "pack": "15 tablets",
+      "brand_price": 210.0,
+      "generic": {
+        "name": "Telmisartan + Amlodipine",
+        "price": 60.0
+      },
+      "aliases": [
+        "telma am"
+      ]
+    },
+    {
+      "brand": "Telma-H",
+      "salt": "Telmisartan 40mg + Hydrochlorothiazide 12.5mg",
+      "salt_keys": [
+        "telmisartan",
+        "hydrochlorothiazide"
+      ],
+      "category": "Blood Pressure",
+      "pack": "15 tablets",
+      "brand_price": 220.0,
+      "generic": {
+        "name": "Telmisartan + HCTZ",
+        "price": 65.0
+      },
+      "aliases": [
+        "telma h"
+      ]
+    },
+    {
+      "brand": "Telmikind 40",
+      "salt": "Telmisartan 40mg",
+      "salt_keys": [
+        "telmisartan"
+      ],
+      "category": "Blood Pressure",
+      "pack": "10 tablets",
+      "brand_price": 55.0,
+      "generic": {
+        "name": "Telmisartan 40mg",
+        "price": 25.0
+      },
+      "aliases": [
+        "telmikind"
+      ]
+    },
+    {
+      "brand": "Cardace 5",
+      "salt": "Ramipril 5mg",
+      "salt_keys": [
+        "ramipril"
+      ],
+      "category": "Blood Pressure / Heart",
+      "pack": "10 tablets",
+      "brand_price": 140.0,
+      "generic": {
+        "name": "Ramipril 5mg",
+        "price": 25.0
+      },
+      "aliases": [
+        "cardace"
+      ]
+    },
+    {
+      "brand": "Concor 5",
+      "salt": "Bisoprolol 5mg",
+      "salt_keys": [
+        "bisoprolol"
+      ],
+      "category": "Blood Pressure / Heart",
+      "pack": "10 tablets",
+      "brand_price": 120.0,
+      "generic": {
+        "name": "Bisoprolol 5mg",
+        "price": 22.0
+      },
+      "aliases": [
+        "concor"
+      ]
+    },
+    {
+      "brand": "Nebicard 5",
+      "salt": "Nebivolol 5mg",
+      "salt_keys": [
+        "nebivolol"
+      ],
+      "category": "Blood Pressure / Heart",
+      "pack": "15 tablets",
+      "brand_price": 175.0,
+      "generic": {
+        "name": "Nebivolol 5mg",
+        "price": 35.0
+      },
+      "aliases": [
+        "nebicard",
+        "nebistar"
+      ]
+    },
+    {
+      "brand": "Clopitab 75",
+      "salt": "Clopidogrel 75mg",
+      "salt_keys": [
+        "clopidogrel"
+      ],
+      "category": "Blood Thinner",
+      "pack": "15 tablets",
+      "brand_price": 60.0,
+      "generic": {
+        "name": "Clopidogrel 75mg",
+        "price": 18.0
+      },
+      "aliases": [
+        "clopitab",
+        "plavix",
+        "clavix",
+        "deplatt"
+      ]
+    },
+    {
+      "brand": "Ecosprin 75",
+      "salt": "Aspirin 75mg (low dose)",
+      "salt_keys": [
+        "aspirin"
+      ],
+      "category": "Blood Thinner",
+      "pack": "14 tablets",
+      "brand_price": 9.0,
+      "generic": {
+        "name": "Aspirin 75mg",
+        "price": 4.0
+      },
+      "aliases": [
+        "ecosprin",
+        "asa",
+        "loprin"
+      ]
+    },
+    {
+      "brand": "Warf 5",
+      "salt": "Warfarin 5mg",
+      "salt_keys": [
+        "warfarin"
+      ],
+      "category": "Blood Thinner (anticoagulant)",
+      "pack": "30 tablets",
+      "brand_price": 95.0,
+      "generic": {
+        "name": "Warfarin 5mg",
+        "price": 40.0
+      },
+      "aliases": [
+        "warf",
+        "warfarin",
+        "coumadin"
+      ]
+    },
+    {
+      "brand": "Atorva 10",
+      "salt": "Atorvastatin 10mg",
+      "salt_keys": [
+        "atorvastatin"
+      ],
+      "category": "Cholesterol",
+      "pack": "30 tablets",
+      "brand_price": 105.0,
+      "generic": {
+        "name": "Atorvastatin 10mg",
+        "price": 20.0
+      },
+      "aliases": [
+        "atorva",
+        "storvas",
+        "lipvas",
+        "atorlip"
+      ]
+    },
+    {
+      "brand": "Crestor 10",
+      "salt": "Rosuvastatin 10mg",
+      "salt_keys": [
+        "rosuvastatin"
+      ],
+      "category": "Cholesterol",
+      "pack": "10 tablets",
+      "brand_price": 320.0,
+      "generic": {
+        "name": "Rosuvastatin 10mg",
+        "price": 55.0
+      },
+      "aliases": [
+        "crestor"
+      ]
+    },
+    {
+      "brand": "Lipikind 10",
+      "salt": "Atorvastatin 10mg",
+      "salt_keys": [
+        "atorvastatin"
+      ],
+      "category": "Cholesterol",
+      "pack": "10 tablets",
+      "brand_price": 35.0,
+      "generic": {
+        "name": "Atorvastatin 10mg",
+        "price": 25.0
+      },
+      "aliases": [
+        "lipikind"
+      ]
+    },
+    {
+      "brand": "Rosuvas 10",
+      "salt": "Rosuvastatin 10mg",
+      "salt_keys": [
+        "rosuvastatin"
+      ],
+      "category": "Cholesterol",
+      "pack": "15 tablets",
+      "brand_price": 160.0,
+      "generic": {
+        "name": "Rosuvastatin 10mg",
+        "price": 30.0
+      },
+      "aliases": [
+        "rosuvas",
+        "crestor",
+        "rozavel"
+      ]
+    },
+    {
+      "brand": "Rozavel 10",
+      "salt": "Rosuvastatin 10mg",
+      "salt_keys": [
+        "rosuvastatin"
+      ],
+      "category": "Cholesterol",
+      "pack": "15 tablets",
+      "brand_price": 220.0,
+      "generic": {
+        "name": "Rosuvastatin 10mg",
+        "price": 55.0
+      },
+      "aliases": [
+        "rozavel"
+      ]
+    },
+    {
+      "brand": "Storvas 20",
+      "salt": "Atorvastatin 20mg",
+      "salt_keys": [
+        "atorvastatin"
+      ],
+      "category": "Cholesterol",
+      "pack": "15 tablets",
+      "brand_price": 160.0,
+      "generic": {
+        "name": "Atorvastatin 20mg",
+        "price": 38.0
+      },
+      "aliases": [
+        "storvas"
+      ]
+    },
+    {
+      "brand": "Fenolip 160",
+      "salt": "Fenofibrate 160mg",
+      "salt_keys": [
+        "fenofibrate"
+      ],
+      "category": "Cholesterol (triglycerides)",
+      "pack": "10 tablets",
+      "brand_price": 165.0,
+      "generic": {
+        "name": "Fenofibrate 160mg",
+        "price": 58.0
+      },
+      "aliases": [
+        "fenolip"
+      ]
+    },
+    {
+      "brand": "Cheston Cold",
+      "salt": "Cetirizine 5mg + Phenylephrine 10mg + Paracetamol 325mg",
+      "salt_keys": [
+        "cetirizine",
+        "phenylephrine",
+        "paracetamol"
+      ],
+      "category": "Cold / Flu",
+      "pack": "10 tablets",
+      "brand_price": 55.0,
+      "generic": {
+        "name": "Cetirizine + Phenylephrine + Paracetamol",
+        "price": 18.0
+      },
+      "aliases": [
+        "cheston"
+      ]
+    },
+    {
+      "brand": "Sinarest",
+      "salt": "Paracetamol 500mg + Phenylephrine 10mg + Chlorpheniramine 2mg",
+      "salt_keys": [
+        "paracetamol",
+        "phenylephrine",
+        "chlorpheniramine"
+      ],
+      "category": "Cold / Flu",
+      "pack": "10 tablets",
+      "brand_price": 92.0,
+      "generic": {
+        "name": "PCM + Phenylephrine + CPM",
+        "price": 25.0
+      },
+      "aliases": [
+        "sinarest"
+      ]
+    },
+    {
+      "brand": "Wikoryl",
+      "salt": "Paracetamol + Phenylephrine + Chlorpheniramine",
+      "salt_keys": [
+        "paracetamol",
+        "phenylephrine",
+        "chlorpheniramine"
+      ],
+      "category": "Cold / Flu",
+      "pack": "10 tablets",
+      "brand_price": 58.0,
+      "generic": {
+        "name": "Paracetamol + Phenylephrine + CPM",
+        "price": 18.0
+      },
+      "aliases": []
+    },
+    {
+      "brand": "Zyrcold Plus",
+      "salt": "Paracetamol + Phenylephrine + Cetirizine",
+      "salt_keys": [
+        "paracetamol",
+        "phenylephrine",
+        "cetirizine"
+      ],
+      "category": "Cold / Flu",
+      "pack": "10 tablets",
+      "brand_price": 52.0,
+      "generic": {
+        "name": "Paracetamol + Phenylephrine + Cetirizine",
+        "price": 18.0
+      },
+      "aliases": [
+        "zyrcold"
+      ]
+    },
+    {
+      "brand": "Cremaffin Plus",
+      "salt": "Liquid Paraffin + Milk of Magnesia + Sodium Picosulfate",
+      "salt_keys": [
+        "liquid paraffin",
+        "sodium picosulfate"
+      ],
+      "category": "Constipation",
+      "pack": "225 ml syrup",
+      "brand_price": 195.0,
+      "generic": {
+        "name": "Liquid Paraffin + MoM syrup",
+        "price": 80.0
+      },
+      "aliases": [
+        "cremaffin"
+      ]
+    },
+    {
+      "brand": "Dulcoflex 5",
+      "salt": "Bisacodyl 5mg",
+      "salt_keys": [
+        "bisacodyl"
+      ],
+      "category": "Constipation",
+      "pack": "10 tablets",
+      "brand_price": 32.0,
+      "generic": {
+        "name": "Bisacodyl 5mg",
+        "price": 12.0
+      },
+      "aliases": [
+        "dulcoflex"
+      ]
+    },
+    {
+      "brand": "Duphalac",
+      "salt": "Lactulose solution (per 15ml)",
+      "salt_keys": [
+        "lactulose"
+      ],
+      "category": "Constipation",
+      "pack": "200ml solution",
+      "brand_price": 260.0,
+      "generic": {
+        "name": "Lactulose solution 200ml",
+        "price": 90.0
+      },
+      "aliases": [
+        "duphalac",
+        "looz"
+      ]
+    },
+    {
+      "brand": "Looz",
+      "salt": "Lactulose Solution 10g/15ml",
+      "salt_keys": [
+        "lactulose"
+      ],
+      "category": "Constipation",
+      "pack": "200 ml syrup",
+      "brand_price": 230.0,
+      "generic": {
+        "name": "Lactulose Solution",
+        "price": 95.0
+      },
+      "aliases": []
+    },
+    {
+      "brand": "Ovral-L",
+      "salt": "Ethinylestradiol 30mcg + Levonorgestrel 0.15mg",
+      "salt_keys": [
+        "ethinylestradiol",
+        "levonorgestrel"
+      ],
+      "category": "Contraceptive",
+      "pack": "21 tablets",
+      "brand_price": 120.0,
+      "generic": {
+        "name": "EE + Levonorgestrel",
+        "price": 50.0
+      },
+      "aliases": [
+        "ovral",
+        "ovral l"
+      ]
+    },
+    {
+      "brand": "Benadryl",
+      "salt": "Diphenhydramine + Ammonium Chloride",
+      "salt_keys": [
+        "diphenhydramine"
+      ],
+      "category": "Cough",
+      "pack": "150 ml syrup",
+      "brand_price": 130.0,
+      "generic": {
+        "name": "Diphenhydramine cough syrup",
+        "price": 55.0
+      },
+      "aliases": []
+    },
+    {
+      "brand": "Ascoril LS",
+      "salt": "Ambroxol 30mg + Levosalbutamol 1mg + Guaifenesin 50mg (per 5ml)",
+      "salt_keys": [
+        "ambroxol",
+        "levosalbutamol",
+        "guaifenesin"
+      ],
+      "category": "Cough (syrup)",
+      "pack": "100ml syrup",
+      "brand_price": 118.0,
+      "generic": {
+        "name": "Ambroxol + Levosalbutamol + Guaifenesin syrup",
+        "price": 40.0
+      },
+      "aliases": [
+        "ascoril"
+      ]
+    },
+    {
+      "brand": "Grilinctus",
+      "salt": "Dextromethorphan + Chlorpheniramine (per 5ml)",
+      "salt_keys": [
+        "dextromethorphan",
+        "chlorpheniramine"
+      ],
+      "category": "Cough (syrup)",
+      "pack": "100ml syrup",
+      "brand_price": 108.0,
+      "generic": {
+        "name": "Dextromethorphan + CPM syrup",
+        "price": 35.0
+      },
+      "aliases": [
+        "grilinctus"
+      ]
+    },
+    {
+      "brand": "Electral",
+      "salt": "Oral Rehydration Salts (WHO-ORS)",
+      "salt_keys": [
+        "ors"
+      ],
+      "category": "Dehydration",
+      "pack": "21.8 g sachet",
+      "brand_price": 22.0,
+      "generic": {
+        "name": "ORS sachet",
+        "price": 12.0
+      },
+      "aliases": [
+        "ors"
+      ]
+    },
+    {
+      "brand": "Donep 5",
+      "salt": "Donepezil 5mg",
+      "salt_keys": [
+        "donepezil"
+      ],
+      "category": "Dementia",
+      "pack": "10 tablets",
+      "brand_price": 95.0,
+      "generic": {
+        "name": "Donepezil 5mg",
+        "price": 35.0
+      },
+      "aliases": [
+        "donep"
+      ]
+    },
+    {
+      "brand": "Prodep 20",
+      "salt": "Fluoxetine 20mg",
+      "salt_keys": [
+        "fluoxetine"
+      ],
+      "category": "Depression",
+      "pack": "10 capsules",
+      "brand_price": 45.0,
+      "generic": {
+        "name": "Fluoxetine 20mg",
+        "price": 16.0
+      },
+      "aliases": [
+        "fludac",
+        "prodep"
+      ]
+    },
+    {
+      "brand": "Cipralex 10",
+      "salt": "Escitalopram 10mg",
+      "salt_keys": [
+        "escitalopram"
+      ],
+      "category": "Depression / Anxiety",
+      "pack": "10 tablets",
+      "brand_price": 130.0,
+      "generic": {
+        "name": "Escitalopram 10mg",
+        "price": 32.0
+      },
+      "aliases": [
+        "cipralex"
+      ]
+    },
+    {
+      "brand": "Daxid 50",
+      "salt": "Sertraline 50mg",
+      "salt_keys": [
+        "sertraline"
+      ],
+      "category": "Depression / Anxiety",
+      "pack": "10 tablets",
+      "brand_price": 105.0,
+      "generic": {
+        "name": "Sertraline 50mg",
+        "price": 30.0
+      },
+      "aliases": [
+        "daxid"
+      ]
+    },
+    {
+      "brand": "Veniz XR 75",
+      "salt": "Venlafaxine 75mg XR",
+      "salt_keys": [
+        "venlafaxine"
+      ],
+      "category": "Depression / Anxiety",
+      "pack": "10 capsules",
+      "brand_price": 160.0,
+      "generic": {
+        "name": "Venlafaxine XR 75mg",
+        "price": 55.0
+      },
+      "aliases": [
+        "veniz",
+        "veniz xr"
+      ]
+    },
+    {
+      "brand": "Zosert 50",
+      "salt": "Sertraline 50mg",
+      "salt_keys": [
+        "sertraline"
+      ],
+      "category": "Depression / Anxiety",
+      "pack": "10 tablets",
+      "brand_price": 85.0,
+      "generic": {
+        "name": "Sertraline 50mg",
+        "price": 30.0
+      },
+      "aliases": [
+        "zosert"
+      ]
+    },
+    {
+      "brand": "Mirtaz 15",
+      "salt": "Mirtazapine 15mg",
+      "salt_keys": [
+        "mirtazapine"
+      ],
+      "category": "Depression / Sleep",
+      "pack": "10 tablets",
+      "brand_price": 130.0,
+      "generic": {
+        "name": "Mirtazapine 15mg",
+        "price": 45.0
+      },
+      "aliases": [
+        "mirtaz"
+      ]
+    },
+    {
+      "brand": "Zentel 400",
+      "salt": "Albendazole 400mg",
+      "salt_keys": [
+        "albendazole"
+      ],
+      "category": "Deworming",
+      "pack": "1 tablet",
+      "brand_price": 20.0,
+      "generic": {
+        "name": "Albendazole 400mg",
+        "price": 8.0
+      },
+      "aliases": [
+        "zentel",
+        "bandy"
+      ]
+    },
+    {
+      "brand": "Amaryl 1",
+      "salt": "Glimepiride 1mg",
+      "salt_keys": [
+        "glimepiride"
+      ],
+      "category": "Diabetes",
+      "pack": "30 tablets",
+      "brand_price": 145.0,
+      "generic": {
+        "name": "Glimepiride 1mg",
+        "price": 40.0
+      },
+      "aliases": [
+        "amaryl"
+      ]
+    },
+    {
+      "brand": "Amaryl 2",
+      "salt": "Glimepiride 2mg",
+      "salt_keys": [
+        "glimepiride"
+      ],
+      "category": "Diabetes",
+      "pack": "30 tablets",
+      "brand_price": 190.0,
+      "generic": {
+        "name": "Glimepiride 2mg",
+        "price": 25.0
+      },
+      "aliases": [
+        "amaryl",
+        "glimestar",
+        "zoryl"
+      ]
+    },
+    {
+      "brand": "Dapanorm 10",
+      "salt": "Dapagliflozin 10mg",
+      "salt_keys": [
+        "dapagliflozin"
+      ],
+      "category": "Diabetes",
+      "pack": "10 tablets",
+      "brand_price": 130.0,
+      "generic": {
+        "name": "Dapagliflozin 10mg",
+        "price": 90.0
+      },
+      "aliases": [
+        "dapanorm"
+      ]
+    },
+    {
+      "brand": "Forxiga 10",
+      "salt": "Dapagliflozin 10mg",
+      "salt_keys": [
+        "dapagliflozin"
+      ],
+      "category": "Diabetes",
+      "pack": "14 tablets",
+      "brand_price": 480.0,
+      "generic": {
+        "name": "Dapagliflozin 10mg",
+        "price": 90.0
+      },
+      "aliases": [
+        "forxiga"
+      ]
+    },
+    {
+      "brand": "Galvus 50",
+      "salt": "Vildagliptin 50mg",
+      "salt_keys": [
+        "vildagliptin"
+      ],
+      "category": "Diabetes",
+      "pack": "15 tablets",
+      "brand_price": 250.0,
+      "generic": {
+        "name": "Vildagliptin 50mg",
+        "price": 80.0
+      },
+      "aliases": [
+        "galvus"
+      ]
+    },
+    {
+      "brand": "Glimestar 1",
+      "salt": "Glimepiride 1mg",
+      "salt_keys": [
+        "glimepiride"
+      ],
+      "category": "Diabetes",
+      "pack": "10 tablets",
+      "brand_price": 42.0,
+      "generic": {
+        "name": "Glimepiride 1mg",
+        "price": 14.0
+      },
+      "aliases": [
+        "glimestar"
+      ]
+    },
+    {
+      "brand": "Gluconorm-G1",
+      "salt": "Metformin 500mg + Glimepiride 1mg",
+      "salt_keys": [
+        "metformin",
+        "glimepiride"
+      ],
+      "category": "Diabetes",
+      "pack": "15 tablets",
+      "brand_price": 98.0,
+      "generic": {
+        "name": "Metformin + Glimepiride",
+        "price": 32.0
+      },
+      "aliases": [
+        "gluconorm",
+        "gluconorm-g"
+      ]
+    },
+    {
+      "brand": "Glyciphage 500",
+      "salt": "Metformin 500mg",
+      "salt_keys": [
+        "metformin"
+      ],
+      "category": "Diabetes",
+      "pack": "20 tablets",
+      "brand_price": 35.0,
+      "generic": {
+        "name": "Metformin 500mg",
+        "price": 12.0
+      },
+      "aliases": [
+        "glyciphage"
+      ]
+    },
+    {
+      "brand": "Glycomet 500 SR",
+      "salt": "Metformin 500mg (sustained release)",
+      "salt_keys": [
+        "metformin"
+      ],
+      "category": "Diabetes",
+      "pack": "20 tablets",
+      "brand_price": 38.0,
+      "generic": {
+        "name": "Metformin 500mg SR",
+        "price": 10.0
+      },
+      "aliases": [
+        "glycomet",
+        "glyciphage",
+        "metformin"
+      ]
+    },
+    {
+      "brand": "Glycomet-GP 1",
+      "salt": "Metformin 500mg + Glimepiride 1mg",
+      "salt_keys": [
+        "metformin",
+        "glimepiride"
+      ],
+      "category": "Diabetes",
+      "pack": "15 tablets",
+      "brand_price": 105.0,
+      "generic": {
+        "name": "Metformin + Glimepiride",
+        "price": 32.0
+      },
+      "aliases": [
+        "glycomet gp",
+        "glycomet gp1",
+        "glycomet-gp"
+      ]
+    },
+    {
+      "brand": "Istavel 100",
+      "salt": "Sitagliptin 100mg",
+      "salt_keys": [
+        "sitagliptin"
+      ],
+      "category": "Diabetes",
+      "pack": "15 tablets",
+      "brand_price": 190.0,
+      "generic": {
+        "name": "Sitagliptin 100mg",
+        "price": 110.0
+      },
+      "aliases": [
+        "istavel"
+      ]
+    },
+    {
+      "brand": "Janumet 50/500",
+      "salt": "Sitagliptin 50mg + Metformin 500mg",
+      "salt_keys": [
+        "sitagliptin",
+        "metformin"
+      ],
+      "category": "Diabetes",
+      "pack": "15 tablets",
+      "brand_price": 280.0,
+      "generic": {
+        "name": "Sitagliptin + Metformin 50/500mg",
+        "price": 90.0
+      },
+      "aliases": [
+        "janumet"
+      ]
+    },
+    {
+      "brand": "Januvia 100",
+      "salt": "Sitagliptin 100mg",
+      "salt_keys": [
+        "sitagliptin"
+      ],
+      "category": "Diabetes",
+      "pack": "15 tablets",
+      "brand_price": 320.0,
+      "generic": {
+        "name": "Sitagliptin 100mg",
+        "price": 110.0
+      },
+      "aliases": [
+        "januvia"
+      ]
+    },
+    {
+      "brand": "Jardiance 10",
+      "salt": "Empagliflozin 10mg",
+      "salt_keys": [
+        "empagliflozin"
+      ],
+      "category": "Diabetes",
+      "pack": "10 tablets",
+      "brand_price": 490.0,
+      "generic": {
+        "name": "Empagliflozin 10mg",
+        "price": 160.0
+      },
+      "aliases": [
+        "jardiance"
+      ]
+    },
+    {
+      "brand": "Pioz 15",
+      "salt": "Pioglitazone 15mg",
+      "salt_keys": [
+        "pioglitazone"
+      ],
+      "category": "Diabetes",
+      "pack": "10 tablets",
+      "brand_price": 95.0,
+      "generic": {
+        "name": "Pioglitazone 15mg",
+        "price": 30.0
+      },
+      "aliases": [
+        "pioz"
+      ]
+    },
+    {
+      "brand": "Dytor 10",
+      "salt": "Torsemide 10mg",
+      "salt_keys": [
+        "torsemide"
+      ],
+      "category": "Diuretic",
+      "pack": "15 tablets",
+      "brand_price": 120.0,
+      "generic": {
+        "name": "Torsemide 10mg",
+        "price": 42.0
+      },
+      "aliases": [
+        "dytor"
+      ]
+    },
+    {
+      "brand": "Lasix 40",
+      "salt": "Furosemide 40mg",
+      "salt_keys": [
+        "furosemide"
+      ],
+      "category": "Diuretic",
+      "pack": "15 tablets",
+      "brand_price": 25.0,
+      "generic": {
+        "name": "Furosemide 40mg",
+        "price": 10.0
+      },
+      "aliases": [
+        "lasix"
+      ]
+    },
+    {
+      "brand": "Aldactone 25",
+      "salt": "Spironolactone 25mg",
+      "salt_keys": [
+        "spironolactone"
+      ],
+      "category": "Diuretic / Heart",
+      "pack": "15 tablets",
+      "brand_price": 55.0,
+      "generic": {
+        "name": "Spironolactone 25mg",
+        "price": 20.0
+      },
+      "aliases": [
+        "aldactone"
+      ]
+    },
+    {
+      "brand": "Deplatt-A 75",
+      "salt": "Aspirin 75mg + Clopidogrel 75mg",
+      "salt_keys": [
+        "aspirin",
+        "clopidogrel"
+      ],
+      "category": "Dual antiplatelet",
+      "pack": "15 tablets",
+      "brand_price": 90.0,
+      "generic": {
+        "name": "Aspirin + Clopidogrel",
+        "price": 35.0
+      },
+      "aliases": [
+        "deplatt",
+        "deplatt a",
+        "deplatt-a"
+      ]
+    },
+    {
+      "brand": "Encorate Chrono 300",
+      "salt": "Sodium Valproate 200mg + Valproic Acid 87mg",
+      "salt_keys": [
+        "valproate"
+      ],
+      "category": "Epilepsy",
+      "pack": "10 tablets",
+      "brand_price": 75.0,
+      "generic": {
+        "name": "Sodium Valproate CR 300mg",
+        "price": 30.0
+      },
+      "aliases": [
+        "encorate",
+        "encorate chrono",
+        "valparin"
+      ]
+    },
+    {
+      "brand": "Eptoin 100",
+      "salt": "Phenytoin 100mg",
+      "salt_keys": [
+        "phenytoin"
+      ],
+      "category": "Epilepsy",
+      "pack": "120 tablets",
+      "brand_price": 145.0,
+      "generic": {
+        "name": "Phenytoin 100mg",
+        "price": 60.0
+      },
+      "aliases": [
+        "eptoin"
+      ]
+    },
+    {
+      "brand": "Levipil 500",
+      "salt": "Levetiracetam 500mg",
+      "salt_keys": [
+        "levetiracetam"
+      ],
+      "category": "Epilepsy",
+      "pack": "10 tablets",
+      "brand_price": 125.0,
+      "generic": {
+        "name": "Levetiracetam 500mg",
+        "price": 45.0
+      },
+      "aliases": [
+        "keppra",
+        "levipil"
+      ]
+    },
+    {
+      "brand": "Lamitor 50",
+      "salt": "Lamotrigine 50mg",
+      "salt_keys": [
+        "lamotrigine"
+      ],
+      "category": "Epilepsy / Mood",
+      "pack": "10 tablets",
+      "brand_price": 85.0,
+      "generic": {
+        "name": "Lamotrigine 50mg",
+        "price": 32.0
+      },
+      "aliases": [
+        "lamitor"
+      ]
+    },
+    {
+      "brand": "Tegrital 200",
+      "salt": "Carbamazepine 200mg",
+      "salt_keys": [
+        "carbamazepine"
+      ],
+      "category": "Epilepsy / Neuralgia",
+      "pack": "10 tablets",
+      "brand_price": 35.0,
+      "generic": {
+        "name": "Carbamazepine 200mg",
+        "price": 14.0
+      },
+      "aliases": [
+        "tegrital"
+      ]
+    },
+    {
+      "brand": "Manforce 50",
+      "salt": "Sildenafil 50mg",
+      "salt_keys": [
+        "sildenafil"
+      ],
+      "category": "Erectile dysfunction",
+      "pack": "4 tablets",
+      "brand_price": 105.0,
+      "generic": {
+        "name": "Sildenafil 50mg",
+        "price": 40.0
+      },
+      "aliases": [
+        "manforce",
+        "suhagra",
+        "viagra"
+      ]
+    },
+    {
+      "brand": "Megalis 10",
+      "salt": "Tadalafil 10mg",
+      "salt_keys": [
+        "tadalafil"
+      ],
+      "category": "Erectile dysfunction",
+      "pack": "4 tablets",
+      "brand_price": 165.0,
+      "generic": {
+        "name": "Tadalafil 10mg",
+        "price": 60.0
+      },
+      "aliases": [
+        "megalis",
+        "tadacip"
+      ]
+    },
+    {
+      "brand": "Rifagut 400",
+      "salt": "Rifaximin 400mg",
+      "salt_keys": [
+        "rifaximin"
+      ],
+      "category": "GI antibiotic (IBS)",
+      "pack": "10 tablets",
+      "brand_price": 350.0,
+      "generic": {
+        "name": "Rifaximin 400mg",
+        "price": 130.0
+      },
+      "aliases": [
+        "rifagut"
+      ]
+    },
+    {
+      "brand": "Ganaton 50",
+      "salt": "Itopride 50mg",
+      "salt_keys": [
+        "itopride"
+      ],
+      "category": "GI motility",
+      "pack": "10 tablets",
+      "brand_price": 150.0,
+      "generic": {
+        "name": "Itopride 50mg",
+        "price": 55.0
+      },
+      "aliases": [
+        "ganaton"
+      ]
+    },
+    {
+      "brand": "Feburic 40",
+      "salt": "Febuxostat 40mg",
+      "salt_keys": [
+        "febuxostat"
+      ],
+      "category": "Gout",
+      "pack": "10 tablets",
+      "brand_price": 105.0,
+      "generic": {
+        "name": "Febuxostat 40mg",
+        "price": 38.0
+      },
+      "aliases": [
+        "feburic",
+        "zurig"
+      ]
+    },
+    {
+      "brand": "Zyloric 100",
+      "salt": "Allopurinol 100mg",
+      "salt_keys": [
+        "allopurinol"
+      ],
+      "category": "Gout",
+      "pack": "10 tablets",
+      "brand_price": 40.0,
+      "generic": {
+        "name": "Allopurinol 100mg",
+        "price": 15.0
+      },
+      "aliases": [
+        "zyloric"
+      ]
+    },
+    {
+      "brand": "Goutnil 0.5",
+      "salt": "Colchicine 0.5mg",
+      "salt_keys": [
+        "colchicine"
+      ],
+      "category": "Gout (acute)",
+      "pack": "10 tablets",
+      "brand_price": 60.0,
+      "generic": {
+        "name": "Colchicine 0.5mg",
+        "price": 25.0
+      },
+      "aliases": [
+        "goutnil",
+        "zycolchin"
+      ]
+    },
+    {
+      "brand": "Aten 50",
+      "salt": "Atenolol 50mg",
+      "salt_keys": [
+        "atenolol"
+      ],
+      "category": "Heart / BP",
+      "pack": "14 tablets",
+      "brand_price": 45.0,
+      "generic": {
+        "name": "Atenolol 50mg",
+        "price": 15.0
+      },
+      "aliases": [
+        "aten"
+      ]
+    },
+    {
+      "brand": "Betaloc 50",
+      "salt": "Metoprolol Tartrate 50mg",
+      "salt_keys": [
+        "metoprolol"
+      ],
+      "category": "Heart / BP",
+      "pack": "10 tablets",
+      "brand_price": 42.0,
+      "generic": {
+        "name": "Metoprolol 50mg",
+        "price": 16.0
+      },
+      "aliases": [
+        "betaloc"
+      ]
+    },
+    {
+      "brand": "Met-XL 50",
+      "salt": "Metoprolol Succinate 50mg XL",
+      "salt_keys": [
+        "metoprolol"
+      ],
+      "category": "Heart / BP",
+      "pack": "10 tablets",
+      "brand_price": 78.0,
+      "generic": {
+        "name": "Metoprolol XL 50mg",
+        "price": 28.0
+      },
+      "aliases": [
+        "met xl",
+        "met-xl",
+        "metxl"
+      ]
+    },
+    {
+      "brand": "Prolomet XL 50",
+      "salt": "Metoprolol Succinate 50mg XL",
+      "salt_keys": [
+        "metoprolol"
+      ],
+      "category": "Heart / BP",
+      "pack": "10 tablets",
+      "brand_price": 82.0,
+      "generic": {
+        "name": "Metoprolol XL 50mg",
+        "price": 28.0
+      },
+      "aliases": [
+        "prolomet",
+        "prolomet xl"
+      ]
+    },
+    {
+      "brand": "Lanoxin 0.25",
+      "salt": "Digoxin 0.25mg",
+      "salt_keys": [
+        "digoxin"
+      ],
+      "category": "Heart failure / AF",
+      "pack": "30 tablets",
+      "brand_price": 45.0,
+      "generic": {
+        "name": "Digoxin 0.25mg",
+        "price": 20.0
+      },
+      "aliases": [
+        "lanoxin"
+      ]
+    },
+    {
+      "brand": "Ivabrad 5",
+      "salt": "Ivabradine 5mg",
+      "salt_keys": [
+        "ivabradine"
+      ],
+      "category": "Heart failure / Angina",
+      "pack": "10 tablets",
+      "brand_price": 210.0,
+      "generic": {
+        "name": "Ivabradine 5mg",
+        "price": 75.0
+      },
+      "aliases": [
+        "ivabrad"
+      ]
+    },
+    {
+      "brand": "Meprate 10",
+      "salt": "Medroxyprogesterone 10mg",
+      "salt_keys": [
+        "medroxyprogesterone"
+      ],
+      "category": "Hormone",
+      "pack": "10 tablets",
+      "brand_price": 60.0,
+      "generic": {
+        "name": "Medroxyprogesterone 10mg",
+        "price": 25.0
+      },
+      "aliases": [
+        "deviry",
+        "meprate"
+      ]
+    },
+    {
+      "brand": "Regestrone 5",
+      "salt": "Norethisterone 5mg",
+      "salt_keys": [
+        "norethisterone"
+      ],
+      "category": "Hormone",
+      "pack": "10 tablets",
+      "brand_price": 55.0,
+      "generic": {
+        "name": "Norethisterone 5mg",
+        "price": 22.0
+      },
+      "aliases": [
+        "primolut n",
+        "regestrone"
+      ]
+    },
+    {
+      "brand": "Duphaston 10",
+      "salt": "Dydrogesterone 10mg",
+      "salt_keys": [
+        "dydrogesterone"
+      ],
+      "category": "Hormone (progesterone)",
+      "pack": "10 tablets",
+      "brand_price": 620.0,
+      "generic": {
+        "name": "Dydrogesterone 10mg",
+        "price": 230.0
+      },
+      "aliases": [
+        "duphaston"
+      ]
+    },
+    {
+      "brand": "Susten 200",
+      "salt": "Micronized Progesterone 200mg",
+      "salt_keys": [
+        "progesterone"
+      ],
+      "category": "Hormone (progesterone)",
+      "pack": "10 capsules",
+      "brand_price": 390.0,
+      "generic": {
+        "name": "Progesterone 200mg",
+        "price": 150.0
+      },
+      "aliases": [
+        "susten"
+      ]
+    },
+    {
+      "brand": "Neo-Mercazole 5",
+      "salt": "Carbimazole 5mg",
+      "salt_keys": [
+        "carbimazole"
+      ],
+      "category": "Hyperthyroid",
+      "pack": "30 tablets",
+      "brand_price": 90.0,
+      "generic": {
+        "name": "Carbimazole 5mg",
+        "price": 35.0
+      },
+      "aliases": [
+        "neo mercazole",
+        "neo-mercazole",
+        "neomercazole"
+      ]
+    },
+    {
+      "brand": "Autrin",
+      "salt": "Ferrous Fumarate + Folic Acid + B12 + Vitamin C",
+      "salt_keys": [
+        "iron",
+        "folic acid"
+      ],
+      "category": "Iron / Anaemia",
+      "pack": "30 capsules",
+      "brand_price": 110.0,
+      "generic": {
+        "name": "Iron + Folic Acid + B12",
+        "price": 40.0
+      },
+      "aliases": []
+    },
+    {
+      "brand": "Livogen",
+      "salt": "Ferrous Fumarate 152mg + Folic Acid 1.5mg",
+      "salt_keys": [
+        "iron",
+        "folic acid"
+      ],
+      "category": "Iron / Anaemia",
+      "pack": "15 tablets",
+      "brand_price": 50.0,
+      "generic": {
+        "name": "Iron + Folic Acid",
+        "price": 18.0
+      },
+      "aliases": []
+    },
+    {
+      "brand": "Orofer-XT",
+      "salt": "Ferrous Ascorbate 100mg + Folic Acid 1.5mg",
+      "salt_keys": [
+        "iron",
+        "folic acid"
+      ],
+      "category": "Iron / Anaemia",
+      "pack": "10 tablets",
+      "brand_price": 115.0,
+      "generic": {
+        "name": "Ferrous Ascorbate + Folic Acid",
+        "price": 38.0
+      },
+      "aliases": [
+        "orofer",
+        "orofer xt"
+      ]
+    },
+    {
+      "brand": "Udiliv 300",
+      "salt": "Ursodeoxycholic Acid 300mg",
+      "salt_keys": [
+        "ursodeoxycholic acid"
+      ],
+      "category": "Liver / Gallstones",
+      "pack": "15 tablets",
+      "brand_price": 500.0,
+      "generic": {
+        "name": "Ursodeoxycholic Acid 300mg",
+        "price": 190.0
+      },
+      "aliases": [
+        "udiliv"
+      ]
+    },
+    {
+      "brand": "Naxdom 500",
+      "salt": "Naproxen 500mg + Domperidone 10mg",
+      "salt_keys": [
+        "naproxen",
+        "domperidone"
+      ],
+      "category": "Migraine",
+      "pack": "10 tablets",
+      "brand_price": 175.0,
+      "generic": {
+        "name": "Naproxen + Domperidone",
+        "price": 60.0
+      },
+      "aliases": [
+        "naxdom"
+      ]
+    },
+    {
+      "brand": "Suminat 50",
+      "salt": "Sumatriptan 50mg",
+      "salt_keys": [
+        "sumatriptan"
+      ],
+      "category": "Migraine (acute)",
+      "pack": "5 tablets",
+      "brand_price": 260.0,
+      "generic": {
+        "name": "Sumatriptan 50mg",
+        "price": 95.0
+      },
+      "aliases": [
+        "suminat"
+      ]
+    },
+    {
+      "brand": "Sibelium 10",
+      "salt": "Flunarizine 10mg",
+      "salt_keys": [
+        "flunarizine"
+      ],
+      "category": "Migraine (prevention)",
+      "pack": "10 tablets",
+      "brand_price": 180.0,
+      "generic": {
+        "name": "Flunarizine 10mg",
+        "price": 60.0
+      },
+      "aliases": [
+        "sibelium"
+      ]
+    },
+    {
+      "brand": "Avomine 25",
+      "salt": "Promethazine 25mg",
+      "salt_keys": [
+        "promethazine"
+      ],
+      "category": "Motion sickness",
+      "pack": "10 tablets",
+      "brand_price": 40.0,
+      "generic": {
+        "name": "Promethazine 25mg",
+        "price": 16.0
+      },
+      "aliases": [
+        "avomine"
+      ]
+    },
+    {
+      "brand": "Mucinac 600",
+      "salt": "Acetylcysteine 600mg",
+      "salt_keys": [
+        "acetylcysteine"
+      ],
+      "category": "Mucolytic",
+      "pack": "10 effervescent tablets",
+      "brand_price": 175.0,
+      "generic": {
+        "name": "Acetylcysteine 600mg",
+        "price": 70.0
+      },
+      "aliases": [
+        "mucinac"
+      ]
+    },
+    {
+      "brand": "A to Z NS",
+      "salt": "Multivitamin + Minerals",
+      "salt_keys": [
+        "multivitamin"
+      ],
+      "category": "Multivitamin",
+      "pack": "15 tablets",
+      "brand_price": 110.0,
+      "generic": {
+        "name": "Multivitamin + Minerals",
+        "price": 35.0
+      },
+      "aliases": [
+        "a to z"
+      ]
+    },
+    {
+      "brand": "Liofen 10",
+      "salt": "Baclofen 10mg",
+      "salt_keys": [
+        "baclofen"
+      ],
+      "category": "Muscle spasm",
+      "pack": "10 tablets",
+      "brand_price": 85.0,
+      "generic": {
+        "name": "Baclofen 10mg",
+        "price": 30.0
+      },
+      "aliases": [
+        "liofen"
+      ]
+    },
+    {
+      "brand": "Myoril 4",
+      "salt": "Thiocolchicoside 4mg",
+      "salt_keys": [
+        "thiocolchicoside"
+      ],
+      "category": "Muscle spasm",
+      "pack": "10 capsules",
+      "brand_price": 260.0,
+      "generic": {
+        "name": "Thiocolchicoside 4mg",
+        "price": 90.0
+      },
+      "aliases": [
+        "myoril"
+      ]
+    },
+    {
+      "brand": "Myospaz",
+      "salt": "Chlorzoxazone 250mg + Paracetamol 300mg",
+      "salt_keys": [
+        "chlorzoxazone",
+        "paracetamol"
+      ],
+      "category": "Muscle spasm",
+      "pack": "10 tablets",
+      "brand_price": 90.0,
+      "generic": {
+        "name": "Chlorzoxazone + Paracetamol",
+        "price": 32.0
+      },
+      "aliases": []
+    },
+    {
+      "brand": "Sirdalud 2",
+      "salt": "Tizanidine 2mg",
+      "salt_keys": [
+        "tizanidine"
+      ],
+      "category": "Muscle spasm",
+      "pack": "10 tablets",
+      "brand_price": 130.0,
+      "generic": {
+        "name": "Tizanidine 2mg",
+        "price": 45.0
+      },
+      "aliases": [
+        "sirdalud"
+      ]
+    },
+    {
+      "brand": "Otrivin",
+      "salt": "Xylometazoline 0.1% nasal drops",
+      "salt_keys": [
+        "xylometazoline"
+      ],
+      "category": "Nasal congestion",
+      "pack": "10 ml drops",
+      "brand_price": 95.0,
+      "generic": {
+        "name": "Xylometazoline 0.1% drops",
+        "price": 35.0
+      },
+      "aliases": []
+    },
+    {
+      "brand": "Domstal 10",
+      "salt": "Domperidone 10mg",
+      "salt_keys": [
+        "domperidone"
+      ],
+      "category": "Nausea / Motility",
+      "pack": "10 tablets",
+      "brand_price": 36.0,
+      "generic": {
+        "name": "Domperidone 10mg",
+        "price": 12.0
+      },
+      "aliases": [
+        "domstal"
+      ]
+    },
+    {
+      "brand": "Vomistop 10",
+      "salt": "Domperidone 10mg",
+      "salt_keys": [
+        "domperidone"
+      ],
+      "category": "Nausea / Motility",
+      "pack": "10 tablets",
+      "brand_price": 32.0,
+      "generic": {
+        "name": "Domperidone 10mg",
+        "price": 12.0
+      },
+      "aliases": [
+        "vomistop"
+      ]
+    },
+    {
+      "brand": "Emeset 4",
+      "salt": "Ondansetron 4mg",
+      "salt_keys": [
+        "ondansetron"
+      ],
+      "category": "Nausea / Vomiting",
+      "pack": "10 tablets",
+      "brand_price": 52.0,
+      "generic": {
+        "name": "Ondansetron 4mg",
+        "price": 14.0
+      },
+      "aliases": [
+        "emeset",
+        "ondem",
+        "vomikind"
+      ]
+    },
+    {
+      "brand": "Zofer 4",
+      "salt": "Ondansetron 4mg",
+      "salt_keys": [
+        "ondansetron"
+      ],
+      "category": "Nausea / Vomiting",
+      "pack": "10 tablets",
+      "brand_price": 52.0,
+      "generic": {
+        "name": "Ondansetron 4mg",
+        "price": 16.0
+      },
+      "aliases": [
+        "zofer"
+      ]
+    },
+    {
+      "brand": "Gabapin 300",
+      "salt": "Gabapentin 300mg",
+      "salt_keys": [
+        "gabapentin"
+      ],
+      "category": "Nerve Pain",
+      "pack": "15 capsules",
+      "brand_price": 185.0,
+      "generic": {
+        "name": "Gabapentin 300mg",
+        "price": 55.0
+      },
+      "aliases": [
+        "gabapin",
+        "gabantin"
+      ]
+    },
+    {
+      "brand": "Pregabid 75",
+      "salt": "Pregabalin 75mg",
+      "salt_keys": [
+        "pregabalin"
+      ],
+      "category": "Nerve Pain",
+      "pack": "15 capsules",
+      "brand_price": 170.0,
+      "generic": {
+        "name": "Pregabalin 75mg",
+        "price": 45.0
+      },
+      "aliases": [
+        "pregabid",
+        "lyrica",
+        "pregeb"
+      ]
+    },
+    {
+      "brand": "Fertyl 50",
+      "salt": "Clomiphene Citrate 50mg",
+      "salt_keys": [
+        "clomiphene"
+      ],
+      "category": "Ovulation induction",
+      "pack": "5 tablets",
+      "brand_price": 60.0,
+      "generic": {
+        "name": "Clomiphene 50mg",
+        "price": 25.0
+      },
+      "aliases": [
+        "fertyl"
+      ]
+    },
+    {
+      "brand": "Krimson 35",
+      "salt": "Ethinylestradiol 35mcg + Cyproterone 2mg",
+      "salt_keys": [
+        "ethinylestradiol",
+        "cyproterone"
+      ],
+      "category": "PCOS / Contraceptive",
+      "pack": "21 tablets",
+      "brand_price": 380.0,
+      "generic": {
+        "name": "EE + Cyproterone",
+        "price": 140.0
+      },
+      "aliases": [
+        "krimson"
+      ]
+    },
+    {
+      "brand": "Tramazac 50",
+      "salt": "Tramadol 50mg",
+      "salt_keys": [
+        "tramadol"
+      ],
+      "category": "Pain (moderate-severe)",
+      "pack": "10 capsules",
+      "brand_price": 55.0,
+      "generic": {
+        "name": "Tramadol 50mg",
+        "price": 20.0
+      },
+      "aliases": [
+        "tramazac"
+      ]
+    },
+    {
+      "brand": "Ultracet",
+      "salt": "Tramadol 37.5mg + Paracetamol 325mg",
+      "salt_keys": [
+        "tramadol",
+        "paracetamol"
+      ],
+      "category": "Pain (opioid combination)",
+      "pack": "15 tablets",
+      "brand_price": 190.0,
+      "generic": {
+        "name": "Tramadol + Paracetamol 37.5/325mg",
+        "price": 50.0
+      },
+      "aliases": [
+        "ultracet"
+      ]
+    },
+    {
+      "brand": "Brufen 400",
+      "salt": "Ibuprofen 400mg",
+      "salt_keys": [
+        "ibuprofen"
+      ],
+      "category": "Pain / Anti-inflammatory",
+      "pack": "15 tablets",
+      "brand_price": 32.0,
+      "generic": {
+        "name": "Ibuprofen 400mg",
+        "price": 10.0
+      },
+      "aliases": [
+        "brufen",
+        "ibugesic"
+      ]
+    },
+    {
+      "brand": "Voveran 50",
+      "salt": "Diclofenac 50mg",
+      "salt_keys": [
+        "diclofenac"
+      ],
+      "category": "Pain / Anti-inflammatory",
+      "pack": "15 tablets",
+      "brand_price": 45.0,
+      "generic": {
+        "name": "Diclofenac 50mg",
+        "price": 12.0
+      },
+      "aliases": [
+        "voveran",
+        "diclo",
+        "dynapar"
+      ]
+    },
+    {
+      "brand": "Zerodol-SP",
+      "salt": "Aceclofenac 100mg + Paracetamol 325mg + Serratiopeptidase 15mg",
+      "salt_keys": [
+        "aceclofenac",
+        "paracetamol",
+        "serratiopeptidase"
+      ],
+      "category": "Pain / Anti-inflammatory",
+      "pack": "10 tablets",
+      "brand_price": 115.0,
+      "generic": {
+        "name": "Aceclofenac + PCM + Serratiopeptidase",
+        "price": 35.0
+      },
+      "aliases": [
+        "zerodol",
+        "zerodol sp"
+      ]
+    },
+    {
+      "brand": "Meftal-Spas",
+      "salt": "Mefenamic Acid 250mg + Dicyclomine 10mg",
+      "salt_keys": [
+        "mefenamic acid",
+        "dicyclomine"
+      ],
+      "category": "Pain / Antispasmodic",
+      "pack": "10 tablets",
+      "brand_price": 47.0,
+      "generic": {
+        "name": "Mefenamic Acid + Dicyclomine",
+        "price": 15.0
+      },
+      "aliases": [
+        "meftal",
+        "meftal spas"
+      ]
+    },
+    {
+      "brand": "Dolonex DT",
+      "salt": "Piroxicam 20mg",
+      "salt_keys": [
+        "piroxicam"
+      ],
+      "category": "Pain / Arthritis",
+      "pack": "15 tablets",
+      "brand_price": 105.0,
+      "generic": {
+        "name": "Piroxicam 20mg",
+        "price": 35.0
+      },
+      "aliases": [
+        "dolonex"
+      ]
+    },
+    {
+      "brand": "Etoshine 90",
+      "salt": "Etoricoxib 90mg",
+      "salt_keys": [
+        "etoricoxib"
+      ],
+      "category": "Pain / Arthritis",
+      "pack": "10 tablets",
+      "brand_price": 130.0,
+      "generic": {
+        "name": "Etoricoxib 90mg",
+        "price": 45.0
+      },
+      "aliases": [
+        "etoshine"
+      ]
+    },
+    {
+      "brand": "Calpol 500",
+      "salt": "Paracetamol 500mg",
+      "salt_keys": [
+        "paracetamol"
+      ],
+      "category": "Pain / Fever",
+      "pack": "15 tablets",
+      "brand_price": 26.0,
+      "generic": {
+        "name": "Paracetamol 500mg",
+        "price": 7.0
+      },
+      "aliases": [
+        "calpol"
+      ]
+    },
+    {
+      "brand": "Combiflam",
+      "salt": "Ibuprofen 400mg + Paracetamol 325mg",
+      "salt_keys": [
+        "ibuprofen",
+        "paracetamol"
+      ],
+      "category": "Pain / Fever",
+      "pack": "20 tablets",
+      "brand_price": 58.0,
+      "generic": {
+        "name": "Ibuprofen + Paracetamol",
+        "price": 18.0
+      },
+      "aliases": []
+    },
+    {
+      "brand": "Crocin Advance",
+      "salt": "Paracetamol 500mg",
+      "salt_keys": [
+        "paracetamol"
+      ],
+      "category": "Pain / Fever",
+      "pack": "15 tablets",
+      "brand_price": 30.0,
+      "generic": {
+        "name": "Paracetamol 500mg",
+        "price": 7.0
+      },
+      "aliases": [
+        "crocin"
+      ]
+    },
+    {
+      "brand": "Dolo 650",
+      "salt": "Paracetamol 650mg",
+      "salt_keys": [
+        "paracetamol"
+      ],
+      "category": "Pain / Fever",
+      "pack": "15 tablets",
+      "brand_price": 33.6,
+      "generic": {
+        "name": "Paracetamol 650mg",
+        "price": 9.0
+      },
+      "aliases": [
+        "dolo",
+        "dolo-650",
+        "dolo650"
+      ]
+    },
+    {
+      "brand": "Flexon",
+      "salt": "Ibuprofen 400mg + Paracetamol 325mg",
+      "salt_keys": [
+        "ibuprofen",
+        "paracetamol"
+      ],
+      "category": "Pain / Fever",
+      "pack": "15 tablets",
+      "brand_price": 42.0,
+      "generic": {
+        "name": "Ibuprofen + Paracetamol",
+        "price": 15.0
+      },
+      "aliases": []
+    },
+    {
+      "brand": "Nicip Plus",
+      "salt": "Nimesulide 100mg + Paracetamol 325mg",
+      "salt_keys": [
+        "nimesulide",
+        "paracetamol"
+      ],
+      "category": "Pain / Fever",
+      "pack": "15 tablets",
+      "brand_price": 70.0,
+      "generic": {
+        "name": "Nimesulide + Paracetamol",
+        "price": 22.0
+      },
+      "aliases": [
+        "nicip"
+      ]
+    },
+    {
+      "brand": "Sumo",
+      "salt": "Nimesulide 100mg + Paracetamol 325mg",
+      "salt_keys": [
+        "nimesulide",
+        "paracetamol"
+      ],
+      "category": "Pain / Fever",
+      "pack": "15 tablets",
+      "brand_price": 96.0,
+      "generic": {
+        "name": "Nimesulide + Paracetamol",
+        "price": 22.0
+      },
+      "aliases": []
+    },
+    {
+      "brand": "Dynapar",
+      "salt": "Diclofenac 50mg + Paracetamol 325mg",
+      "salt_keys": [
+        "diclofenac",
+        "paracetamol"
+      ],
+      "category": "Pain / Inflammation",
+      "pack": "10 tablets",
+      "brand_price": 52.0,
+      "generic": {
+        "name": "Diclofenac + Paracetamol",
+        "price": 16.0
+      },
+      "aliases": []
+    },
+    {
+      "brand": "Enzoflam",
+      "salt": "Diclofenac 50mg + Paracetamol 325mg + Serratiopeptidase 15mg",
+      "salt_keys": [
+        "diclofenac",
+        "paracetamol",
+        "serratiopeptidase"
+      ],
+      "category": "Pain / Inflammation",
+      "pack": "10 tablets",
+      "brand_price": 120.0,
+      "generic": {
+        "name": "Diclofenac + Paracetamol + Serratiopeptidase",
+        "price": 42.0
+      },
+      "aliases": []
+    },
+    {
+      "brand": "Hifenac-P",
+      "salt": "Aceclofenac 100mg + Paracetamol 325mg",
+      "salt_keys": [
+        "aceclofenac",
+        "paracetamol"
+      ],
+      "category": "Pain / Inflammation",
+      "pack": "10 tablets",
+      "brand_price": 60.0,
+      "generic": {
+        "name": "Aceclofenac + Paracetamol",
+        "price": 20.0
+      },
+      "aliases": [
+        "hifenac",
+        "hifenac p"
+      ]
+    },
+    {
+      "brand": "Naprosyn 250",
+      "salt": "Naproxen 250mg",
+      "salt_keys": [
+        "naproxen"
+      ],
+      "category": "Pain / Inflammation",
+      "pack": "10 tablets",
+      "brand_price": 90.0,
+      "generic": {
+        "name": "Naproxen 250mg",
+        "price": 32.0
+      },
+      "aliases": [
+        "naprosyn"
+      ]
+    },
+    {
+      "brand": "Nise",
+      "salt": "Nimesulide 100mg",
+      "salt_keys": [
+        "nimesulide"
+      ],
+      "category": "Pain / Inflammation",
+      "pack": "15 tablets",
+      "brand_price": 92.0,
+      "generic": {
+        "name": "Nimesulide 100mg",
+        "price": 25.0
+      },
+      "aliases": [
+        "nise 100"
+      ]
+    },
+    {
+      "brand": "Signoflam",
+      "salt": "Aceclofenac + Paracetamol + Serratiopeptidase",
+      "salt_keys": [
+        "aceclofenac",
+        "paracetamol",
+        "serratiopeptidase"
+      ],
+      "category": "Pain / Inflammation",
+      "pack": "10 tablets",
+      "brand_price": 105.0,
+      "generic": {
+        "name": "Aceclofenac + Paracetamol + Serratiopeptidase",
+        "price": 38.0
+      },
+      "aliases": []
+    },
+    {
+      "brand": "Voveran SR 100",
+      "salt": "Diclofenac 100mg SR",
+      "salt_keys": [
+        "diclofenac"
+      ],
+      "category": "Pain / Inflammation",
+      "pack": "10 tablets",
+      "brand_price": 112.0,
+      "generic": {
+        "name": "Diclofenac SR 100mg",
+        "price": 28.0
+      },
+      "aliases": [
+        "voveran sr"
+      ]
+    },
+    {
+      "brand": "Zerodol-P",
+      "salt": "Aceclofenac 100mg + Paracetamol 325mg",
+      "salt_keys": [
+        "aceclofenac",
+        "paracetamol"
+      ],
+      "category": "Pain / Inflammation",
+      "pack": "10 tablets",
+      "brand_price": 55.0,
+      "generic": {
+        "name": "Aceclofenac + Paracetamol",
+        "price": 20.0
+      },
+      "aliases": [
+        "zerodol p"
+      ]
+    },
+    {
+      "brand": "Ponstan 500",
+      "salt": "Mefenamic Acid 500mg",
+      "salt_keys": [
+        "mefenamic acid"
+      ],
+      "category": "Pain / Menstrual cramps",
+      "pack": "10 tablets",
+      "brand_price": 55.0,
+      "generic": {
+        "name": "Mefenamic Acid 500mg",
+        "price": 18.0
+      },
+      "aliases": [
+        "ponstan"
+      ]
+    },
+    {
+      "brand": "Zerodol-MR",
+      "salt": "Aceclofenac 100mg + Paracetamol 325mg + Tizanidine 2mg",
+      "salt_keys": [
+        "aceclofenac",
+        "paracetamol",
+        "tizanidine"
+      ],
+      "category": "Pain / Muscle spasm",
+      "pack": "10 tablets",
+      "brand_price": 105.0,
+      "generic": {
+        "name": "Aceclofenac + Paracetamol + Tizanidine",
+        "price": 40.0
+      },
+      "aliases": [
+        "zerodol mr"
+      ]
+    },
+    {
+      "brand": "Syndopa Plus",
+      "salt": "Levodopa 100mg + Carbidopa 25mg",
+      "salt_keys": [
+        "levodopa",
+        "carbidopa"
+      ],
+      "category": "Parkinson's",
+      "pack": "30 tablets",
+      "brand_price": 110.0,
+      "generic": {
+        "name": "Levodopa + Carbidopa",
+        "price": 45.0
+      },
+      "aliases": [
+        "syndopa"
+      ]
+    },
+    {
+      "brand": "Pacitane 2",
+      "salt": "Trihexyphenidyl 2mg",
+      "salt_keys": [
+        "trihexyphenidyl"
+      ],
+      "category": "Parkinsonism",
+      "pack": "30 tablets",
+      "brand_price": 45.0,
+      "generic": {
+        "name": "Trihexyphenidyl 2mg",
+        "price": 18.0
+      },
+      "aliases": [
+        "pacitane"
+      ]
+    },
+    {
+      "brand": "Econorm 250",
+      "salt": "Saccharomyces boulardii 250mg",
+      "salt_keys": [
+        "saccharomyces boulardii"
+      ],
+      "category": "Probiotic",
+      "pack": "10 sachets",
+      "brand_price": 280.0,
+      "generic": {
+        "name": "Saccharomyces boulardii",
+        "price": 110.0
+      },
+      "aliases": [
+        "econorm"
+      ]
+    },
+    {
+      "brand": "Enterogermina",
+      "salt": "Bacillus clausii 2 billion spores",
+      "salt_keys": [
+        "bacillus clausii"
+      ],
+      "category": "Probiotic",
+      "pack": "10 mini bottles",
+      "brand_price": 320.0,
+      "generic": {
+        "name": "Bacillus clausii suspension",
+        "price": 130.0
+      },
+      "aliases": []
+    },
+    {
+      "brand": "Alfoo 10",
+      "salt": "Alfuzosin 10mg",
+      "salt_keys": [
+        "alfuzosin"
+      ],
+      "category": "Prostate (BPH)",
+      "pack": "15 tablets",
+      "brand_price": 240.0,
+      "generic": {
+        "name": "Alfuzosin 10mg",
+        "price": 85.0
+      },
+      "aliases": [
+        "alfoo"
+      ]
+    },
+    {
+      "brand": "Fincar 5",
+      "salt": "Finasteride 5mg",
+      "salt_keys": [
+        "finasteride"
+      ],
+      "category": "Prostate (BPH)",
+      "pack": "10 tablets",
+      "brand_price": 95.0,
+      "generic": {
+        "name": "Finasteride 5mg",
+        "price": 35.0
+      },
+      "aliases": [
+        "finast",
+        "fincar"
+      ]
+    },
+    {
+      "brand": "Silodal 8",
+      "salt": "Silodosin 8mg",
+      "salt_keys": [
+        "silodosin"
+      ],
+      "category": "Prostate (BPH)",
+      "pack": "10 capsules",
+      "brand_price": 270.0,
+      "generic": {
+        "name": "Silodosin 8mg",
+        "price": 95.0
+      },
+      "aliases": [
+        "silodal"
+      ]
+    },
+    {
+      "brand": "Urimax 0.4",
+      "salt": "Tamsulosin 0.4mg",
+      "salt_keys": [
+        "tamsulosin"
+      ],
+      "category": "Prostate (BPH)",
+      "pack": "15 capsules",
+      "brand_price": 260.0,
+      "generic": {
+        "name": "Tamsulosin 0.4mg",
+        "price": 80.0
+      },
+      "aliases": [
+        "urimax"
+      ]
+    },
+    {
+      "brand": "Veltam 0.4",
+      "salt": "Tamsulosin 0.4mg",
+      "salt_keys": [
+        "tamsulosin"
+      ],
+      "category": "Prostate (BPH)",
+      "pack": "15 tablets",
+      "brand_price": 230.0,
+      "generic": {
+        "name": "Tamsulosin 0.4mg",
+        "price": 80.0
+      },
+      "aliases": [
+        "veltam"
+      ]
+    },
+    {
+      "brand": "Saaz 500",
+      "salt": "Sulfasalazine 500mg",
+      "salt_keys": [
+        "sulfasalazine"
+      ],
+      "category": "Rheumatoid arthritis / IBD",
+      "pack": "10 tablets",
+      "brand_price": 90.0,
+      "generic": {
+        "name": "Sulfasalazine 500mg",
+        "price": 35.0
+      },
+      "aliases": [
+        "saaz"
+      ]
+    },
+    {
+      "brand": "HCQS 200",
+      "salt": "Hydroxychloroquine 200mg",
+      "salt_keys": [
+        "hydroxychloroquine"
+      ],
+      "category": "Rheumatoid arthritis / Lupus",
+      "pack": "15 tablets",
+      "brand_price": 105.0,
+      "generic": {
+        "name": "Hydroxychloroquine 200mg",
+        "price": 40.0
+      },
+      "aliases": [
+        "hcqs"
+      ]
+    },
+    {
+      "brand": "Folitrax 7.5",
+      "salt": "Methotrexate 7.5mg",
+      "salt_keys": [
+        "methotrexate"
+      ],
+      "category": "Rheumatoid arthritis / Psoriasis",
+      "pack": "10 tablets",
+      "brand_price": 130.0,
+      "generic": {
+        "name": "Methotrexate 7.5mg",
+        "price": 50.0
+      },
+      "aliases": [
+        "folitrax"
+      ]
+    },
+    {
+      "brand": "Permite",
+      "salt": "Permethrin 5% cream",
+      "salt_keys": [
+        "permethrin"
+      ],
+      "category": "Scabies",
+      "pack": "30 g cream",
+      "brand_price": 90.0,
+      "generic": {
+        "name": "Permethrin 5% cream",
+        "price": 40.0
+      },
+      "aliases": []
+    },
+    {
+      "brand": "Betnovate-N",
+      "salt": "Betamethasone + Neomycin cream",
+      "salt_keys": [
+        "betamethasone",
+        "neomycin"
+      ],
+      "category": "Skin (steroid + antibiotic)",
+      "pack": "20 g cream",
+      "brand_price": 45.0,
+      "generic": {
+        "name": "Betamethasone + Neomycin cream",
+        "price": 20.0
+      },
+      "aliases": [
+        "betnovate",
+        "betnovate n"
+      ]
+    },
+    {
+      "brand": "Candid Cream",
+      "salt": "Clotrimazole 1% cream",
+      "salt_keys": [
+        "clotrimazole"
+      ],
+      "category": "Skin antifungal",
+      "pack": "30 g cream",
+      "brand_price": 105.0,
+      "generic": {
+        "name": "Clotrimazole 1% cream",
+        "price": 40.0
+      },
+      "aliases": [
+        "candid"
+      ]
+    },
+    {
+      "brand": "Luliconazole Cream",
+      "salt": "Luliconazole 1% cream",
+      "salt_keys": [
+        "luliconazole"
+      ],
+      "category": "Skin antifungal",
+      "pack": "30 g cream",
+      "brand_price": 220.0,
+      "generic": {
+        "name": "Luliconazole 1% cream",
+        "price": 85.0
+      },
+      "aliases": [
+        "lulifin",
+        "luliford"
+      ]
+    },
+    {
+      "brand": "Zolfresh 10",
+      "salt": "Zolpidem 10mg",
+      "salt_keys": [
+        "zolpidem"
+      ],
+      "category": "Sleep",
+      "pack": "15 tablets",
+      "brand_price": 140.0,
+      "generic": {
+        "name": "Zolpidem 10mg",
+        "price": 45.0
+      },
+      "aliases": [
+        "zolfresh",
+        "stilnoct"
+      ]
+    },
+    {
+      "brand": "Betnesol 0.5",
+      "salt": "Betamethasone 0.5mg",
+      "salt_keys": [
+        "betamethasone"
+      ],
+      "category": "Steroid",
+      "pack": "20 tablets",
+      "brand_price": 18.0,
+      "generic": {
+        "name": "Betamethasone 0.5mg",
+        "price": 9.0
+      },
+      "aliases": [
+        "betnesol"
+      ]
+    },
+    {
+      "brand": "Dexona 0.5",
+      "salt": "Dexamethasone 0.5mg",
+      "salt_keys": [
+        "dexamethasone"
+      ],
+      "category": "Steroid",
+      "pack": "30 tablets",
+      "brand_price": 12.0,
+      "generic": {
+        "name": "Dexamethasone 0.5mg",
+        "price": 6.0
+      },
+      "aliases": [
+        "dexona"
+      ]
+    },
+    {
+      "brand": "Medrol 8",
+      "salt": "Methylprednisolone 8mg",
+      "salt_keys": [
+        "methylprednisolone"
+      ],
+      "category": "Steroid",
+      "pack": "10 tablets",
+      "brand_price": 105.0,
+      "generic": {
+        "name": "Methylprednisolone 8mg",
+        "price": 38.0
+      },
+      "aliases": [
+        "medrol"
+      ]
+    },
+    {
+      "brand": "Omnacortil 10",
+      "salt": "Prednisolone 10mg",
+      "salt_keys": [
+        "prednisolone"
+      ],
+      "category": "Steroid",
+      "pack": "10 tablets",
+      "brand_price": 38.0,
+      "generic": {
+        "name": "Prednisolone 10mg",
+        "price": 20.0
+      },
+      "aliases": [
+        "omnacortil"
+      ]
+    },
+    {
+      "brand": "Wysolone 10",
+      "salt": "Prednisolone 10mg",
+      "salt_keys": [
+        "prednisolone"
+      ],
+      "category": "Steroid",
+      "pack": "15 tablets",
+      "brand_price": 55.0,
+      "generic": {
+        "name": "Prednisolone 10mg",
+        "price": 20.0
+      },
+      "aliases": [
+        "wysolone"
+      ]
+    },
+    {
+      "brand": "Becosules",
+      "salt": "Vitamin B-Complex + Vitamin C",
+      "salt_keys": [
+        "b-complex"
+      ],
+      "category": "Supplement",
+      "pack": "20 capsules",
+      "brand_price": 55.0,
+      "generic": {
+        "name": "B-Complex + Vitamin C",
+        "price": 15.0
+      },
+      "aliases": [
+        "becosules",
+        "becozinc"
+      ]
+    },
+    {
+      "brand": "Folvite 5",
+      "salt": "Folic Acid 5mg",
+      "salt_keys": [
+        "folic acid"
+      ],
+      "category": "Supplement",
+      "pack": "30 tablets",
+      "brand_price": 68.0,
+      "generic": {
+        "name": "Folic Acid 5mg",
+        "price": 18.0
+      },
+      "aliases": [
+        "folvite"
+      ]
+    },
+    {
+      "brand": "Shelcal 500",
+      "salt": "Calcium Carbonate 1250mg + Vitamin D3 250 IU",
+      "salt_keys": [
+        "calcium carbonate",
+        "vitamin d3"
+      ],
+      "category": "Supplement",
+      "pack": "15 tablets",
+      "brand_price": 110.0,
+      "generic": {
+        "name": "Calcium + Vitamin D3",
+        "price": 30.0
+      },
+      "aliases": [
+        "shelcal",
+        "calcimax",
+        "gemcal"
+      ]
+    },
+    {
+      "brand": "Zincovit",
+      "salt": "Multivitamin + Multimineral + Zinc",
+      "salt_keys": [
+        "multivitamin"
+      ],
+      "category": "Supplement",
+      "pack": "15 tablets",
+      "brand_price": 105.0,
+      "generic": {
+        "name": "Multivitamin + Zinc",
+        "price": 25.0
+      },
+      "aliases": [
+        "zincovit"
+      ]
+    },
+    {
+      "brand": "Chymoral Forte",
+      "salt": "Trypsin-Chymotrypsin 100000 AU",
+      "salt_keys": [
+        "trypsin-chymotrypsin"
+      ],
+      "category": "Swelling / Healing",
+      "pack": "20 tablets",
+      "brand_price": 380.0,
+      "generic": {
+        "name": "Trypsin-Chymotrypsin",
+        "price": 140.0
+      },
+      "aliases": [
+        "chymoral"
+      ]
+    },
+    {
+      "brand": "Eltroxin 50",
+      "salt": "Levothyroxine 50mcg",
+      "salt_keys": [
+        "levothyroxine"
+      ],
+      "category": "Thyroid",
+      "pack": "100 tablets",
+      "brand_price": 140.0,
+      "generic": {
+        "name": "Levothyroxine 50mcg",
+        "price": 60.0
+      },
+      "aliases": [
+        "eltroxin"
+      ]
+    },
+    {
+      "brand": "Thyronorm 50",
+      "salt": "Thyroxine (Levothyroxine) 50mcg",
+      "salt_keys": [
+        "levothyroxine"
+      ],
+      "category": "Thyroid",
+      "pack": "100 tablets",
+      "brand_price": 155.0,
+      "generic": {
+        "name": "Levothyroxine 50mcg",
+        "price": 60.0
+      },
+      "aliases": [
+        "thyronorm",
+        "eltroxin",
+        "thyrox"
+      ]
+    },
+    {
+      "brand": "Citralka",
+      "salt": "Disodium Hydrogen Citrate 1.4g/5ml",
+      "salt_keys": [
+        "disodium hydrogen citrate"
+      ],
+      "category": "Urinary alkalizer",
+      "pack": "100 ml syrup",
+      "brand_price": 105.0,
+      "generic": {
+        "name": "Disodium Hydrogen Citrate syrup",
+        "price": 45.0
+      },
+      "aliases": []
+    },
+    {
+      "brand": "Niftas 100",
+      "salt": "Nitrofurantoin 100mg",
+      "salt_keys": [
+        "nitrofurantoin"
+      ],
+      "category": "Urinary infection",
+      "pack": "10 tablets",
+      "brand_price": 190.0,
+      "generic": {
+        "name": "Nitrofurantoin 100mg",
+        "price": 70.0
+      },
+      "aliases": [
+        "niftas"
+      ]
+    },
+    {
+      "brand": "Vertin 16",
+      "salt": "Betahistine 16mg",
+      "salt_keys": [
+        "betahistine"
+      ],
+      "category": "Vertigo",
+      "pack": "15 tablets",
+      "brand_price": 190.0,
+      "generic": {
+        "name": "Betahistine 16mg",
+        "price": 50.0
+      },
+      "aliases": [
+        "vertin"
+      ]
+    },
+    {
+      "brand": "Stugeron 25",
+      "salt": "Cinnarizine 25mg",
+      "salt_keys": [
+        "cinnarizine"
+      ],
+      "category": "Vertigo / Motion sickness",
+      "pack": "15 tablets",
+      "brand_price": 65.0,
+      "generic": {
+        "name": "Cinnarizine 25mg",
+        "price": 25.0
+      },
+      "aliases": [
+        "stugeron"
+      ]
+    },
+    {
+      "brand": "Stemetil 5",
+      "salt": "Prochlorperazine 5mg",
+      "salt_keys": [
+        "prochlorperazine"
+      ],
+      "category": "Vertigo / Nausea",
+      "pack": "20 tablets",
+      "brand_price": 60.0,
+      "generic": {
+        "name": "Prochlorperazine 5mg",
+        "price": 25.0
+      },
+      "aliases": [
+        "stemetil"
+      ]
+    },
+    {
+      "brand": "Neurobion Forte",
+      "salt": "Vitamin B1 + B6 + B12",
+      "salt_keys": [
+        "b-complex"
+      ],
+      "category": "Vitamin B (nerve)",
+      "pack": "30 tablets",
+      "brand_price": 40.0,
+      "generic": {
+        "name": "B1 + B6 + B12",
+        "price": 18.0
+      },
+      "aliases": [
+        "neurobion"
+      ]
+    },
+    {
+      "brand": "Nurokind Plus",
+      "salt": "Methylcobalamin 1500mcg + ALA + B-vitamins",
+      "salt_keys": [
+        "methylcobalamin"
+      ],
+      "category": "Vitamin B12 (nerve)",
+      "pack": "10 capsules",
+      "brand_price": 110.0,
+      "generic": {
+        "name": "Methylcobalamin combo",
+        "price": 40.0
+      },
+      "aliases": [
+        "nurokind"
+      ]
+    },
+    {
+      "brand": "Limcee 500",
+      "salt": "Vitamin C 500mg",
+      "salt_keys": [
+        "vitamin c"
+      ],
+      "category": "Vitamin C",
+      "pack": "15 tablets",
+      "brand_price": 25.0,
+      "generic": {
+        "name": "Vitamin C 500mg",
+        "price": 12.0
+      },
+      "aliases": [
+        "celin",
+        "limcee"
+      ]
+    },
+    {
+      "brand": "Calcirol 60K",
+      "salt": "Cholecalciferol 60000IU",
+      "salt_keys": [
+        "vitamin d3"
+      ],
+      "category": "Vitamin D",
+      "pack": "4 sachets",
+      "brand_price": 130.0,
+      "generic": {
+        "name": "Cholecalciferol 60000IU",
+        "price": 40.0
+      },
+      "aliases": [
+        "calcirol"
+      ]
+    },
+    {
+      "brand": "Uprise-D3 60K",
+      "salt": "Cholecalciferol 60000IU",
+      "salt_keys": [
+        "vitamin d3"
+      ],
+      "category": "Vitamin D",
+      "pack": "4 capsules",
+      "brand_price": 118.0,
+      "generic": {
+        "name": "Cholecalciferol 60000IU",
+        "price": 40.0
+      },
+      "aliases": [
+        "d rise",
+        "uprise d3",
+        "uprise-d3"
+      ]
+    },
+    {
+      "brand": "Evion 400",
+      "salt": "Vitamin E 400mg",
+      "salt_keys": [
+        "vitamin e"
+      ],
+      "category": "Vitamin E",
+      "pack": "10 capsules",
+      "brand_price": 35.0,
+      "generic": {
+        "name": "Vitamin E 400mg",
+        "price": 16.0
+      },
+      "aliases": [
+        "evion"
+      ]
+    }
+  ]
+}
