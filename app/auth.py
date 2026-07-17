@@ -46,6 +46,15 @@ def init() -> None:
                 result TEXT NOT NULL,
                 created_at INTEGER NOT NULL
             );
+            CREATE TABLE IF NOT EXISTS feedback (
+                id INTEGER PRIMARY KEY,
+                user_id INTEGER,
+                raw_text TEXT NOT NULL,
+                matched_brand TEXT NOT NULL,
+                verdict TEXT NOT NULL,
+                correction TEXT,
+                created_at INTEGER NOT NULL
+            );
             CREATE TABLE IF NOT EXISTS user_meds (
                 id INTEGER PRIMARY KEY,
                 user_id INTEGER NOT NULL REFERENCES users(id),
@@ -202,6 +211,37 @@ def list_meds(user_id: int) -> list[dict]:
 def delete_med(user_id: int, med_id: int) -> None:
     with _db() as conn:
         conn.execute("DELETE FROM user_meds WHERE id = ? AND user_id = ?", (med_id, user_id))
+
+
+# ------------------------------------------------------------- feedback ----
+
+def save_feedback(user_id: int | None, raw_text: str, matched_brand: str,
+                  verdict: str, correction: str | None) -> None:
+    """Store a 'did we read this right?' vote. Anonymous allowed (user_id None)."""
+    with _db() as conn:
+        conn.execute(
+            "INSERT INTO feedback (user_id, raw_text, matched_brand, verdict, correction, created_at) "
+            "VALUES (?,?,?,?,?,?)",
+            (user_id, raw_text[:200], matched_brand[:200], verdict,
+             (correction or None) and correction[:200], int(time.time())))
+
+
+def feedback_stats() -> dict:
+    """Aggregate accuracy signal + most-corrected reads (for improving aliases)."""
+    with _db() as conn:
+        counts = dict(conn.execute(
+            "SELECT verdict, COUNT(*) FROM feedback GROUP BY verdict").fetchall())
+        worst = conn.execute(
+            "SELECT matched_brand, COUNT(*) n FROM feedback WHERE verdict = 'wrong' "
+            "GROUP BY matched_brand ORDER BY n DESC LIMIT 10").fetchall()
+    total = sum(counts.values())
+    return {
+        "total": total,
+        "correct": counts.get("correct", 0),
+        "wrong": counts.get("wrong", 0),
+        "accuracy_pct": round(counts.get("correct", 0) / total * 100) if total else None,
+        "most_corrected": [{"brand": r[0], "count": r[1]} for r in worst],
+    }
 
 
 init()
