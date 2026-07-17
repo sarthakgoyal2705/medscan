@@ -23,7 +23,8 @@ from . import matcher
 OLLAMA_URL = os.environ.get("OLLAMA_URL", "http://127.0.0.1:11434")
 OLLAMA_MODEL = os.environ.get("OLLAMA_MODEL", "llava")
 CLAUDE_MODEL = "claude-opus-4-8"
-GEMINI_MODEL = os.environ.get("GEMINI_MODEL", "gemini-2.5-flash")
+# "gemini-flash-latest" is Google's rolling alias — never retires for new accounts
+GEMINI_MODEL = os.environ.get("GEMINI_MODEL", "gemini-flash-latest")
 GEMINI_URL = "https://generativelanguage.googleapis.com/v1beta/models"
 
 # Structured-output schema: guarantees parseable JSON from either backend.

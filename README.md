@@ -1,3 +1,13 @@
+---
+title: MedScan
+emoji: 💊
+colorFrom: blue
+colorTo: indigo
+sdk: docker
+app_port: 7860
+pinned: false
+---
+
 # ℞ MedScan — Prescription Digitizer + Generic Medicine Finder
 
 Photograph a handwritten prescription → AI decodes the scrawl → see each drug's
