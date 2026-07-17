@@ -235,6 +235,26 @@
   .info-block div { margin-top: 0.25rem; }
   .info-block b { color: var(--ink); }
 
+  /* ---------- micro-interactions ---------- */
+  .med, .storecard { transition: transform 0.16s ease, box-shadow 0.16s ease; animation: cardin 0.38s ease both; }
+  .med:hover, .storecard:hover { transform: translateY(-2px); box-shadow: 0 10px 22px rgba(2, 108, 166, 0.13); }
+  @keyframes cardin { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+  .summary { animation: cardin 0.3s ease both; }
+  button.primary, button.ghost, button.mini { transition: transform 0.1s ease, background 0.15s, border-color 0.15s; }
+  button.primary:active, button.ghost:active, button.mini:active { transform: scale(0.96); }
+  .tab, #bottomNav button { transition: background 0.15s, color 0.15s; }
+  @media (prefers-reduced-motion: reduce) {
+    .med, .storecard, .summary { animation: none; }
+    .med:hover, .storecard:hover { transform: none; }
+    .pillbounce { animation: none; }
+  }
+
+  /* ---------- empty states ---------- */
+  .empty { text-align: center; padding: 1.6rem 1rem; color: var(--muted); }
+  .empty svg { display: block; margin: 0 auto 0.7rem; }
+  .empty .et { font-weight: 600; color: var(--ink); margin-bottom: 0.25rem; }
+  .empty .es { font-size: 0.88rem; }
+
   /* ---------- toasts ---------- */
   #toast {
     position: fixed; left: 50%; transform: translateX(-50%); bottom: 5.6rem; z-index: 300;
@@ -403,7 +423,7 @@
       <button class="ghost" id="pinBtn" data-i18n="btn_pin">Search</button>
     </div>
     <div class="status" id="status-stores"></div>
-    <div id="storeList" style="margin-top:0.6rem"></div>
+    <div id="storeList" style="margin-top:0.6rem"><div class="empty" id="storesEmpty"></div></div>
   </div>
 
   <div class="panel" id="panel-child" style="display:none">
@@ -572,6 +592,10 @@ const I18N = {
     rep_sub: n => `${n} medicine(s) · branded price → generic price`,
     rep_warns: n => `⚠ ${n} drug-interaction warning(s) — see app for details`,
     rep_footer: "MedScan — scan your prescription, pay the generic price",
+    hist_empty_t: "No scans yet",
+    mymeds_empty_t: "No medicines saved",
+    stores_empty_t: "18,673 stores across India",
+    stores_empty_s: "Use your location or enter a pincode to find the nearest government generic-medicine store.",
   },
   hi: {
     nav_history: "इतिहास", nav_mymeds: "मेरी दवाइयाँ",
@@ -631,6 +655,10 @@ const I18N = {
     rep_sub: n => `${n} दवाइयाँ · ब्रांडेड दाम → जेनेरिक दाम`,
     rep_warns: n => `⚠ ${n} दवा-इंटरैक्शन चेतावनी — विवरण ऐप में देखें`,
     rep_footer: "MedScan — पर्ची स्कैन करें, जेनेरिक दाम चुकाएँ",
+    hist_empty_t: "अभी कोई स्कैन नहीं",
+    mymeds_empty_t: "कोई दवा सेव नहीं",
+    stores_empty_t: "पूरे भारत में 18,673 केंद्र",
+    stores_empty_s: "नज़दीकी सरकारी जेनेरिक दवा दुकान खोजने के लिए लोकेशन या पिनकोड इस्तेमाल करें।",
   },
 };
 let lang = localStorage.getItem("medscan_lang") || "en";
@@ -646,7 +674,49 @@ $("langBtn").addEventListener("click", () => {
   lang = lang === "en" ? "hi" : "en";
   localStorage.setItem("medscan_lang", lang);
   applyI18n();
+  paintStoresEmpty();
 });
+
+/* ---------------- empty states ---------------- */
+const EMPTY_ART = {
+  history: `<svg width="88" height="88" viewBox="0 0 96 96">
+    <circle cx="48" cy="48" r="34" fill="#E9F7FE" stroke="#81D4FA" stroke-width="3"/>
+    <path d="M48 30 v18 l12 8" stroke="#0288D1" stroke-width="4" fill="none" stroke-linecap="round"/>
+    <g transform="rotate(-30 74 26)"><rect x="64" y="20" width="20" height="12" rx="6" fill="#29B6F6"/><path d="M74 20 h4 a6 6 0 0 1 0 12 h-4 z" fill="#B3E5FC"/></g>
+  </svg>`,
+  meds: `<svg width="88" height="88" viewBox="0 0 96 96">
+    <rect x="30" y="14" width="36" height="14" rx="4" fill="#4FC3F7"/>
+    <rect x="26" y="28" width="44" height="52" rx="8" fill="#E9F7FE" stroke="#81D4FA" stroke-width="3"/>
+    <rect x="42" y="42" width="12" height="26" rx="3" fill="#0288D1"/>
+    <rect x="35" y="49" width="26" height="12" rx="3" fill="#0288D1"/>
+  </svg>`,
+  stores: `<svg width="88" height="88" viewBox="0 0 96 96">
+    <path d="M48 84 C48 84 22 56 22 40 a26 26 0 0 1 52 0 C74 56 48 84 48 84 z" fill="#E9F7FE" stroke="#81D4FA" stroke-width="3"/>
+    <circle cx="48" cy="40" r="13" fill="#fff" stroke="#29B6F6" stroke-width="3"/>
+    <rect x="44" y="32.5" width="8" height="15" rx="2" fill="#0288D1"/>
+    <rect x="40.5" y="36" width="15" height="8" rx="2" fill="#0288D1"/>
+  </svg>`,
+};
+function emptyState(art, title, sub) {
+  return `<div class="empty">${EMPTY_ART[art]}<div class="et">${title}</div><div class="es">${sub}</div></div>`;
+}
+function paintStoresEmpty() {
+  const el = $("storesEmpty");
+  if (el) el.outerHTML = `<div class="empty" id="storesEmpty">${EMPTY_ART.stores}<div class="et">${t("stores_empty_t")}</div><div class="es">${t("stores_empty_s")}</div></div>`;
+}
+
+/* ---------------- micro-interactions ---------------- */
+function countUp(el, target, formatter, finalText, ms = 850) {
+  const start = performance.now();
+  const tick = now => {
+    const k = Math.min(1, (now - start) / ms);
+    if (k >= 1) { el.textContent = finalText; return; }
+    const eased = 1 - Math.pow(1 - k, 3);
+    el.textContent = formatter(target * eased);
+    requestAnimationFrame(tick);
+  };
+  requestAnimationFrame(tick);
+}
 
 /* ---------------- toasts ---------------- */
 function toast(msg, type = "ok", ms = 2600) {
@@ -891,8 +961,8 @@ async function fetchStores(params) {
     const body = await res.json();
     if (!res.ok) throw new Error(body.detail || "Failed");
     setStatus("stores", "");
-    $("storeList").innerHTML = body.stores.map(s => `
-      <div class="storecard">
+    $("storeList").innerHTML = body.stores.map((s, si) => `
+      <div class="storecard" style="animation-delay:${Math.min(si * 60, 420)}ms">
         <div class="dist">${s.distance_km} ${t("km")}</div>
         <div style="flex:1">
           <strong>${esc(s.name)}</strong> <span class="badge">${esc(s.code)}</span>
@@ -1094,19 +1164,21 @@ function render(data) {
   const tt = data.totals;
   $("summary").innerHTML = (tt && tt.saving > 0
     ? `<svg width="40" height="40" viewBox="0 0 32 32"><circle cx="16" cy="16" r="14" fill="#4FC3F7"/><text x="16" y="21.5" text-anchor="middle" font-size="15" font-weight="bold" fill="#fff">₹</text></svg>
-       <div><div class="headline">${t("save_headline")(rupee(tt.saving), tt.saving_pct)}</div>
+       <div><div class="headline">${t("save_headline")('<span id="saveAmt">₹0</span>', tt.saving_pct)}</div>
        <div class="sub">${t("save_sub")(rupee(tt.brand), rupee(tt.generic))}</div></div>`
     : `<div><div class="headline">${t("results")}</div><div class="sub">${t("no_prices")}</div></div>`);
+  if (tt && tt.saving > 0) countUp($("saveAmt"), tt.saving, v => rupee(Math.round(v)), rupee(tt.saving));
 
   $("savedWarnings").innerHTML = (data.saved_interactions || []).map(w => warnHtml(w, true)).join("");
   $("warnings").innerHTML = (data.interactions || []).map(w => warnHtml(w, false)).join("");
 
-  $("meds").innerHTML = data.medicines.map(m => {
+  $("meds").innerHTML = data.medicines.map((m, mi) => {
+    const delay = ` style="animation-delay:${Math.min(mi * 70, 500)}ms"`;
     const conf = `<span class="badge${m.ocr_confidence === "low" ? " low" : ""}">${t("conf")(m.ocr_confidence)}</span>`;
     const meta = [m.dosage, m.frequency].filter(Boolean).join(" · ");
     const pill = `<svg width="17" height="17" viewBox="0 0 32 32"><g transform="rotate(-45 16 16)"><rect x="6" y="10" width="20" height="12" rx="6" fill="#0288D1"/><path d="M16 10 h4 a6 6 0 0 1 0 12 h-4 z" fill="#4FC3F7"/></g></svg>`;
     if (!m.matched) {
-      return `<div class="med unmatched">
+      return `<div class="med unmatched"${delay}>
         <div class="top"><h3>${pill} ${esc(m.query)}</h3>${conf}</div>
         ${meta ? `<div class="meta">${esc(meta)}</div>` : ""}
         <div class="nomatch">${t("not_found")}</div>
@@ -1114,7 +1186,7 @@ function render(data) {
     }
     const addBtn = currentUser
       ? `<button class="mini" onclick="addMyMed('${esc(m.brand).replace(/'/g, "\\'")}', this)">${t("add_mymeds")}</button>` : "";
-    return `<div class="med">
+    return `<div class="med"${delay}>
       <div class="top"><h3>${pill} <span class="medlink" onclick="openDetail('${esc(m.brand).replace(/'/g, "\\'")}')">${esc(m.brand)}</span></h3>
         <span style="display:flex;gap:0.4rem;align-items:center">${addBtn}${conf}</span></div>
       <div class="salt">${esc(m.salt)}</div>
@@ -1202,7 +1274,7 @@ async function openHistory() {
         <div class="hsave">${rupee(s.saving)}</div>
         <button class="mini" onclick="viewScan(${s.id})">${t("view")}</button>
         <button class="mini" onclick="delScan(${s.id}, this)">🗑</button>
-      </div>`).join("") : `<div class="status">${t("hist_empty")}</div>`;
+      </div>`).join("") : emptyState("history", t("hist_empty_t"), t("hist_empty"));
   } catch (err) {
     $("histList").innerHTML = `<div class="status error">${esc(err.message)}</div>`;
   }
@@ -1231,7 +1303,7 @@ async function refreshMyMeds() {
         <div style="flex:1"><span class="m-name">${esc(m.brand)}</span>
           <div class="m-salt">${esc(m.salt)}</div></div>
         <button class="mini" onclick="delMyMed(${m.id})">🗑</button>
-      </div>`).join("") : `<div class="status">${t("mymeds_empty")}</div>`;
+      </div>`).join("") : emptyState("meds", t("mymeds_empty_t"), t("mymeds_empty"));
     $("mymedWarnings").innerHTML = (d.interactions || []).length
       ? `<div class="alert moderate" style="margin-bottom:0.5rem">${t("mymeds_conflict")}</div>` +
         d.interactions.map(w => warnHtml(w, false)).join("") : "";
@@ -1326,6 +1398,7 @@ $("authForm").addEventListener("submit", async e => {
 });
 
 applyI18n();
+paintStoresEmpty();
 renderUser(null);
 fetch("/api/auth/me").then(r => r.json()).then(d => { if (d.user) renderUser(d.user); }).catch(() => {});
 </script>
