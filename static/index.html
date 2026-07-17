@@ -9,11 +9,24 @@
     --b50: #E9F7FE; --b100: #B3E5FC; --b200: #81D4FA; --b300: #4FC3F7;
     --b400: #29B6F6; --b600: #0288D1; --b700: #026CA6;
     --ink: #0E3A57; --muted: #557C95; --card: #FFFFFF;
-    --danger: #C62828; --danger-bg: #FDECEA; --danger-line: #F1B7B0;
-    --warn: #9A6200; --warn-bg: #FFF4DD; --warn-line: #F0D49A;
+    --danger: #C62828; --danger-bg: #FDECEA; --danger-line: #F1B7B0; --danger-ink: #5D1A15;
+    --warn: #9A6200; --warn-bg: #FFF4DD; --warn-line: #F0D49A; --warn-ink: #5C3D00;
+    --gen-bg: #E3F5FE; --drop-hover: #DFF3FE;
     --radius: 14px;
     font-size: 16px;
   }
+  body.dark {
+    --b50: #0D1F2C; --b100: #1D3A4D; --b200: #2B536C;
+    --b600: #2FA9E4; --b700: #6FC9F2;
+    --ink: #E2F1FA; --muted: #8FB3C8; --card: #112B3D;
+    --danger: #FF8A80; --danger-bg: #351A17; --danger-line: #67322C; --danger-ink: #FFD7D2;
+    --warn: #F0B95A; --warn-bg: #33290F; --warn-line: #6B5320; --warn-ink: #FFE6B3;
+    --gen-bg: #0E3546; --drop-hover: #123249;
+  }
+  body.dark .hero .deco { opacity: 0.3; }
+  body.dark .summary { background: #0B5D8F; }
+  body.dark .tab.active { color: #06253B; }
+  body.dark button.primary { color: #06253B; }
   * { box-sizing: border-box; margin: 0; }
   body {
     background: var(--b50); color: var(--ink);
@@ -34,7 +47,7 @@
   }
   .navbtn:hover { background: var(--b50); }
   .langbtn {
-    border: 1.5px solid var(--b200); background: #fff; color: var(--b600);
+    border: 1.5px solid var(--b200); background: var(--card); color: var(--b600);
     border-radius: 999px; padding: 0.25rem 0.7rem; cursor: pointer; font-weight: 700; font-size: 0.85rem;
   }
   .userchip { display: flex; align-items: center; gap: 0.5rem; font-size: 0.92rem; }
@@ -74,7 +87,7 @@
     text-align: center; cursor: pointer; transition: border-color 0.15s, background 0.15s;
     background: var(--b50);
   }
-  .drop:hover, .drop.over { border-color: var(--b600); background: #DFF3FE; }
+  .drop:hover, .drop.over { border-color: var(--b600); background: var(--drop-hover); }
   .drop p { color: var(--muted); margin-top: 0.5rem; font-size: 0.92rem; }
 
   textarea, .field input, .inline-input {
@@ -83,7 +96,7 @@
     font-family: inherit;
   }
   textarea { min-height: 110px; resize: vertical; }
-  textarea:focus, .field input:focus, .inline-input:focus { outline: none; border-color: var(--b400); background: #fff; }
+  textarea:focus, .field input:focus, .inline-input:focus { outline: none; border-color: var(--b400); background: var(--card); }
 
   .btnrow { display: flex; gap: 0.6rem; margin-top: 1rem; flex-wrap: wrap; }
   button.primary, button.ghost {
@@ -92,11 +105,11 @@
   button.primary { background: var(--b600); color: #fff; }
   button.primary:hover { background: var(--b700); }
   button.primary:disabled { opacity: 0.45; cursor: not-allowed; }
-  button.ghost { background: #fff; color: var(--b600); border: 1.5px solid var(--b200); }
+  button.ghost { background: var(--card); color: var(--b600); border: 1.5px solid var(--b200); }
   button.ghost:hover { border-color: var(--b600); }
   button.mini {
     padding: 0.25rem 0.7rem; border-radius: 8px; font-size: 0.8rem; cursor: pointer;
-    background: #fff; color: var(--b600); border: 1.5px solid var(--b200); font-weight: 600;
+    background: var(--card); color: var(--b600); border: 1.5px solid var(--b200); font-weight: 600;
   }
   button.mini:hover { border-color: var(--b600); }
 
@@ -112,7 +125,7 @@
   .autowrap { position: relative; }
   .suggest {
     position: absolute; left: 0; right: 0; top: 100%; z-index: 20;
-    background: #fff; border: 1.5px solid var(--b300); border-radius: 10px;
+    background: var(--card); border: 1.5px solid var(--b300); border-radius: 10px;
     margin-top: 4px; max-height: 260px; overflow-y: auto; box-shadow: 0 10px 24px rgba(2, 108, 166, 0.18);
   }
   .suggest .opt { padding: 0.55rem 0.8rem; cursor: pointer; display: flex; justify-content: space-between; gap: 0.8rem; align-items: baseline; }
@@ -133,8 +146,8 @@
   .summary .sub { color: var(--b100); font-size: 0.9rem; margin-top: 0.2rem; }
 
   .alert { border-radius: 12px; padding: 0.9rem 1rem; margin-bottom: 0.7rem; font-size: 0.93rem; border: 1.5px solid; }
-  .alert.major { background: var(--danger-bg); border-color: var(--danger-line); color: #5D1A15; }
-  .alert.moderate { background: var(--warn-bg); border-color: var(--warn-line); color: #5C3D00; }
+  .alert.major { background: var(--danger-bg); border-color: var(--danger-line); color: var(--danger-ink); }
+  .alert.moderate { background: var(--warn-bg); border-color: var(--warn-line); color: var(--warn-ink); }
   .alert .tag { font-weight: 700; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.05em; }
   .alert.major .tag { color: var(--danger); }
   .alert.moderate .tag { color: var(--warn); }
@@ -163,7 +176,7 @@
   .price { background: var(--b50); border-radius: 10px; padding: 0.6rem 0.8rem; border: 1.5px solid var(--b100); }
   .price .label { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; }
   .price .value { font-size: 1.15rem; font-weight: 700; margin-top: 0.15rem; }
-  .price.generic { border-color: var(--b400); background: #E3F5FE; }
+  .price.generic { border-color: var(--b400); background: var(--gen-bg); }
   .price.generic .value { color: var(--b700); }
   .save-line { margin-top: 0.55rem; font-size: 0.9rem; color: var(--b700); font-weight: 600; }
   .med.unmatched { border-style: dashed; }
@@ -195,7 +208,7 @@
   }
   .overlay.show { display: flex; }
   .modal {
-    background: #fff; border-radius: 16px; width: 100%; max-width: 430px;
+    background: var(--card); border-radius: 16px; width: 100%; max-width: 430px;
     padding: 1.5rem; border-top: 6px solid var(--b600);
     max-height: 88vh; overflow-y: auto;
   }
@@ -206,7 +219,7 @@
   .authtabs { display: flex; gap: 0.4rem; margin: 1rem 0 0.4rem; }
   .authtabs button {
     flex: 1; padding: 0.5rem; border-radius: 8px; border: 1.5px solid var(--b100);
-    background: #fff; color: var(--muted); cursor: pointer; font-weight: 600;
+    background: var(--card); color: var(--muted); cursor: pointer; font-weight: 600;
   }
   .authtabs button.on { background: var(--b50); border-color: var(--b400); color: var(--b700); }
   .field { margin-top: 0.7rem; }
@@ -276,7 +289,7 @@
   .progress-card .stage { display: flex; gap: 0.55rem; align-items: center; padding: 0.26rem 0; font-size: 0.92rem; color: var(--muted); }
   .progress-card .stage.done { color: var(--b700); }
   .progress-card .stage.now { color: var(--ink); font-weight: 600; }
-  .progress-bar { height: 7px; background: #fff; border: 1px solid var(--b100); border-radius: 999px; overflow: hidden; margin-top: 0.7rem; }
+  .progress-bar { height: 7px; background: var(--card); border: 1px solid var(--b100); border-radius: 999px; overflow: hidden; margin-top: 0.7rem; }
   .progress-bar i { display: block; height: 100%; background: var(--b400); width: 0%; transition: width 1.2s linear; }
   .progress-card .ptip { color: var(--muted); font-size: 0.8rem; margin-top: 0.55rem; }
 
@@ -291,7 +304,7 @@
 
   /* ---------- inline feedback correction ---------- */
   .fixrow { display: flex; gap: 0.4rem; margin-top: 0.45rem; }
-  .fixrow input { flex: 1; padding: 0.45rem 0.7rem; border-radius: 8px; border: 1.5px solid var(--b200); font-size: 0.86rem; font-family: inherit; }
+  .fixrow input { flex: 1; padding: 0.45rem 0.7rem; border-radius: 8px; border: 1.5px solid var(--b200); font-size: 0.86rem; font-family: inherit; background: var(--card); color: var(--ink); }
   .fixrow input:focus { outline: none; border-color: var(--b400); }
 
   /* ---------- share row ---------- */
@@ -305,7 +318,7 @@
     #toast { bottom: 6.4rem; }
     #bottomNav {
       display: flex; position: fixed; bottom: 0; left: 0; right: 0; z-index: 90;
-      background: #fff; border-top: 2px solid var(--b100);
+      background: var(--card); border-top: 2px solid var(--b100);
       padding: 0.3rem 0.3rem calc(0.3rem + env(safe-area-inset-bottom));
     }
     #bottomNav button {
@@ -332,6 +345,7 @@
     MedScan
   </div>
   <div class="spacer"></div>
+  <button class="langbtn" id="themeBtn" title="Toggle dark mode">🌙</button>
   <button class="langbtn" id="langBtn">हिं</button>
   <span id="navHistory" style="display:none"><button class="navbtn" data-i18n="nav_history" onclick="openHistory()">History</button></span>
   <span id="navMyMeds" style="display:none"><button class="navbtn" data-i18n="nav_mymeds" onclick="openMyMeds()">My medicines</button></span>
@@ -1396,6 +1410,16 @@ $("authForm").addEventListener("submit", async e => {
     setStatus("auth", "");
   } catch (err) { setStatus("auth", err.message, true); }
 });
+
+/* ---------------- theme ---------------- */
+function applyTheme(dark) {
+  document.body.classList.toggle("dark", dark);
+  $("themeBtn").textContent = dark ? "☀️" : "🌙";
+  localStorage.setItem("medscan_theme", dark ? "dark" : "light");
+}
+$("themeBtn").addEventListener("click", () => applyTheme(!document.body.classList.contains("dark")));
+applyTheme(localStorage.getItem("medscan_theme") === "dark" ||
+  (localStorage.getItem("medscan_theme") === null && window.matchMedia("(prefers-color-scheme: dark)").matches));
 
 applyI18n();
 paintStoresEmpty();
