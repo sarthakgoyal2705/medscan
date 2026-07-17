@@ -3,9 +3,12 @@
 Run:  uvicorn app.main:app --reload
 """
 
+import os
+import time
+from collections import defaultdict, deque
 from pathlib import Path
 
-from fastapi import Cookie, FastAPI, File, HTTPException, Response, UploadFile
+from fastapi import Cookie, FastAPI, File, HTTPException, Request, Response, UploadFile
 from fastapi.concurrency import run_in_threadpool
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
@@ -19,6 +22,35 @@ STATIC_DIR = Path(__file__).resolve().parent.parent / "static"
 
 ALLOWED_TYPES = {"image/jpeg", "image/png", "image/webp", "image/gif"}
 MAX_IMAGE_BYTES = 20 * 1024 * 1024
+
+# ---- rate limiting for the expensive scan endpoint (protects free API quota) --
+SCAN_LIMIT_PER_HOUR = int(os.environ.get("MEDSCAN_SCANS_PER_HOUR_PER_IP", "6"))
+SCAN_LIMIT_PER_DAY_GLOBAL = int(os.environ.get("MEDSCAN_SCANS_PER_DAY", "200"))
+_ip_hits: dict[str, deque] = defaultdict(deque)
+_global_hits: deque = deque()
+
+
+def _client_ip(request: Request) -> str:
+    fwd = request.headers.get("x-forwarded-for")
+    return fwd.split(",")[0].strip() if fwd else (request.client.host if request.client else "?")
+
+
+def _check_scan_limit(request: Request) -> None:
+    now = time.time()
+    ip = _client_ip(request)
+    hits = _ip_hits[ip]
+    while hits and hits[0] < now - 3600:
+        hits.popleft()
+    while _global_hits and _global_hits[0] < now - 86400:
+        _global_hits.popleft()
+    if len(hits) >= SCAN_LIMIT_PER_HOUR:
+        raise HTTPException(429, "Scan limit reached for this hour — please try again later. "
+                                 "The Type-names tab has no limit.")
+    if len(_global_hits) >= SCAN_LIMIT_PER_DAY_GLOBAL:
+        raise HTTPException(429, "The free daily scan quota for this site is used up — back tomorrow! "
+                                 "The Type-names tab still works.")
+    hits.append(now)
+    _global_hits.append(now)
 
 
 class LookupRequest(BaseModel):
@@ -37,11 +69,13 @@ class LoginRequest(BaseModel):
 
 
 SESSION_COOKIE = "medscan_session"
+# set MEDSCAN_SECURE_COOKIES=1 in production (HTTPS) deployments
+SECURE_COOKIES = os.environ.get("MEDSCAN_SECURE_COOKIES", "") == "1"
 
 
 def _set_session(response: Response, token: str) -> None:
     response.set_cookie(SESSION_COOKIE, token, max_age=auth.SESSION_DAYS * 86400,
-                        httponly=True, samesite="lax")
+                        httponly=True, samesite="lax", secure=SECURE_COOKIES)
 
 
 @app.post("/api/auth/signup")
@@ -249,9 +283,10 @@ def health():
 
 
 @app.post("/api/scan")
-async def scan(image: UploadFile = File(...),
+async def scan(request: Request, image: UploadFile = File(...),
                medscan_session: str | None = Cookie(default=None)):
     """Photo of a prescription -> extracted medicines + generics + interactions."""
+    _check_scan_limit(request)
     if image.content_type not in ALLOWED_TYPES:
         raise HTTPException(415, f"Unsupported image type {image.content_type}. Use JPEG/PNG/WebP.")
     data = await image.read()
