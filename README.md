@@ -65,7 +65,10 @@ Better free local models than llava, if your machine can handle them:
 **Features**: scan history with lifetime savings (per account) · **My Medicines** — every new
 scan is cross-checked against the medicines you take regularly · Jan Aushadhi **store
 locator** (geolocation or pincode) · per-medicine **detail view** (uses, side effects,
-cautions, all same-salt brands) · **Hindi UI** toggle. Store data: kendra list via
+cautions, all same-salt brands) · **paediatric dose calculator** (weight-based, 13 common
+children's medicines, hard safety caps) · **scan-accuracy feedback** (👍/👎 per medicine,
+aggregated at `/api/feedback/stats`) · **price-freshness labels** (bulk MRPs ≈ Nov 2022,
+curated ≈ Jul 2026) · **Hindi UI** toggle. Store data: kendra list via
 janaushdhi.pages.dev (July 2026) + [All India Pincode Directory](https://www.data.gov.in/resource/all-india-pincode-directory)
 coordinates. UI chrome is translated; medical text stays English for accuracy.
 

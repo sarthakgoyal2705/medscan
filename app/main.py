@@ -10,7 +10,7 @@ from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
-from . import auth, extraction, matcher, stores
+from . import auth, extraction, matcher, peddose, stores
 
 app = FastAPI(title="MedScan", version="0.1.0")
 
@@ -180,6 +180,54 @@ def api_stores(lat: float | None = None, lng: float | None = None,
     if lat is None or lng is None:
         raise HTTPException(400, "Provide lat & lng, or a pincode.")
     return {"stores": stores.nearest(lat, lng, min(max(limit, 1), 25))}
+
+
+# ------------------------------------------------------ paediatric dose ----
+
+@app.get("/api/peddose/list")
+def api_peddose_list():
+    return {"medicines": peddose.supported(), "disclaimer": peddose.DISCLAIMER}
+
+
+@app.get("/api/peddose")
+def api_peddose(id: str = "", medicine: str = "", weight_kg: float = 0):
+    rule_id = id.strip()
+    if not rule_id and medicine.strip():
+        entry, _ = matcher.match_one(medicine.strip())
+        rule = peddose.rule_for_salts(entry["salt_keys"]) if entry else None
+        if rule is None:
+            raise HTTPException(404, f"No paediatric dosing data for '{medicine}'.")
+        rule_id = rule["id"]
+    if not rule_id:
+        raise HTTPException(400, "Provide a medicine id or name.")
+    try:
+        return peddose.compute(rule_id, weight_kg)
+    except peddose.DoseError as exc:
+        raise HTTPException(400, str(exc))
+
+
+# -------------------------------------------------------------- feedback ----
+
+class FeedbackRequest(BaseModel):
+    raw_text: str
+    matched_brand: str
+    verdict: str  # "correct" | "wrong"
+    correction: str | None = None
+
+
+@app.post("/api/feedback")
+def api_feedback(req: FeedbackRequest, medscan_session: str | None = Cookie(default=None)):
+    if req.verdict not in ("correct", "wrong"):
+        raise HTTPException(400, "verdict must be 'correct' or 'wrong'.")
+    user = auth.user_for_token(medscan_session)
+    auth.save_feedback(user["id"] if user else None, req.raw_text,
+                       req.matched_brand, req.verdict, req.correction)
+    return {"ok": True}
+
+
+@app.get("/api/feedback/stats")
+def api_feedback_stats():
+    return auth.feedback_stats()
 
 
 # ------------------------------------------------------ medicine detail ----

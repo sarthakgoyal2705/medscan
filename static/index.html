@@ -293,6 +293,7 @@
     <button class="tab active" data-mode="photo">📷 <span data-i18n="tab_scan">Scan photo</span></button>
     <button class="tab" data-mode="type">⌨️ <span data-i18n="tab_type">Type names</span></button>
     <button class="tab" data-mode="stores">🏪 <span data-i18n="tab_stores">Find stores</span></button>
+    <button class="tab" data-mode="child">👶 <span data-i18n="tab_child">Child dose</span></button>
   </div>
 
   <div class="panel" id="panel-photo">
@@ -336,6 +337,18 @@
     </div>
     <div class="status" id="status-stores"></div>
     <div id="storeList" style="margin-top:0.6rem"></div>
+  </div>
+
+  <div class="panel" id="panel-child" style="display:none">
+    <strong data-i18n="child_title">Paediatric dose calculator</strong>
+    <p class="disclaimer" style="margin-top:0.3rem" data-i18n="child_sub">Weight-based guide doses for common children's medicines — always confirm with your paediatrician.</p>
+    <div class="btnrow">
+      <select class="inline-input" id="childMed" style="max-width:320px"></select>
+      <input class="inline-input" id="childWeight" type="number" min="2.5" max="60" step="0.5" data-i18n-ph="child_wt_ph" placeholder="Child's weight in kg" style="max-width:200px" inputmode="decimal">
+      <button class="primary" id="childBtn" data-i18n="btn_calc">Calculate</button>
+    </div>
+    <div class="status" id="status-child"></div>
+    <div id="childResult" style="margin-top:0.6rem"></div>
   </div>
 
   <div id="results">
@@ -463,6 +476,14 @@ const I18N = {
     disclaimer_extra: "Always confirm substitutions with your doctor or pharmacist.",
     mymeds_empty: "Nothing saved yet. Add the medicines you take regularly.",
     mymeds_conflict: "⚠ Two of your saved medicines interact — discuss with your doctor.",
+    tab_child: "Child dose", child_title: "Paediatric dose calculator",
+    child_sub: "Weight-based guide doses for common children's medicines — always confirm with your paediatrician.",
+    child_wt_ph: "Child's weight in kg", btn_calc: "Calculate", child_need_wt: "Pick a medicine and enter the child's weight.",
+    dose_per_time: "Dose (each time)", dose_freq: "How often",
+    max_per_day: n => `Maximum ${n} doses in 24 hours.`,
+    price_asof: d => `MRP as of ${d} — verify current price at the store`,
+    fb_ask: "Did we read this right?", fb_thanks: "✓ Thanks — this helps us improve.",
+    fb_what_correct: "What is the correct medicine name?",
   },
   hi: {
     nav_history: "इतिहास", nav_mymeds: "मेरी दवाइयाँ",
@@ -503,6 +524,14 @@ const I18N = {
     disclaimer_extra: "दवा बदलने से पहले हमेशा डॉक्टर या फार्मासिस्ट से पुष्टि करें।",
     mymeds_empty: "अभी कुछ सेव नहीं। अपनी नियमित दवाइयाँ जोड़ें।",
     mymeds_conflict: "⚠ आपकी दो सेव की गई दवाइयाँ आपस में इंटरैक्ट करती हैं — डॉक्टर से बात करें।",
+    tab_child: "बच्चों की खुराक", child_title: "बच्चों की खुराक कैलकुलेटर",
+    child_sub: "वज़न के हिसाब से आम बाल-दवाओं की अनुमानित खुराक — हमेशा बाल रोग विशेषज्ञ से पुष्टि करें।",
+    child_wt_ph: "बच्चे का वज़न (किलो में)", btn_calc: "निकालें", child_need_wt: "दवा चुनें और बच्चे का वज़न लिखें।",
+    dose_per_time: "खुराक (हर बार)", dose_freq: "कितनी बार",
+    max_per_day: n => `24 घंटे में अधिकतम ${n} खुराक।`,
+    price_asof: d => `MRP ${d} के अनुसार — दुकान पर वर्तमान दाम जाँचें`,
+    fb_ask: "क्या हमने सही पढ़ा?", fb_thanks: "✓ धन्यवाद — इससे हम बेहतर होंगे।",
+    fb_what_correct: "सही दवा का नाम क्या है?",
   },
 };
 let lang = localStorage.getItem("medscan_lang") || "en";
@@ -525,7 +554,8 @@ document.querySelectorAll(".tab").forEach(tab => tab.addEventListener("click", (
   document.querySelectorAll(".tab").forEach(x => x.classList.remove("active"));
   tab.classList.add("active");
   const mode = tab.dataset.mode;
-  ["photo", "type", "stores"].forEach(m => { $("panel-" + m).style.display = m === mode ? "" : "none"; });
+  ["photo", "type", "stores", "child"].forEach(m => { $("panel-" + m).style.display = m === mode ? "" : "none"; });
+  if (mode === "child" && !$("childMed").options.length) loadChildMeds();
 }));
 
 /* ---------------- file picking ---------------- */
@@ -685,6 +715,64 @@ $("pinBtn").addEventListener("click", () => {
 });
 $("pincode").addEventListener("keydown", e => { if (e.key === "Enter") $("pinBtn").click(); });
 
+/* ---------------- child dose ---------------- */
+async function loadChildMeds() {
+  try {
+    const res = await fetch("/api/peddose/list");
+    const d = await res.json();
+    $("childMed").innerHTML = d.medicines.map(m => `<option value="${esc(m.id)}">${esc(m.label)}</option>`).join("");
+  } catch {}
+}
+$("childBtn").addEventListener("click", async () => {
+  const id = $("childMed").value, w = parseFloat($("childWeight").value);
+  if (!id || !w) { setStatus("child", t("child_need_wt"), true); return; }
+  setStatus("child", "…", false, true);
+  try {
+    const res = await fetch(`/api/peddose?id=${encodeURIComponent(id)}&weight_kg=${w}`);
+    const d = await res.json();
+    if (!res.ok) throw new Error(d.detail || "Failed");
+    setStatus("child", "");
+    $("childResult").innerHTML = `
+      <div class="med">
+        <div class="top"><h3>👶 ${esc(d.label)}</h3><span class="badge">${w} kg</span></div>
+        ${d.fixed_doses ? d.fixed_doses.map(f => `
+          <div class="info-block"><div class="ib-salt">${esc(f.age_label)}</div><div>${esc(f.dose_text)}</div></div>`).join("")
+        : `<div class="price-grid">
+             <div class="price generic"><div class="label">${t("dose_per_time")}</div>
+               <div class="value">${d.dose_mg_low === d.dose_mg_high ? d.dose_mg_low : d.dose_mg_low + "–" + d.dose_mg_high} mg</div></div>
+             <div class="price"><div class="label">${t("dose_freq")}</div>
+               <div class="value" style="font-size:0.95rem">${esc(d.frequency)}</div></div>
+           </div>
+           ${(d.syrups || []).map(s => `
+             <div class="alt" style="margin-top:0.5rem"><span class="an">🥄 ${esc(s.label)}</span>
+               <span class="ap">${s.ml_low === s.ml_high ? s.ml_low : s.ml_low + "–" + s.ml_high} ml</span></div>`).join("")}`}
+        ${d.max_doses_per_day ? `<div class="meta" style="margin-top:0.5rem">${t("max_per_day")(d.max_doses_per_day)}</div>` : ""}
+        ${d.cautions.map(c => `<div class="alert moderate" style="margin-top:0.6rem">⚠ ${esc(c)}</div>`).join("")}
+        <div class="meta" style="margin-top:0.5rem">${esc(d.notes)}</div>
+        <div class="disclaimer">⚕️ ${esc(d.disclaimer)}</div>
+      </div>`;
+  } catch (err) {
+    setStatus("child", err.message, true);
+    $("childResult").innerHTML = "";
+  }
+});
+
+/* ---------------- feedback ---------------- */
+async function sendFeedback(btn, raw, brand, verdict) {
+  let correction = null;
+  if (verdict === "wrong") {
+    correction = prompt(t("fb_what_correct"));
+    if (correction === null) return;
+  }
+  try {
+    await fetch("/api/feedback", {
+      method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ raw_text: raw, matched_brand: brand, verdict, correction }),
+    });
+    btn.closest(".fbrow").innerHTML = `<span class="meta">${t("fb_thanks")}</span>`;
+  } catch {}
+}
+
 /* ---------------- results ---------------- */
 function warnHtml(w, savedTag) {
   return `
@@ -729,7 +817,12 @@ function render(data) {
         <div class="price"><div class="label">${esc(m.brand)}</div><div class="value">${rupee(m.brand_price)}</div></div>
         <div class="price generic"><div class="label">${esc(m.generic_name)}</div><div class="value">${rupee(m.generic_price)}</div></div>
       </div>
+      ${m.price_asof ? `<div class="meta" style="margin-top:0.3rem">${t("price_asof")(m.price_asof)}</div>` : ""}
       ${m.saving > 0 ? `<div class="save-line">${t("save_line")(rupee(m.saving), m.saving_pct)}</div>` : ""}
+      <div class="fbrow meta" style="margin-top:0.45rem">${t("fb_ask")}
+        <button class="mini" onclick="sendFeedback(this, decodeURIComponent('${encodeURIComponent(m.raw_text || m.query)}'), decodeURIComponent('${encodeURIComponent(m.brand)}'), 'correct')">👍</button>
+        <button class="mini" onclick="sendFeedback(this, decodeURIComponent('${encodeURIComponent(m.raw_text || m.query)}'), decodeURIComponent('${encodeURIComponent(m.brand)}'), 'wrong')">👎</button>
+      </div>
       ${m.alternatives && m.alternatives.length ? `
       <div class="alts">
         <div class="alts-title">${t("same_salt")(m.same_salt_brands)}</div>
@@ -763,6 +856,7 @@ async function openDetail(name) {
         <div class="price"><div class="label">${esc(d.brand)}</div><div class="value">${rupee(d.brand_price)}</div></div>
         <div class="price generic"><div class="label">${esc(d.generic_name)}</div><div class="value">${rupee(d.generic_price)}</div></div>
       </div>
+      ${d.price_asof ? `<div class="disclaimer" style="margin-top:0.3rem">${t("price_asof")(d.price_asof)}</div>` : ""}
       ${d.salt_info.map(si => `
         <div class="info-block">
           <div class="ib-salt">${esc(si.salt)}</div>
