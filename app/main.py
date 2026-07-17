@@ -6,6 +6,7 @@ Run:  uvicorn app.main:app --reload
 from pathlib import Path
 
 from fastapi import Cookie, FastAPI, File, HTTPException, Response, UploadFile
+from fastapi.concurrency import run_in_threadpool
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
@@ -258,7 +259,8 @@ async def scan(image: UploadFile = File(...),
         raise HTTPException(413, "Image too large (max 20 MB). Please downscale and retry.")
 
     try:
-        extracted = extraction.extract_from_image(data, image.content_type)
+        # local-model inference takes minutes — keep the event loop free
+        extracted = await run_in_threadpool(extraction.extract_from_image, data, image.content_type)
     except extraction.NotConfiguredError as exc:
         raise HTTPException(503, str(exc))
     except extraction.ExtractionRefusedError:
