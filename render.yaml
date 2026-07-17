@@ -1,0 +1,14 @@
+# One-click deploy on Render.com (free tier): New + -> Blueprint -> this repo.
+services:
+  - type: web
+    name: medscan
+    runtime: docker
+    plan: free
+    healthCheckPath: /api/health
+    envVars:
+      - key: GEMINI_API_KEY
+        sync: false # entered once in the Render dashboard, never stored in the repo
+      - key: MEDSCAN_BACKEND
+        value: gemini
+      - key: MEDSCAN_SECURE_COOKIES
+        value: "1"

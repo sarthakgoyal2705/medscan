@@ -87,16 +87,17 @@ signature; results list the cheapest interchangeable brands (e.g. 2,573 products
 Augmentin 625's composition, from ₹6.98). **Autocomplete** — `/api/suggest?q=do` returns
 matches from the first letter via binary search (<1ms).
 
-## Deploy for free (Hugging Face Spaces)
+## Deploy for free (Render.com)
 
-The repo ships a `Dockerfile` ready for [HF Spaces](https://huggingface.co/spaces)
-(free tier: 2 vCPU / 16 GB RAM — enough for the in-memory drug index):
+The repo ships a `Dockerfile` + `render.yaml` blueprint (app uses ~350 MB RAM,
+fits Render's free 512 MB instance; no card needed):
 
 1. Get a **free Gemini API key** at [aistudio.google.com](https://aistudio.google.com) (no card).
-2. Create a Space → SDK: **Docker** → link this repo (or push to the Space's git remote).
-3. In Space **Settings → Secrets**, add `GEMINI_API_KEY`.
-4. That's it — the app auto-uses Gemini for scans in production
-   (`MEDSCAN_BACKEND=gemini` is set in the Dockerfile; locally it still uses Ollama).
+2. Sign up at [render.com](https://render.com) → **New + → Blueprint** → connect this repo.
+3. When prompted, paste your `GEMINI_API_KEY` — everything else is preconfigured.
+4. Done — scans use Gemini in production; local dev still uses Ollama.
+
+(Note: HF Spaces' Docker tier went paid-only in 2026 — Render is the free path.)
 
 Scan endpoint is rate-limited (`MEDSCAN_SCANS_PER_HOUR_PER_IP`, default 6/h;
 `MEDSCAN_SCANS_PER_DAY`, default 200) to stay inside the free Gemini quota.

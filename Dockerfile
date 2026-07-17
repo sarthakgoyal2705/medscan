@@ -16,6 +16,6 @@ COPY --chown=user . .
 ENV MEDSCAN_SECURE_COOKIES=1 \
     MEDSCAN_BACKEND=gemini
 
-# HF Spaces routes traffic to port 7860
+# Render injects PORT; HF Spaces expects 7860 — honour either
 EXPOSE 7860
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "7860"]
+CMD ["sh", "-c", "uvicorn app.main:app --host 0.0.0.0 --port ${PORT:-7860}"]
