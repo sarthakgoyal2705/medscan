@@ -1,12 +1,12 @@
 """Extract medicine names from a prescription photo.
 
-Two interchangeable vision backends:
+Three interchangeable vision backends (auto-picked, force with MEDSCAN_BACKEND):
 
-  - "ollama"  (default) — free, local. Uses Ollama's structured-output mode so
-    the model is grammar-constrained to our JSON schema. Model set by
-    OLLAMA_MODEL (default: llava).
-  - "claude"  — used automatically when ANTHROPIC_API_KEY is set, or force
-    with MEDSCAN_BACKEND=claude. Much better on messy handwriting.
+  - "claude"  — when ANTHROPIC_API_KEY is set. Best on messy handwriting.
+  - "gemini"  — when GEMINI_API_KEY is set (free tier at aistudio.google.com,
+    no card needed). Good handwriting reading; the deploy-for-free option.
+  - "ollama"  (fallback) — free, local. Uses Ollama's structured-output mode.
+    Model set by OLLAMA_MODEL (default: llava).
 
 Either way, a fuzzy-match layer in matcher.py is the second correction pass,
 so a shaky read like "Augmentn" still lands on Augmentin 625.
@@ -23,6 +23,8 @@ from . import matcher
 OLLAMA_URL = os.environ.get("OLLAMA_URL", "http://127.0.0.1:11434")
 OLLAMA_MODEL = os.environ.get("OLLAMA_MODEL", "llava")
 CLAUDE_MODEL = "claude-opus-4-8"
+GEMINI_MODEL = os.environ.get("GEMINI_MODEL", "gemini-2.5-flash")
+GEMINI_URL = "https://generativelanguage.googleapis.com/v1beta/models"
 
 # Structured-output schema: guarantees parseable JSON from either backend.
 EXTRACTION_SCHEMA = {
@@ -108,12 +110,18 @@ class ExtractionRefusedError(Exception):
     """The model declined to process the image."""
 
 
+class UpstreamBusyError(Exception):
+    """The hosted vision API is rate-limited / out of free quota right now."""
+
+
 def backend() -> str:
     forced = os.environ.get("MEDSCAN_BACKEND", "").lower()
-    if forced in ("ollama", "claude"):
+    if forced in ("ollama", "claude", "gemini"):
         return forced
     if os.environ.get("ANTHROPIC_API_KEY") or os.environ.get("ANTHROPIC_AUTH_TOKEN"):
         return "claude"
+    if os.environ.get("GEMINI_API_KEY"):
+        return "gemini"
     return "ollama"
 
 
@@ -122,6 +130,10 @@ def backend_status() -> dict:
     b = backend()
     if b == "claude":
         return {"backend": "claude", "model": CLAUDE_MODEL, "ready": True}
+    if b == "gemini":
+        ready = bool(os.environ.get("GEMINI_API_KEY"))
+        return {"backend": "gemini", "model": GEMINI_MODEL, "ready": ready,
+                "detail": None if ready else "GEMINI_API_KEY not set — get a free key at aistudio.google.com"}
     try:
         tags = requests.get(f"{OLLAMA_URL}/api/tags", timeout=3).json()
         names = [m["name"] for m in tags.get("models", [])]
@@ -139,9 +151,92 @@ def has_credentials() -> bool:
 
 
 def extract_from_image(image_bytes: bytes, media_type: str) -> dict:
-    if backend() == "claude":
+    b = backend()
+    if b == "claude":
         return _extract_claude(image_bytes, media_type)
+    if b == "gemini":
+        return _extract_gemini(image_bytes, media_type)
     return _extract_ollama(image_bytes)
+
+
+# ---------------------------------------------------------------- Gemini ----
+
+def _gemini_schema() -> dict:
+    """EXTRACTION_SCHEMA translated to Gemini's OpenAPI-style response schema
+    (Gemini uses `nullable` instead of union types)."""
+    return {
+        "type": "OBJECT",
+        "properties": {
+            "is_prescription": {"type": "BOOLEAN"},
+            "medicines": {
+                "type": "ARRAY",
+                "items": {
+                    "type": "OBJECT",
+                    "properties": {
+                        "raw_text": {"type": "STRING"},
+                        "normalized_name": {"type": "STRING"},
+                        "dosage": {"type": "STRING", "nullable": True},
+                        "frequency": {"type": "STRING", "nullable": True},
+                        "confidence": {"type": "STRING", "enum": ["high", "medium", "low"]},
+                    },
+                    "required": ["raw_text", "normalized_name", "confidence"],
+                },
+            },
+            "notes": {"type": "STRING"},
+        },
+        "required": ["is_prescription", "medicines", "notes"],
+    }
+
+
+def _extract_gemini(image_bytes: bytes, media_type: str) -> dict:
+    key = os.environ.get("GEMINI_API_KEY")
+    if not key:
+        raise NotConfiguredError(
+            "GEMINI_API_KEY not set. Create a free key at https://aistudio.google.com "
+            "(no card needed) and set it in the environment.")
+
+    system = CLAUDE_SYSTEM_PROMPT.format(formulary=", ".join(matcher.brand_names()))
+    payload = {
+        "system_instruction": {"parts": [{"text": system}]},
+        "contents": [{
+            "role": "user",
+            "parts": [
+                {"inline_data": {"mime_type": media_type,
+                                 "data": base64.b64encode(image_bytes).decode()}},
+                {"text": "Read this prescription and extract all medicines."},
+            ],
+        }],
+        "generationConfig": {
+            "response_mime_type": "application/json",
+            "response_schema": _gemini_schema(),
+            "temperature": 0,
+        },
+    }
+    resp = requests.post(
+        f"{GEMINI_URL}/{GEMINI_MODEL}:generateContent",
+        params={"key": key}, json=payload, timeout=120)
+
+    if resp.status_code in (400, 401, 403):
+        raise NotConfiguredError(f"Gemini API rejected the key/request (HTTP {resp.status_code}).")
+    if resp.status_code == 429:
+        raise UpstreamBusyError(
+            "The free daily scan quota is exhausted or rate-limited — please try again later.")
+    resp.raise_for_status()
+
+    body = resp.json()
+    try:
+        candidate = body["candidates"][0]
+        text = "".join(p.get("text", "") for p in candidate["content"]["parts"])
+        result = json.loads(text)
+    except (KeyError, IndexError, json.JSONDecodeError) as exc:
+        reason = body.get("candidates", [{}])[0].get("finishReason", "unknown")
+        raise ExtractionRefusedError(f"Gemini returned no usable output (reason: {reason}).") from exc
+
+    # schema marks dosage/frequency optional — normalise to the app's shape
+    for m in result.get("medicines", []):
+        m.setdefault("dosage", None)
+        m.setdefault("frequency", None)
+    return result
 
 
 # ---------------------------------------------------------------- Ollama ----

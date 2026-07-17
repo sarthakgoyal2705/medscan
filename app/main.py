@@ -263,6 +263,8 @@ async def scan(image: UploadFile = File(...),
         extracted = await run_in_threadpool(extraction.extract_from_image, data, image.content_type)
     except extraction.NotConfiguredError as exc:
         raise HTTPException(503, str(exc))
+    except extraction.UpstreamBusyError as exc:
+        raise HTTPException(429, str(exc))
     except extraction.ExtractionRefusedError:
         raise HTTPException(422, "The image could not be processed. Try a clearer photo of the prescription.")
 
