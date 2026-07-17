@@ -76,7 +76,6 @@
   }
   .drop:hover, .drop.over { border-color: var(--b600); background: #DFF3FE; }
   .drop p { color: var(--muted); margin-top: 0.5rem; font-size: 0.92rem; }
-  #preview { max-width: 100%; max-height: 320px; border-radius: 10px; margin-top: 1rem; display: none; }
 
   textarea, .field input, .inline-input {
     width: 100%; background: var(--b50); color: var(--ink);
@@ -235,6 +234,68 @@
   .info-block .ib-salt { font-weight: 700; color: var(--b700); }
   .info-block div { margin-top: 0.25rem; }
   .info-block b { color: var(--ink); }
+
+  /* ---------- toasts ---------- */
+  #toast {
+    position: fixed; left: 50%; transform: translateX(-50%); bottom: 5.6rem; z-index: 300;
+    display: flex; flex-direction: column; gap: 0.4rem; align-items: center; pointer-events: none;
+  }
+  .toastmsg {
+    background: var(--b700); color: #fff; border-radius: 999px; padding: 0.55rem 1.2rem;
+    font-size: 0.9rem; font-weight: 600; box-shadow: 0 8px 22px rgba(2, 58, 90, 0.35);
+    animation: toastin 0.25s ease;
+  }
+  .toastmsg.err { background: var(--danger); }
+  @keyframes toastin { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+
+  /* ---------- staged scan progress ---------- */
+  .progress-card { background: var(--b50); border: 1.5px solid var(--b100); border-radius: 12px; padding: 1rem 1.1rem; margin-top: 1rem; }
+  .progress-card .phead { display: flex; align-items: center; gap: 0.7rem; margin-bottom: 0.5rem; }
+  .pillbounce { animation: pbounce 1.1s ease-in-out infinite; transform-origin: center; }
+  @keyframes pbounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+  .progress-card .stage { display: flex; gap: 0.55rem; align-items: center; padding: 0.26rem 0; font-size: 0.92rem; color: var(--muted); }
+  .progress-card .stage.done { color: var(--b700); }
+  .progress-card .stage.now { color: var(--ink); font-weight: 600; }
+  .progress-bar { height: 7px; background: #fff; border: 1px solid var(--b100); border-radius: 999px; overflow: hidden; margin-top: 0.7rem; }
+  .progress-bar i { display: block; height: 100%; background: var(--b400); width: 0%; transition: width 1.2s linear; }
+  .progress-card .ptip { color: var(--muted); font-size: 0.8rem; margin-top: 0.55rem; }
+
+  /* ---------- image preview tools ---------- */
+  .prevwrap { position: relative; display: none; margin-top: 1rem; }
+  .prevwrap img { max-width: 100%; max-height: 320px; border-radius: 10px; display: block; margin: 0 auto; }
+  .prevtools { position: absolute; top: 8px; right: 8px; display: flex; gap: 0.4rem; }
+  .prevtools button {
+    border: none; background: rgba(14, 58, 87, 0.78); color: #fff; border-radius: 8px;
+    padding: 0.4rem 0.7rem; cursor: pointer; font-size: 1rem; font-weight: 700;
+  }
+
+  /* ---------- inline feedback correction ---------- */
+  .fixrow { display: flex; gap: 0.4rem; margin-top: 0.45rem; }
+  .fixrow input { flex: 1; padding: 0.45rem 0.7rem; border-radius: 8px; border: 1.5px solid var(--b200); font-size: 0.86rem; font-family: inherit; }
+  .fixrow input:focus { outline: none; border-color: var(--b400); }
+
+  /* ---------- share row ---------- */
+  .sharerow { display: flex; gap: 0.6rem; margin-bottom: 1rem; flex-wrap: wrap; }
+
+  /* ---------- mobile bottom nav ---------- */
+  #bottomNav { display: none; }
+  @media (max-width: 640px) {
+    .tabs { display: none; }
+    body { padding-bottom: 5.6rem; }
+    #toast { bottom: 6.4rem; }
+    #bottomNav {
+      display: flex; position: fixed; bottom: 0; left: 0; right: 0; z-index: 90;
+      background: #fff; border-top: 2px solid var(--b100);
+      padding: 0.3rem 0.3rem calc(0.3rem + env(safe-area-inset-bottom));
+    }
+    #bottomNav button {
+      flex: 1; background: none; border: none; color: var(--muted); font-size: 0.66rem;
+      cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 2px;
+      padding: 0.3rem 0; border-radius: 10px; font-weight: 600; font-family: inherit;
+    }
+    #bottomNav button .bicon { font-size: 1.3rem; line-height: 1; }
+    #bottomNav button.active { color: var(--b600); background: var(--b50); }
+  }
 </style>
 </head>
 <body>
@@ -306,13 +367,19 @@
       </svg>
       <div><strong data-i18n="drop_title">Tap to photograph or upload a prescription</strong></div>
       <p data-i18n="drop_sub">JPEG / PNG / WebP · drag &amp; drop works too</p>
-      <img id="preview" alt="Prescription preview">
+      <div class="prevwrap" id="prevwrap">
+        <img id="preview" alt="Prescription preview">
+        <div class="prevtools">
+          <button type="button" id="rotateBtn" title="Rotate 90°">⟳</button>
+        </div>
+      </div>
     </div>
     <input type="file" id="file" accept="image/*" capture="environment" hidden>
     <div class="btnrow">
       <button class="primary" id="scanBtn" disabled data-i18n="btn_scan">Scan prescription</button>
       <button class="ghost" id="demoBtn" data-i18n="btn_demo">Try demo (no photo needed)</button>
     </div>
+    <div id="scanProgress"></div>
     <div class="status" id="status-photo"></div>
   </div>
 
@@ -352,6 +419,7 @@
   </div>
 
   <div id="results">
+    <div class="sharerow" id="shareRow"></div>
     <div class="summary" id="summary"></div>
     <div id="savedWarnings"></div>
     <div id="warnings"></div>
@@ -361,6 +429,15 @@
     <div id="disclaimer" class="disclaimer"></div>
   </div>
 </div>
+
+<div id="toast"></div>
+
+<nav id="bottomNav">
+  <button data-mode="photo" class="active"><span class="bicon">📷</span><span data-i18n="tab_scan">Scan photo</span></button>
+  <button data-mode="type"><span class="bicon">⌨️</span><span data-i18n="tab_type">Type names</span></button>
+  <button data-mode="stores"><span class="bicon">🏪</span><span data-i18n="tab_stores">Find stores</span></button>
+  <button data-mode="child"><span class="bicon">👶</span><span data-i18n="tab_child">Child dose</span></button>
+</nav>
 
 <!-- auth modal -->
 <div class="overlay" id="authOverlay">
@@ -483,7 +560,18 @@ const I18N = {
     max_per_day: n => `Maximum ${n} doses in 24 hours.`,
     price_asof: d => `MRP as of ${d} — verify current price at the store`,
     fb_ask: "Did we read this right?", fb_thanks: "✓ Thanks — this helps us improve.",
-    fb_what_correct: "What is the correct medicine name?",
+    fb_ph: "Correct medicine name (optional)",
+    st_title: "Scanning your prescription…",
+    st_upload: "Uploading photo", st_read: "Reading the handwriting",
+    st_match: "Identifying medicines & finding generics", st_check: "Checking dangerous combinations",
+    st_slow: "The AI runs locally on this computer — a scan genuinely takes a few minutes. Leave this tab open.",
+    t_compressed: (a, b) => `Photo compressed ${a} → ${b} for a faster scan`,
+    t_failed: "Something went wrong — try again.", t_downloaded: "Report image downloaded ✓",
+    btn_share: "Share report", btn_download: "Download report",
+    rep_saved: (s, p) => `Saved ${s} (${p}%) with generics`,
+    rep_sub: n => `${n} medicine(s) · branded price → generic price`,
+    rep_warns: n => `⚠ ${n} drug-interaction warning(s) — see app for details`,
+    rep_footer: "MedScan — scan your prescription, pay the generic price",
   },
   hi: {
     nav_history: "इतिहास", nav_mymeds: "मेरी दवाइयाँ",
@@ -531,7 +619,18 @@ const I18N = {
     max_per_day: n => `24 घंटे में अधिकतम ${n} खुराक।`,
     price_asof: d => `MRP ${d} के अनुसार — दुकान पर वर्तमान दाम जाँचें`,
     fb_ask: "क्या हमने सही पढ़ा?", fb_thanks: "✓ धन्यवाद — इससे हम बेहतर होंगे।",
-    fb_what_correct: "सही दवा का नाम क्या है?",
+    fb_ph: "सही दवा का नाम (वैकल्पिक)",
+    st_title: "आपकी पर्ची स्कैन हो रही है…",
+    st_upload: "फोटो अपलोड", st_read: "लिखावट पढ़ी जा रही है",
+    st_match: "दवाइयाँ पहचानी जा रही हैं और जेनेरिक खोजे जा रहे हैं", st_check: "खतरनाक संयोजन की जाँच",
+    st_slow: "AI इसी कंप्यूटर पर चलता है — स्कैन में कुछ मिनट लगते हैं। टैब खुला रखें।",
+    t_compressed: (a, b) => `तेज़ स्कैन के लिए फोटो ${a} → ${b} संपीड़ित की गई`,
+    t_failed: "कुछ गड़बड़ हुई — फिर कोशिश करें।", t_downloaded: "रिपोर्ट इमेज डाउनलोड हुई ✓",
+    btn_share: "रिपोर्ट साझा करें", btn_download: "रिपोर्ट डाउनलोड करें",
+    rep_saved: (s, p) => `जेनेरिक से ${s} (${p}%) की बचत`,
+    rep_sub: n => `${n} दवाइयाँ · ब्रांडेड दाम → जेनेरिक दाम`,
+    rep_warns: n => `⚠ ${n} दवा-इंटरैक्शन चेतावनी — विवरण ऐप में देखें`,
+    rep_footer: "MedScan — पर्ची स्कैन करें, जेनेरिक दाम चुकाएँ",
   },
 };
 let lang = localStorage.getItem("medscan_lang") || "en";
@@ -549,14 +648,24 @@ $("langBtn").addEventListener("click", () => {
   applyI18n();
 });
 
-/* ---------------- tabs ---------------- */
-document.querySelectorAll(".tab").forEach(tab => tab.addEventListener("click", () => {
-  document.querySelectorAll(".tab").forEach(x => x.classList.remove("active"));
-  tab.classList.add("active");
-  const mode = tab.dataset.mode;
+/* ---------------- toasts ---------------- */
+function toast(msg, type = "ok", ms = 2600) {
+  const el = document.createElement("div");
+  el.className = "toastmsg" + (type === "err" ? " err" : "");
+  el.textContent = msg;
+  $("toast").appendChild(el);
+  setTimeout(() => { el.style.opacity = "0"; el.style.transition = "opacity .3s"; setTimeout(() => el.remove(), 320); }, ms);
+}
+
+/* ---------------- tabs + bottom nav ---------------- */
+function switchMode(mode) {
+  document.querySelectorAll(".tab").forEach(x => x.classList.toggle("active", x.dataset.mode === mode));
+  document.querySelectorAll("#bottomNav button").forEach(x => x.classList.toggle("active", x.dataset.mode === mode));
   ["photo", "type", "stores", "child"].forEach(m => { $("panel-" + m).style.display = m === mode ? "" : "none"; });
   if (mode === "child" && !$("childMed").options.length) loadChildMeds();
-}));
+}
+document.querySelectorAll(".tab, #bottomNav button").forEach(b =>
+  b.addEventListener("click", () => switchMode(b.dataset.mode)));
 
 /* ---------------- file picking ---------------- */
 const drop = $("drop"), fileInput = $("file");
@@ -569,15 +678,59 @@ drop.addEventListener("drop", e => {
 });
 fileInput.addEventListener("change", () => { if (fileInput.files[0]) setFile(fileInput.files[0]); });
 
-function setFile(f) {
+/* Client-side downscale (max 1600px) + JPEG re-encode: phone photos are 5–12 MB,
+   which makes scans needlessly slow. Also powers the rotate tool. */
+const MAX_DIM = 1600;
+let workCanvas = null;
+
+function fmtMB(bytes) { return (bytes / 1048576).toFixed(1) + " MB"; }
+
+async function setFile(f) {
   if (!f.type.startsWith("image/")) { setStatus("photo", t("s_choose_img"), true); return; }
-  selectedFile = f;
-  const img = $("preview");
-  img.src = URL.createObjectURL(f);
-  img.style.display = "block";
+  const origSize = f.size;
+  try {
+    const bmp = await createImageBitmap(f);
+    const scale = Math.min(1, MAX_DIM / Math.max(bmp.width, bmp.height));
+    workCanvas = document.createElement("canvas");
+    workCanvas.width = Math.round(bmp.width * scale);
+    workCanvas.height = Math.round(bmp.height * scale);
+    workCanvas.getContext("2d").drawImage(bmp, 0, 0, workCanvas.width, workCanvas.height);
+    bmp.close();
+    await updateFromCanvas();
+    if (selectedFile.size < origSize * 0.9) {
+      toast(t("t_compressed")(fmtMB(origSize), fmtMB(selectedFile.size)));
+    }
+  } catch {
+    // fall back to the raw file if decoding fails (rare formats)
+    workCanvas = null;
+    selectedFile = f;
+    $("preview").src = URL.createObjectURL(f);
+  }
+  $("prevwrap").style.display = "block";
   $("scanBtn").disabled = false;
   setStatus("photo", "");
 }
+
+function updateFromCanvas() {
+  return new Promise(resolve => workCanvas.toBlob(blob => {
+    selectedFile = new File([blob], "prescription.jpg", { type: "image/jpeg" });
+    $("preview").src = URL.createObjectURL(blob);
+    resolve();
+  }, "image/jpeg", 0.87));
+}
+
+$("rotateBtn").addEventListener("click", async e => {
+  e.stopPropagation();
+  if (!workCanvas) return;
+  const r = document.createElement("canvas");
+  r.width = workCanvas.height; r.height = workCanvas.width;
+  const ctx = r.getContext("2d");
+  ctx.translate(r.width / 2, r.height / 2);
+  ctx.rotate(Math.PI / 2);
+  ctx.drawImage(workCanvas, -workCanvas.width / 2, -workCanvas.height / 2);
+  workCanvas = r;
+  await updateFromCanvas();
+});
 
 function setStatus(which, msg, isError = false, busy = false) {
   const el = $("status-" + which);
@@ -598,12 +751,64 @@ async function callApi(url, options, which) {
   }
 }
 
-$("scanBtn").addEventListener("click", () => {
+/* Staged progress for the slow local-AI scan: honest stages + an asymptotic bar. */
+let progTimer = null;
+const SCAN_STAGES = [
+  { key: "st_upload", at: 0 },
+  { key: "st_read", at: 3 },
+  { key: "st_match", at: 45 },
+  { key: "st_check", at: 150 },
+];
+
+function showScanProgress() {
+  const pill = `<svg class="pillbounce" width="26" height="26" viewBox="0 0 32 32"><g transform="rotate(-45 16 16)"><rect x="6" y="10" width="20" height="12" rx="6" fill="#0288D1"/><path d="M16 10 h4 a6 6 0 0 1 0 12 h-4 z" fill="#4FC3F7"/></g></svg>`;
+  $("scanProgress").innerHTML = `
+    <div class="progress-card">
+      <div class="phead">${pill}<strong>${t("st_title")}</strong></div>
+      ${SCAN_STAGES.map((s, i) => `<div class="stage" id="stg${i}"><span class="sic">○</span> ${t(s.key)}</div>`).join("")}
+      <div class="progress-bar"><i id="pbar"></i></div>
+      <div class="ptip">☕ ${t("st_slow")}</div>
+    </div>`;
+  const start = Date.now();
+  progTimer = setInterval(() => {
+    const sec = (Date.now() - start) / 1000;
+    SCAN_STAGES.forEach((s, i) => {
+      const el = $("stg" + i);
+      if (!el) return;
+      const next = SCAN_STAGES[i + 1];
+      if (sec >= s.at && (!next || sec < next.at)) { el.className = "stage now"; el.querySelector(".sic").textContent = "◔"; }
+      else if (next && sec >= next.at) { el.className = "stage done"; el.querySelector(".sic").textContent = "✓"; }
+    });
+    // asymptotic: reaches ~90% around 5 minutes, never claims done
+    const pct = Math.min(92, 100 * (1 - Math.exp(-sec / 130)));
+    if ($("pbar")) $("pbar").style.width = pct + "%";
+  }, 1200);
+}
+function hideScanProgress() {
+  clearInterval(progTimer);
+  progTimer = null;
+  $("scanProgress").innerHTML = "";
+}
+
+$("scanBtn").addEventListener("click", async () => {
   if (!selectedFile) return;
-  setStatus("photo", t("s_scanning"), false, true);
-  const fd = new FormData();
-  fd.append("image", selectedFile);
-  callApi("/api/scan", { method: "POST", body: fd }, "photo");
+  setStatus("photo", "");
+  $("scanBtn").disabled = true;
+  showScanProgress();
+  try {
+    const fd = new FormData();
+    fd.append("image", selectedFile);
+    const res = await fetch("/api/scan", { method: "POST", body: fd });
+    const body = await res.json();
+    if (!res.ok) throw new Error(body.detail || "Request failed (" + res.status + ")");
+    render(body);
+  } catch (err) {
+    setStatus("photo", err.message, true);
+    $("results").style.display = "none";
+  } finally {
+    hideScanProgress();
+    $("scanBtn").disabled = false;
+  }
 });
 $("demoBtn").addEventListener("click", () => {
   setStatus("photo", t("s_demo"), false, true);
@@ -758,19 +963,118 @@ $("childBtn").addEventListener("click", async () => {
 });
 
 /* ---------------- feedback ---------------- */
-async function sendFeedback(btn, raw, brand, verdict) {
-  let correction = null;
-  if (verdict === "wrong") {
-    correction = prompt(t("fb_what_correct"));
-    if (correction === null) return;
-  }
+async function postFeedback(row, raw, brand, verdict, correction) {
   try {
     await fetch("/api/feedback", {
       method: "POST", headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ raw_text: raw, matched_brand: brand, verdict, correction }),
     });
-    btn.closest(".fbrow").innerHTML = `<span class="meta">${t("fb_thanks")}</span>`;
-  } catch {}
+    row.innerHTML = `<span class="meta">${t("fb_thanks")}</span>`;
+    toast(t("fb_thanks"));
+  } catch {
+    toast(t("t_failed"), "err");
+  }
+}
+
+function sendFeedback(btn, raw, brand, verdict) {
+  const row = btn.closest(".fbrow");
+  if (verdict === "correct") { postFeedback(row, raw, brand, verdict, null); return; }
+  // 👎 → inline correction input instead of the jarring browser prompt()
+  row.innerHTML = `
+    <div class="fixrow">
+      <input type="text" placeholder="${t("fb_ph")}" maxlength="120">
+      <button class="mini fx-ok">✓</button>
+      <button class="mini fx-no">✕</button>
+    </div>`;
+  const input = row.querySelector("input");
+  input.focus();
+  const submit = () => postFeedback(row, raw, brand, "wrong", input.value.trim() || null);
+  row.querySelector(".fx-ok").addEventListener("click", submit);
+  input.addEventListener("keydown", e => { if (e.key === "Enter") submit(); });
+  row.querySelector(".fx-no").addEventListener("click", () =>
+    postFeedback(row, raw, brand, "wrong", null));
+}
+
+/* ---------------- shareable report card ---------------- */
+let lastResult = null;
+
+function renderShareRow() {
+  const canShare = navigator.canShare && navigator.canShare({ files: [new File([""], "x.png", { type: "image/png" })] });
+  $("shareRow").innerHTML = `
+    ${canShare ? `<button class="ghost" onclick="shareReport(true)">📤 ${t("btn_share")}</button>` : ""}
+    <button class="ghost" onclick="shareReport(false)">🖼️ ${t("btn_download")}</button>`;
+}
+
+function buildReportCanvas(data) {
+  const meds = data.medicines.filter(m => m.matched).slice(0, 8);
+  const warnCount = (data.interactions || []).length + (data.saved_interactions || []).length;
+  const W = 1080, rowH = 78;
+  const H = 300 + meds.length * rowH + (warnCount ? 80 : 0) + 130;
+  const c = document.createElement("canvas");
+  c.width = W; c.height = H;
+  const x = c.getContext("2d");
+
+  x.fillStyle = "#E9F7FE"; x.fillRect(0, 0, W, H);
+  // header band
+  x.fillStyle = "#0288D1"; x.fillRect(0, 0, W, 130);
+  x.font = "600 52px Segoe UI, sans-serif"; x.fillStyle = "#fff";
+  x.fillText("💊 MedScan", 40, 82);
+  x.font = "30px Segoe UI, sans-serif"; x.fillStyle = "#B3E5FC";
+  const date = new Date().toLocaleDateString(lang === "hi" ? "hi-IN" : "en-IN", { day: "numeric", month: "short", year: "numeric" });
+  x.textAlign = "right"; x.fillText(date, W - 40, 80); x.textAlign = "left";
+
+  // savings headline
+  const tt = data.totals || {};
+  x.font = "700 58px Segoe UI, sans-serif"; x.fillStyle = "#0E3A57";
+  x.fillText(tt.saving > 0 ? t("rep_saved")(rupee(tt.saving), tt.saving_pct) : t("results"), 40, 215);
+  x.font = "28px Segoe UI, sans-serif"; x.fillStyle = "#557C95";
+  x.fillText(t("rep_sub")(meds.length), 40, 258);
+
+  // medicine rows
+  let y = 300;
+  meds.forEach(m => {
+    x.fillStyle = "#FFFFFF";
+    x.beginPath(); x.roundRect(40, y, W - 80, rowH - 14, 14); x.fill();
+    x.strokeStyle = "#B3E5FC"; x.lineWidth = 2; x.stroke();
+    x.font = "600 30px Segoe UI, sans-serif"; x.fillStyle = "#0E3A57";
+    x.fillText(m.brand, 64, y + 41);
+    x.font = "24px Segoe UI, sans-serif"; x.fillStyle = "#557C95";
+    x.fillText(rupee(m.brand_price), 620, y + 41);
+    x.fillStyle = "#026CA6"; x.font = "600 24px Segoe UI, sans-serif";
+    x.textAlign = "right";
+    x.fillText("→ " + rupee(m.generic_price) + (m.saving > 0 ? "  (−" + m.saving_pct + "%)" : ""), W - 64, y + 41);
+    x.textAlign = "left";
+    y += rowH;
+  });
+
+  if (warnCount) {
+    x.fillStyle = "#FDECEA";
+    x.beginPath(); x.roundRect(40, y, W - 80, 58, 14); x.fill();
+    x.strokeStyle = "#F1B7B0"; x.stroke();
+    x.font = "600 27px Segoe UI, sans-serif"; x.fillStyle = "#C62828";
+    x.fillText(t("rep_warns")(warnCount), 64, y + 39);
+    y += 80;
+  }
+
+  x.font = "24px Segoe UI, sans-serif"; x.fillStyle = "#557C95";
+  x.fillText(t("rep_footer"), 40, H - 46);
+  return c;
+}
+
+async function shareReport(useShare) {
+  if (!lastResult) return;
+  const canvas = buildReportCanvas(lastResult);
+  canvas.toBlob(async blob => {
+    const file = new File([blob], "medscan-report.png", { type: "image/png" });
+    if (useShare && navigator.canShare && navigator.canShare({ files: [file] })) {
+      try { await navigator.share({ files: [file], title: "MedScan report" }); return; } catch {}
+    }
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "medscan-report.png";
+    a.click();
+    toast(t("t_downloaded"));
+  }, "image/png");
 }
 
 /* ---------------- results ---------------- */
@@ -785,6 +1089,8 @@ function warnHtml(w, savedTag) {
 }
 
 function render(data) {
+  lastResult = data;
+  renderShareRow();
   const tt = data.totals;
   $("summary").innerHTML = (tt && tt.saving > 0
     ? `<svg width="40" height="40" viewBox="0 0 32 32"><circle cx="16" cy="16" r="14" fill="#4FC3F7"/><text x="16" y="21.5" text-anchor="middle" font-size="15" font-weight="bold" fill="#fff">₹</text></svg>
@@ -960,7 +1266,7 @@ async function addMyMed(brand, btn) {
       method: "POST", headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ name: brand }),
     });
-    if (res.ok) { btn.textContent = t("added"); btn.disabled = true; }
+    if (res.ok) { btn.textContent = t("added"); btn.disabled = true; toast(t("added") + " " + brand); }
   } catch {}
 }
 
