@@ -77,6 +77,23 @@ signature; results list the cheapest interchangeable brands (e.g. 2,573 products
 Augmentin 625's composition, from ₹6.98). **Autocomplete** — `/api/suggest?q=do` returns
 matches from the first letter via binary search (<1ms).
 
+## Deploy for free (Hugging Face Spaces)
+
+The repo ships a `Dockerfile` ready for [HF Spaces](https://huggingface.co/spaces)
+(free tier: 2 vCPU / 16 GB RAM — enough for the in-memory drug index):
+
+1. Get a **free Gemini API key** at [aistudio.google.com](https://aistudio.google.com) (no card).
+2. Create a Space → SDK: **Docker** → link this repo (or push to the Space's git remote).
+3. In Space **Settings → Secrets**, add `GEMINI_API_KEY`.
+4. That's it — the app auto-uses Gemini for scans in production
+   (`MEDSCAN_BACKEND=gemini` is set in the Dockerfile; locally it still uses Ollama).
+
+Scan endpoint is rate-limited (`MEDSCAN_SCANS_PER_HOUR_PER_IP`, default 6/h;
+`MEDSCAN_SCANS_PER_DAY`, default 200) to stay inside the free Gemini quota.
+Known free-tier trade-offs: the Space sleeps when idle (first visit after that is
+slow), and `data/users.db` (accounts/history) resets on rebuild — swap SQLite for a
+free Neon/Supabase Postgres when that starts to matter.
+
 ## Dataset notes
 
 The bulk layer covers essentially every allopathic product on the Indian market
