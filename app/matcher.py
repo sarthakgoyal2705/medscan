@@ -106,6 +106,11 @@ _NAME_KEYS = [n for n, _ in _NAMES]
 MATCH_THRESHOLD = 72   # curated entries (hand-checked aliases, low junk risk)
 BULK_THRESHOLD = 85    # bulk entries (246k names — demand near-certainty)
 
+# Price provenance: bulk MRPs come from the Nov-2022 1mg snapshot; curated seed
+# prices were compiled Jul 2026. Surfaced in the UI so users know freshness.
+BULK_PRICE_ASOF = "Nov 2022"
+CURATED_PRICE_ASOF = "Jul 2026"
+
 # Dosage-form prefixes doctors write before names: "Tab Dolo", "Cap. Omez", "Syp Ascoril"
 _FORM_PREFIX = re.compile(r"^(tab|tablet|cap|capsule|syp|syrup|inj|injection|oint|cream|drops?|t|c)\.?\s+", re.IGNORECASE)
 
@@ -126,6 +131,7 @@ def _bulk_entry(i: int) -> dict:
         "pack": pack,
         "brand_price": price,
         "generic": {"name": cheap_name, "price": cheap_price},
+        "price_asof": BULK_PRICE_ASOF,
         "_sig": sig,
     }
 
@@ -316,6 +322,7 @@ def medicine_detail(name: str, alt_limit: int = 30) -> dict | None:
         "brand_price": entry["brand_price"],
         "generic_name": entry["generic"]["name"],
         "generic_price": entry["generic"]["price"],
+        "price_asof": entry.get("price_asof", CURATED_PRICE_ASOF),
         "salt_keys": entry["salt_keys"],
         "same_salt_brands": same_salt_count(entry),
         "alternatives": alternatives(entry, alt_limit),
@@ -360,6 +367,7 @@ def lookup(extracted: list[dict]) -> dict:
                 "generic_price": entry["generic"]["price"],
                 "saving": round(saving, 2),
                 "saving_pct": pct,
+                "price_asof": entry.get("price_asof", CURATED_PRICE_ASOF),
                 "alternatives": alternatives(entry),
                 "same_salt_brands": same_salt_count(entry),
             })
