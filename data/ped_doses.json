@@ -1,0 +1,173 @@
+{
+  "disclaimer": "Weight-based guide doses for common paediatric medicines, compiled from standard references (IAP/WHO ranges). ALWAYS confirm with your paediatrician — this tool cannot account for your child's full medical picture.",
+  "rules": [
+    {
+      "id": "paracetamol",
+      "label": "Paracetamol (fever / pain)",
+      "salts": ["paracetamol"],
+      "type": "per_kg",
+      "mg_per_kg_low": 10, "mg_per_kg_high": 15,
+      "frequency": "every 4–6 hours, only when needed",
+      "max_doses_per_day": 4, "max_single_mg": 500,
+      "min_age_months": 3,
+      "syrups": [
+        {"label": "Drops 100mg/ml", "mg_per_ml": 100},
+        {"label": "Syrup 120mg/5ml", "mg_per_ml": 24},
+        {"label": "Syrup 250mg/5ml", "mg_per_ml": 50}
+      ],
+      "notes": "Do not exceed 4 doses in 24h. Never combine with other paracetamol-containing medicines (many cold syrups contain it)."
+    },
+    {
+      "id": "ibuprofen",
+      "label": "Ibuprofen (fever / pain / inflammation)",
+      "salts": ["ibuprofen"],
+      "type": "per_kg",
+      "mg_per_kg_low": 5, "mg_per_kg_high": 10,
+      "frequency": "every 6–8 hours, with food",
+      "max_doses_per_day": 3, "max_single_mg": 400,
+      "min_age_months": 6,
+      "syrups": [{"label": "Syrup 100mg/5ml", "mg_per_ml": 20}],
+      "notes": "Give with food/milk. Avoid if the child is dehydrated (vomiting/loose motions) — kidney risk. Avoid in suspected dengue."
+    },
+    {
+      "id": "mefenamic",
+      "label": "Mefenamic acid (fever / pain)",
+      "salts": ["mefenamic acid"],
+      "type": "per_kg",
+      "mg_per_kg_low": 4, "mg_per_kg_high": 6.5,
+      "frequency": "every 8 hours",
+      "max_doses_per_day": 3, "max_single_mg": 500,
+      "min_age_months": 6,
+      "syrups": [{"label": "Syrup 100mg/5ml", "mg_per_ml": 20}],
+      "notes": "Give with food. Not a first choice for routine fever — paracetamol is safer."
+    },
+    {
+      "id": "amoxicillin",
+      "label": "Amoxicillin (antibiotic)",
+      "salts": ["amoxicillin"],
+      "type": "per_kg",
+      "mg_per_kg_low": 15, "mg_per_kg_high": 25,
+      "frequency": "twice or thrice daily as prescribed, for the full course",
+      "max_doses_per_day": 3, "max_single_mg": 500,
+      "min_age_months": 1,
+      "syrups": [
+        {"label": "Dry syrup 125mg/5ml", "mg_per_ml": 25},
+        {"label": "Dry syrup 250mg/5ml", "mg_per_ml": 50}
+      ],
+      "notes": "Antibiotics need a doctor's prescription and the FULL course — never stop when the child feels better."
+    },
+    {
+      "id": "amoxiclav",
+      "label": "Amoxicillin + Clavulanate (antibiotic)",
+      "salts": ["amoxicillin", "clavulanic acid"],
+      "type": "per_kg",
+      "mg_per_kg_low": 15, "mg_per_kg_high": 22.5,
+      "frequency": "twice daily, for the full course (dose counts the amoxicillin part)",
+      "max_doses_per_day": 2, "max_single_mg": 500,
+      "min_age_months": 1,
+      "syrups": [{"label": "Dry syrup 228.5mg/5ml (200mg amox)", "mg_per_ml": 40}],
+      "notes": "Give at the start of a meal to reduce stomach upset. Prescription antibiotic — full course."
+    },
+    {
+      "id": "azithromycin",
+      "label": "Azithromycin (antibiotic)",
+      "salts": ["azithromycin"],
+      "type": "per_kg",
+      "mg_per_kg_low": 10, "mg_per_kg_high": 10,
+      "frequency": "once daily for 3 days (typical course)",
+      "max_doses_per_day": 1, "max_single_mg": 500,
+      "min_age_months": 6,
+      "syrups": [{"label": "Suspension 200mg/5ml", "mg_per_ml": 40}],
+      "notes": "Prescription antibiotic. Give 1h before or 2h after food for best absorption."
+    },
+    {
+      "id": "cefixime",
+      "label": "Cefixime (antibiotic)",
+      "salts": ["cefixime"],
+      "type": "per_kg",
+      "mg_per_kg_low": 4, "mg_per_kg_high": 4,
+      "frequency": "twice daily (8 mg/kg/day total), for the full course",
+      "max_doses_per_day": 2, "max_single_mg": 200,
+      "min_age_months": 6,
+      "syrups": [
+        {"label": "Dry syrup 50mg/5ml", "mg_per_ml": 10},
+        {"label": "Dry syrup 100mg/5ml", "mg_per_ml": 20}
+      ],
+      "notes": "Prescription antibiotic — full course."
+    },
+    {
+      "id": "cetirizine",
+      "label": "Cetirizine (allergy)",
+      "salts": ["cetirizine"],
+      "type": "per_kg",
+      "mg_per_kg_low": 0.2, "mg_per_kg_high": 0.25,
+      "frequency": "once daily (usually at night)",
+      "max_doses_per_day": 1, "max_single_mg": 10,
+      "min_age_months": 6,
+      "syrups": [{"label": "Syrup 5mg/5ml", "mg_per_ml": 1}],
+      "notes": "May cause mild drowsiness."
+    },
+    {
+      "id": "levocetirizine",
+      "label": "Levocetirizine (allergy)",
+      "salts": ["levocetirizine"],
+      "type": "per_kg",
+      "mg_per_kg_low": 0.1, "mg_per_kg_high": 0.125,
+      "frequency": "once daily (usually at night)",
+      "max_doses_per_day": 1, "max_single_mg": 5,
+      "min_age_months": 6,
+      "syrups": [{"label": "Syrup 2.5mg/5ml", "mg_per_ml": 0.5}],
+      "notes": "May cause mild drowsiness."
+    },
+    {
+      "id": "ondansetron",
+      "label": "Ondansetron (vomiting)",
+      "salts": ["ondansetron"],
+      "type": "per_kg",
+      "mg_per_kg_low": 0.15, "mg_per_kg_high": 0.15,
+      "frequency": "every 8 hours, only if vomiting continues",
+      "max_doses_per_day": 3, "max_single_mg": 4,
+      "min_age_months": 6,
+      "syrups": [{"label": "Syrup 2mg/5ml", "mg_per_ml": 0.4}],
+      "notes": "For gastro, ORS (rehydration) matters more than stopping vomiting. See a doctor if vomiting persists or the child is drowsy/dehydrated."
+    },
+    {
+      "id": "domperidone",
+      "label": "Domperidone (vomiting / bloating)",
+      "salts": ["domperidone"],
+      "type": "per_kg",
+      "mg_per_kg_low": 0.25, "mg_per_kg_high": 0.25,
+      "frequency": "up to three times daily, 15–30 min before food",
+      "max_doses_per_day": 3, "max_single_mg": 10,
+      "min_age_months": 12,
+      "syrups": [{"label": "Suspension 5mg/5ml", "mg_per_ml": 1}],
+      "notes": "Use the lowest dose for the shortest time."
+    },
+    {
+      "id": "metronidazole",
+      "label": "Metronidazole (amoebiasis / giardia)",
+      "salts": ["metronidazole"],
+      "type": "per_kg",
+      "mg_per_kg_low": 7.5, "mg_per_kg_high": 7.5,
+      "frequency": "three times daily, for the prescribed course",
+      "max_doses_per_day": 3, "max_single_mg": 400,
+      "min_age_months": 1,
+      "syrups": [{"label": "Suspension 100mg/5ml", "mg_per_ml": 20}],
+      "notes": "Prescription medicine; complete the course."
+    },
+    {
+      "id": "albendazole",
+      "label": "Albendazole (deworming)",
+      "salts": ["albendazole"],
+      "type": "fixed",
+      "fixed_doses": [
+        {"age_label": "1–2 years", "dose_mg": 200, "dose_text": "200 mg (½ tablet or 5 ml of 400mg/10ml suspension) as a single dose"},
+        {"age_label": "2 years and above", "dose_mg": 400, "dose_text": "400 mg (1 tablet or 10 ml suspension) as a single dose"}
+      ],
+      "frequency": "single dose (often repeated after 2 weeks — ask your doctor)",
+      "min_age_months": 12,
+      "syrups": [],
+      "notes": "Routine deworming is typically every 6 months for children. Whole family is often treated together."
+    }
+  ]
+}
