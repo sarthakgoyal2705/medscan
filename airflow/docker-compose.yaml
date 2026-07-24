@@ -1,0 +1,82 @@
+# Minimal Airflow (LocalExecutor + Postgres metadata DB) for the MedScan pipeline.
+# `docker compose up` from this directory. UI at http://localhost:8080 (admin/admin).
+#
+# The app code, pipeline package, DAGs and the data/ tree are mounted so edits are
+# picked up without rebuilds. Spark runs in-process inside the LocalExecutor.
+x-airflow-common: &airflow-common
+  build:
+    context: ..
+    dockerfile: airflow/Dockerfile
+  environment: &airflow-env
+    AIRFLOW__CORE__EXECUTOR: LocalExecutor
+    AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
+    AIRFLOW__CORE__LOAD_EXAMPLES: "false"
+    AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: "true"
+    AIRFLOW__WEBSERVER__EXPOSE_CONFIG: "true"
+    PYTHONPATH: /opt/medscan
+    # pipeline paths point at the mounted repo data/ tree
+    MEDSCAN_DATA_ROOT: /opt/medscan/data
+    MEDSCAN_LANDING_DIR: /opt/medscan/data/landing
+    MEDSCAN_SERVING_DB: /opt/medscan/data/serving.db
+    MEDSCAN_BACKEND: gemini
+    GEMINI_API_KEY: ${GEMINI_API_KEY:-}
+  volumes:
+    - ../medscan_pipeline:/opt/medscan/medscan_pipeline
+    - ../app:/opt/medscan/app
+    - ../data:/opt/medscan/data
+    - ./dags:/opt/airflow/dags
+    - airflow-logs:/opt/airflow/logs
+  depends_on:
+    postgres:
+      condition: service_healthy
+
+services:
+  postgres:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: airflow
+      POSTGRES_PASSWORD: airflow
+      POSTGRES_DB: airflow
+    volumes:
+      - pg-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "airflow"]
+      interval: 5s
+      retries: 10
+
+  airflow-init:
+    <<: *airflow-common
+    entrypoint: /bin/bash
+    command:
+      - -c
+      - |
+        airflow db migrate &&
+        airflow users create --username admin --password admin \
+          --firstname admin --lastname admin --role Admin --email admin@example.com
+    restart: on-failure
+
+  scheduler:
+    <<: *airflow-common
+    command: scheduler
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+      airflow-init:
+        condition: service_completed_successfully
+
+  webserver:
+    <<: *airflow-common
+    command: webserver
+    ports:
+      - "8080:8080"
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+      airflow-init:
+        condition: service_completed_successfully
+
+volumes:
+  pg-data:
+  airflow-logs:
