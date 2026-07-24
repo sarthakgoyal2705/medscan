@@ -13,3 +13,11 @@ data/kendras.pdf
 
 # local test artifacts
 *.png
+
+# pipeline-generated data (Medallion layers + batch serving store)
+data/bronze/
+data/silver/
+data/gold/
+data/serving.db
+data/landing/*
+!data/landing/.gitkeep
