@@ -14,7 +14,7 @@ from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
-from . import auth, extraction, matcher, peddose, stores
+from . import auth, extraction, matcher, peddose, pipeline_health, stores
 
 app = FastAPI(title="MedScan", version="0.1.0")
 
@@ -280,6 +280,14 @@ def api_medicine(name: str = ""):
 @app.get("/api/health")
 def health():
     return {"status": "ok", **extraction.backend_status()}
+
+
+@app.get("/pipeline/health")
+def api_pipeline_health():
+    """Batch-pipeline monitoring for the live demo — last run, match/quarantine
+    rates, validation failures. Reads only data/serving.db (stdlib sqlite); the
+    web process never imports Spark."""
+    return pipeline_health.pipeline_health()
 
 
 @app.post("/api/scan")
