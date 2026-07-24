@@ -53,6 +53,14 @@ def write_silver(spark, lines: list[PrescriptionLine]) -> dict:
 
     # ---- clean rows: MERGE (idempotent upsert on the composite key) ----
     if clean:
+        # Delta MERGE forbids multiple source rows matching one target. The same
+        # image can appear in >1 bronze capture (append-only), yielding duplicate
+        # (source_file_hash,line_id) here — so dedupe the source first, keeping the
+        # most recently processed. This is what makes the merge idempotent.
+        deduped: dict[tuple, dict] = {}
+        for row in clean:
+            deduped[(row["source_file_hash"], row["line_id"])] = row
+        clean = list(deduped.values())
         updates = spark.createDataFrame(clean, schema=SILVER_SCHEMA)
         if _table_exists(spark, config.SILVER_PATH):
             (DeltaTable.forPath(spark, config.SILVER_PATH).alias("t")

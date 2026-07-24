@@ -29,8 +29,12 @@ LANDING_DIR = os.environ.get("MEDSCAN_LANDING_DIR", os.path.join(os.getcwd(), "d
 # still reads bulk.json in memory — the batch pipeline never touches that path).
 SERVING_DB = os.environ.get("MEDSCAN_SERVING_DB", os.path.join(os.getcwd(), "data", "serving.db"))
 
-# Read-only product catalogue the matcher scores against.
-CATALOGUE_JSON = os.path.join(os.getcwd(), "data", "bulk.json")
+# Read-only product catalogue the matcher scores against. Derived from a real data
+# dir, not os.getcwd() — the Airflow worker's cwd is /opt/airflow, so a cwd-relative
+# path pointed at the wrong place. Override with MEDSCAN_CATALOGUE_JSON if needed.
+_DATA_DIR = DATA_ROOT if not DATA_ROOT.startswith(("abfss://", "s3://", "gs://")) \
+    else os.path.join(os.getcwd(), "data")
+CATALOGUE_JSON = os.environ.get("MEDSCAN_CATALOGUE_JSON", os.path.join(_DATA_DIR, "bulk.json"))
 
 # Bump when the extraction prompt changes — lets us tell which bronze rows came
 # from which prompt version when we replay.

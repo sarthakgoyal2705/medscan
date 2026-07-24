@@ -13,7 +13,6 @@ from __future__ import annotations
 
 import json
 import os
-import time
 
 from . import (bronze, config, extract, gold, ingest, load, match_spark,
                metrics, normalize, silver, validate)
@@ -127,11 +126,14 @@ def write_gold(**context) -> int:
 
 
 def publish_to_serving_db(**context) -> int:
+    from delta.tables import DeltaTable
     from .spark import get_spark
     from .records import MatchedLine
     run_id = context["ti"].xcom_pull(key="pipeline_run_id")
     spark = get_spark("publish")
     try:
+        if not DeltaTable.isDeltaTable(spark, config.GOLD_MATCHED_PATH):
+            return 0  # a run with zero matches created no gold table — nothing to publish
         rows = (spark.read.format("delta").load(config.GOLD_MATCHED_PATH)
                 .filter(f"pipeline_run_id = '{run_id}'").collect())
         matched = [MatchedLine(**{k: r[k] for k in r.asDict()}) for r in rows]
@@ -146,11 +148,14 @@ def emit_run_metrics(**context) -> None:
     run_id = ti.xcom_pull(key="pipeline_run_id")
     spark = get_spark("metrics")
     try:
+        from delta.tables import DeltaTable
         silver_rows = (silver.read_silver(spark).filter(f"pipeline_run_id = '{run_id}'"))
-        gold_rows = (spark.read.format("delta").load(config.GOLD_MATCHED_PATH)
-                     .filter(f"pipeline_run_id = '{run_id}'"))
+        if DeltaTable.isDeltaTable(spark, config.GOLD_MATCHED_PATH):
+            g = (spark.read.format("delta").load(config.GOLD_MATCHED_PATH)
+                 .filter(f"pipeline_run_id = '{run_id}'").collect())
+        else:
+            g = []
         s_count = silver_rows.count()
-        g = gold_rows.collect()
         matched_hits = sum(1 for r in g if r["match_method"] != "unmatched")
         mean_conf = (silver_rows.groupBy().avg("extraction_confidence").collect()[0][0]) or 0.0
         rm = RunMetrics(
