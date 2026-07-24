@@ -5,6 +5,7 @@
 pyspark==3.5.3
 delta-spark==3.2.0
 pandas==2.2.2
+pyarrow==17.0.0   # required by pandas_udf (Arrow-based vectorized UDFs)
 # reused by the stage functions inside the pipeline image
 rapidfuzz>=3.10
 requests>=2.32
