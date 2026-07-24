@@ -1,0 +1,12 @@
+{
+  "note": "one raw Vision-LLM capture as stored in Bronze (Delta) \u2014 verbatim structured output",
+  "example": {
+    "pipeline_run_id": "run_...",
+    "source_file_hash": "d0ca79eb8bcb...",
+    "model_provider": "gemini",
+    "model_name": "gemini-flash-latest",
+    "prompt_version": "v1",
+    "raw_response": "{\"is_prescription\": true, \"medicines\": [{\"raw_text\": \"Tab Dolo 650 ...\", \"normalized_name\": \"Dolo 650\", \"confidence\": \"high\"}]}",
+    "ingest_date": "2026-07-24"
+  }
+}

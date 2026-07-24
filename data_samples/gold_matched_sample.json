@@ -1,0 +1,14 @@
+{
+  "note": "Silver joined to catalogue (Gold) with match score + generic + saving",
+  "rows": [
+    {
+      "line_id": "d0ca79eb8bcb-0",
+      "matched_product": "Dolo 650",
+      "match_score": 100,
+      "match_method": "exact",
+      "brand_price": 33.6,
+      "generic_price": 9.0,
+      "saving": 24.6
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "note": "parsed+typed prescription lines (Silver) \u2014 deduped on (source_file_hash,line_id)",
+  "rows": [
+    {
+      "line_id": "d0ca79eb8bcb-0",
+      "drug_name_normalized": "Dolo 650",
+      "dosage_value": 650.0,
+      "dosage_unit": "mg",
+      "extraction_confidence": 0.95
+    },
+    {
+      "line_id": "d0ca79eb8bcb-3",
+      "drug_name_normalized": "Montek-LC",
+      "dosage_value": null,
+      "dosage_unit": null,
+      "extraction_confidence": 0.95
+    }
+  ]
+}

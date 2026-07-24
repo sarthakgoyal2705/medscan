@@ -1,0 +1,10 @@
+# Pipeline-only dependencies. NOT installed into the web app / Render image —
+# these pull in a JVM-backed Spark stack and only run in the Docker pipeline
+# and Airflow images. Pinned to a known-good Spark 3.5 / Delta 3.2 combo on
+# Python 3.11 (the host is Python 3.13 + no Java, hence Docker).
+pyspark==3.5.3
+delta-spark==3.2.0
+pandas==2.2.2
+# reused by the stage functions inside the pipeline image
+rapidfuzz>=3.10
+requests>=2.32
