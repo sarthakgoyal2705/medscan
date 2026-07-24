@@ -16,6 +16,14 @@ and **dangerous drug-interaction warnings**.
 
 **100% free to run** — vision AI runs locally via Ollama, no API key or card needed.
 
+> **Two things in this repo:**
+> 1. A **live web app** (FastAPI) — deployed, real-time prescription scanning.
+> 2. A **batch data pipeline** (Medallion / Delta Lake / PySpark / Airflow) that
+>    reprocesses prescription images in bulk with lineage, validation and
+>    monitoring. See **[docs/PIPELINE.md](docs/PIPELINE.md)** (architecture diagram,
+>    benchmark, design rationale) and **[docs/AUDIT.md](docs/AUDIT.md)**. The web app
+>    is independent of the pipeline and unaffected by it.
+
 ## How it works
 
 ```
